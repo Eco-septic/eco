@@ -7,9 +7,10 @@ sitemap:
   disable: false
 menu:
   mainmenu:
-    name: News
-    pageRef: /news
-    weight: 0.8
+    name: FAQ
+    pageRef: /faq
+    weight: 0.7
+language: ru
 ---
 
 # hellow world

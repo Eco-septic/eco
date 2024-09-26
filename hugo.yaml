@@ -1,48 +1,49 @@
 baseURL: "https://topol-eco.netlify.app"
 
 taxonomies:
-   category: categories #product #news
-   product: products #type of product
-   tag: tags # for any any above usage
+  category: categories #product #news
+  product: products #type of product
+  tag: tags # for any any above usage
 
 build:
-   buildStats:
-      enable: true
+  buildStats:
+    enable: true
 
 enableRobotsTXT: false
 
-defaultContentLanguage: ru
+defaultContentLanguage: kg
 defaultContentLanguageInSubdir: false
 
 languages:
-   ru:
-      title: Hello IT SAFARI
-      disabled: false
-      languageCode: ru-RU
-      languageDirection: ltr
-      languageName: Русский
-      weight: 1
+  ru:
+    contentDir: content/ru
+    disabled: false
+    languageCode: ru-RU
+    languageDirection: ltr
+    languageName: Русский
+    weight: 1
 
-   kg:
-      disabled: false
-      languageCode: kg
-      languageDirection: ltr
-      languageName: Кыргызча
-      weight: 2
+  kg:
+    contentDir: content/kg
+    disabled: false
+    languageCode: kg
+    languageDirection: ltr
+    languageName: Кыргызча
+    weight: 2
 
 markup:
-   goldmark:
-      parser:
-         attribute:
-            block: true
-            title: true
-         wrapStandAloneImageWithinParagraph: false
-      renderer:
-         hardWraps: false
-         unsafe: true
+  goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
+      wrapStandAloneImageWithinParagraph: false
+    renderer:
+      hardWraps: false
+      unsafe: true
 
 sitemap:
-   changeFreq: "monthly"
-   disable: true
-   filename: sitemap.xml
-   priority: 0.5
+  changeFreq: "monthly"
+  disable: true
+  filename: sitemap.xml
+  priority: 0.5

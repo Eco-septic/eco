@@ -646,10 +646,6 @@ video {
   z-index: 51;
 }
 
-.z-\[60\] {
-  z-index: 60;
-}
-
 .order-1 {
   order: 1;
 }
@@ -660,10 +656,6 @@ video {
 
 .order-3 {
   order: 3;
-}
-
-.m-\[3px\] {
-  margin: 3px;
 }
 
 .m-auto {
@@ -740,10 +732,6 @@ video {
   height: 3.5rem;
 }
 
-.h-6 {
-  height: 1.5rem;
-}
-
 .h-64 {
   height: 16rem;
 }
@@ -758,10 +746,6 @@ video {
 
 .w-0 {
   width: 0px;
-}
-
-.w-6 {
-  width: 1.5rem;
 }
 
 .w-fit {
@@ -815,10 +799,6 @@ video {
 
 .justify-end {
   justify-content: flex-end;
-}
-
-.justify-center {
-  justify-content: center;
 }
 
 .justify-between {
@@ -928,14 +908,6 @@ video {
   fill: #1c93e3;
 }
 
-.fill-primary {
-  fill: rgb(255 84 47);
-}
-
-.stroke-primary {
-  stroke: rgb(255 84 47);
-}
-
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -947,10 +919,6 @@ video {
 
 .p-4 {
   padding: 1rem;
-}
-
-.p-\[4px\] {
-  padding: 4px;
 }
 
 .pb-24 {
@@ -1717,10 +1685,6 @@ main {
   cursor: pointer;
 }
 
-.hover\:cursor-wait:hover {
-  cursor: wait;
-}
-
 .peer:checked ~ .peer-checked\:bg-darkMode {
   --tw-bg-opacity: 1;
   background-color: rgb(25 25 25 / var(--tw-bg-opacity));
@@ -1755,14 +1719,6 @@ main {
 }
 
 @media (prefers-color-scheme: dark) {
-  .dark\:block:not(.light *) {
-    display: block;
-  }
-
-  .dark\:hidden:not(.light *) {
-    display: none;
-  }
-
   .dark\:h-\[1px\]:not(.light *) {
     height: 1px;
   }
@@ -1815,14 +1771,6 @@ main {
   .checked\:dark\:bg-red-800\/70:not(.light *):checked {
     background-color: rgb(153 27 27 / 0.7);
   }
-}
-
-.dark\:block:is(.dark *) {
-  display: block;
-}
-
-.dark\:hidden:is(.dark *) {
-  display: none;
 }
 
 .dark\:h-\[1px\]:is(.dark *) {

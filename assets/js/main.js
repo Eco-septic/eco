@@ -4,21 +4,30 @@ function applyTheme() {
     localStorage.theme === "dark" ||
     (!("theme" in localStorage) &&
       window.matchMedia("(prefers-color-scheme: dark)").matches);
-
   document.documentElement.className = isDark ? "dark" : "light";
 
-  const checkbox = document.getElementById("darkmode-toggle");
-  checkbox.checked = isDark;
+  // const checkbox = document.getElementById("darkmode-toggle");
+  // checkbox.checked = isDark;
 }
 
-window.toggleTheme = function toggleTheme() {
+function toggleTheme() {
   const checkbox = document.getElementById("darkmode-toggle");
   if (!checkbox.checked) {
     localStorage.theme = "light";
+    checkbox.checked = "light";
     document.documentElement.className = "light";
   } else {
     localStorage.theme = "dark";
+    checkbox.checked = "dark";
     document.documentElement.className = "dark";
   }
-};
+}
+
+function initialTheme() {
+  return (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  );
+}
 document.addEventListener("DOMContentLoaded", applyTheme);

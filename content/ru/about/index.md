@@ -7,9 +7,10 @@ sitemap:
   disable: false
 menu:
   mainmenu:
-    name: FAQ
-    pageRef: /faq
-    weight: 0.7
+    name: About
+    pageRef: /about
+    weight: 0.9
+language: ru
 ---
 
 # hellow world
