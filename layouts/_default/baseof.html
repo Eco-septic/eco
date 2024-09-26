@@ -1,0 +1,44 @@
+<!doctype html>
+<html
+  class="dark"
+  lang="{{ or site.Language.LanguageCode }}"
+  dir="{{ or site.Language.LanguageDirection `ltr` }}"
+>
+    {{ partial "head.html" . }}
+    <!-- {{ partial "opengraph.html" . }}
+    {{ partial "twitter.html" . }} -->
+
+  </head>
+
+  <body
+    class="bg-white dark:bg-darkMode dark:text-slate-100 h-full pb-24  space-y-10 scroll-smooth"
+  >
+    {{ partial "header.html" . }}
+    {{ block "main" . }}{{ end }}
+    <!-- {{ partial "footer.html" . }} -->
+  </body>
+
+  <!-- <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then(function (registration) {
+          // console.log(
+          //   "ServiceWorker registration successful with scope: ",
+          //   registration.scope,
+          // );
+        })
+        .catch(function (error) {
+          // console.log("ServiceWorker registration failed: ", error);
+        });
+    }
+
+    const tokens = ["#invite_token", "#email_change_token", "#confirmation_token", "#recovery_token"];
+    const currentHash = window.location.hash;
+    const shouldRedirect = tokens.some(token => currentHash.startsWith(token));
+    if (shouldRedirect) {
+      const urlSplit = document.URL.split("#");
+      window.location = `/admin/#${urlSplit[1]}`;
+    }
+  </script> -->
+</html>

@@ -1,0 +1,296 @@
+local_backend: true
+backend:
+  name: git-gateway
+  branch: deploy # Branch to update (optional; defaults to master)
+media_folder: "static/media/uploads"
+public_folder: "/media/uploads"
+locale: "ru"
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "_"
+
+# collections:
+#   - name: "home"
+#     label: "Главная"
+#     folder: "content"
+#     create: false
+#     delete: false
+#     editor:
+#       preview: true
+#     sortable_fields: []
+#     fields:
+#       - { label: "title", name: "title", widget: "string", required: true }
+#       - {
+#           label: "description",
+#           name: "description",
+#           widget: "string",
+#           required: true,
+#         }
+#       - { label: "og_image", name: "og_image", widget: "image", required: true }
+#       - label: "Menu"
+#         name: "menu"
+#         widget: "object"
+#         collapsed: true
+#         fields:
+#           - label: "Main Menu"
+#             name: "mainmenu"
+#             widget: "object"
+#             fields:
+#               - label: "Name"
+#                 name: "name"
+#                 widget: "text"
+#               - label: "Page Reference"
+#                 name: "pageRef"
+#                 widget: "text"
+#               - label: "Weight"
+#                 name: "weight"
+#                 widget: "number"
+
+#       - { label: "hero bg ", name: "hero_bg", widget: "image", required: true }
+#       - {
+#           label: "customIcon",
+#           name: "customIcon",
+#           widget: "string",
+#           required: false,
+#         }
+#       - { label: "Body", name: "body", widget: "markdown" }
+  # - name: "service"
+  #   label: "Услуги"
+  #   folder: "content/service"
+  #   delete: false
+  #   create: false
+  #   sortable_fields: []
+  #   editor:
+  #     preview: true
+  #   fields:
+  #     - { label: "title", name: "title", widget: "string", required: true }
+  #     - {
+  #         label: "description",
+  #         name: "description",
+  #         widget: "string",
+  #         required: true,
+  #       }
+  #     - { label: "og_image", name: "og_image", widget: "image", required: true }
+  #     - label: "Menu"
+  #       name: "menu"
+  #       widget: "object"
+  #       collapsed: true
+  #       fields:
+  #         - label: "Main Menu"
+  #           name: "mainmenu"
+  #           widget: "object"
+  #           fields:
+  #             - label: "Name"
+  #               name: "name"
+  #               widget: "text"
+  #             - label: "Page Reference"
+  #               name: "pageRef"
+  #               widget: "text"
+  #             - label: "Weight"
+  #               name: "weight"
+  #               widget: "number"
+
+  #     - { label: "hero bg ", name: "hero_bg", widget: "image", required: true }
+  #     - {
+  #         label: "customIcon",
+  #         name: "customIcon",
+  #         widget: "string",
+  #         required: false,
+  #       }
+  #     - { label: "Body", name: "body", widget: "markdown" }
+  # - name: "guide"
+  #   label: "page Гайды"
+  #   folder: "content/guides"
+  #   delete: false
+  #   create: false
+  #   sortable_fields: []
+  #   editor:
+  #     preview: true
+  #   fields:
+  #     - { label: "title", name: "title", widget: "string", required: true }
+  #     - {
+  #         label: "description",
+  #         name: "description",
+  #         widget: "string",
+  #         required: true,
+  #       }
+  #     - { label: "og_image", name: "og_image", widget: "image", required: true }
+  #     - label: "Menu"
+  #       name: "menu"
+  #       widget: "object"
+  #       collapsed: true
+  #       fields:
+  #         - label: "Main Menu"
+  #           name: "mainmenu"
+  #           widget: "object"
+  #           fields:
+  #             - label: "Name"
+  #               name: "name"
+  #               widget: "text"
+  #             - label: "Page Reference"
+  #               name: "pageRef"
+  #               widget: "text"
+  #             - label: "Weight"
+  #               name: "weight"
+  #               widget: "number"
+
+  #     - { label: "hero bg ", name: "hero_bg", widget: "image", required: true }
+  #     - {
+  #         label: "customIcon",
+  #         name: "customIcon",
+  #         widget: "string",
+  #         required: false,
+  #       }
+
+  # - name: "guides"
+  #   label: "list Гайды"
+  #   folder: "content/guides/guide"
+  #   create: true
+  #   slug: "{{slug}}"
+  #   editor:
+  #     preview: true
+  #   fields:
+  #     - { label: "hero bg ", name: "hero_bg", widget: "image", required: false }
+  #     - {
+  #         label: "custom Icon",
+  #         name: "customIcon",
+  #         widget: "string",
+  #         required: false,
+  #       }
+  #     - { label: "Title", name: "title", widget: "string" }
+  #     - { label: "Description", name: "description", widget: "string" }
+  #     - {
+  #         label: "description",
+  #         name: "description",
+  #         widget: "string",
+  #         required: false,
+  #       }
+  #     - { label: "categories", name: "categories", widget: "list" }
+  #     - { label: "tag", name: "tags", widget: "list" }
+  #     - {
+  #         label: "Publish Date",
+  #         name: "date",
+  #         widget: "datetime",
+  #         format: "YYYY-MM-DD",
+  #       }
+  #     - { label: "Body", name: "body", widget: "markdown", required: false }
+  #     - {
+  #         label: "Author",
+  #         name: "author",
+  #         widget: "string",
+  #         default: "HITS",
+  #         required: false,
+  #       }
+  # - name: "testimonial"
+  #   label: "page Отзывов"
+  #   folder: "content/testimonials"
+  #   delete: false
+  #   create: false
+  #   sortable_fields: []
+  #   editor:
+  #     preview: true
+  #   fields:
+  #     - { label: "title", name: "title", widget: "string", required: true }
+  #     - {
+  #         label: "description",
+  #         name: "description",
+  #         widget: "string",
+  #         required: true,
+  #       }
+  #     - { label: "og_image", name: "og_image", widget: "image", required: true }
+  #     - label: "Menu"
+  #       name: "menu"
+  #       widget: "object"
+  #       collapsed: true
+  #       required: true
+  #       fields:
+  #         - label: "Main Menu"
+  #           name: "mainmenu"
+  #           widget: "object"
+  #           fields:
+  #             - label: "Name"
+  #               name: "name"
+  #               widget: "text"
+  #             - label: "Page Reference"
+  #               name: "pageRef"
+  #               widget: "text"
+  #             - label: "Weight"
+  #               name: "weight"
+  #               widget: "number"
+
+  #     - { label: "hero bg ", name: "hero_bg", widget: "image", required: false }
+  #     - {
+  #         label: "customIcon",
+  #         name: "customIcon",
+  #         widget: "string",
+  #         required: false,
+  #       }
+  #     - { label: "Body", name: "body", widget: "markdown" }
+
+  # - name: "testimonials"
+  #   label: "list Отзывы"
+  #   folder: "content/testimonials/feedback"
+  #   create: true
+  #   slug: "{{slug}}"
+  #   editor:
+  #     preview: true
+  #   fields:
+  #     - { label: "hero bg ", name: "hero_bg", widget: "image", required: false }
+  #     - {
+  #         label: "custom Icon",
+  #         name: "customIcon",
+  #         widget: "string",
+  #         required: false,
+  #       }
+  #     - { label: "Title", name: "title", widget: "string", required: true }
+  #     - {
+  #         label: "Description",
+  #         name: "description",
+  #         widget: "string",
+  #         required: false,
+  #       }
+  #     - {
+  #         label: "description",
+  #         name: "description",
+  #         widget: "string",
+  #         required: false,
+  #       }
+  #     - {
+  #         label: "Publish Date",
+  #         name: "date",
+  #         widget: "datetime",
+  #         format: "YYYY-MM-DD",
+  #       }
+  #     - { label: "Recomender", name: "recomendedBy", widget: "string" }
+  #     - label: "linkedIn"
+  #       name: "linkedIn"
+  #       widget: "object"
+  #       collapsed: true
+  #       required: false
+  #       fields:
+  #         - label: "username"
+  #           name: "username"
+  #           widget: "string"
+  #           required: false
+  #         - label: "link"
+  #           name: "link"
+  #           widget: "string"
+  #           required: false
+
+  #     - { label: "image path", name: "image", widget: "image" }
+  #     - {
+  #         label: "Link to single Page",
+  #         name: "relatePage",
+  #         widget: "boolean",
+  #         default: false,
+  #         required: false,
+  #       }
+  #     - { label: "Body", name: "body", widget: "markdown", required: false }
+  #     - {
+  #         label: "Author",
+  #         name: "author",
+  #         widget: "author",
+  #         default: "HITS",
+  #         required: false,
+  #       }

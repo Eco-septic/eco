@@ -1,0 +1,61 @@
+<header class="top-0 fixed bg-red-400 w-full h-14 z-50 lg:h-20">
+  <nav class="   w-full">
+    <div
+      class="bg-white/30 dark:bg-black/35 backdrop-blur-md absolute size-full"
+    ></div>
+    <div
+      class=" h-full w-full container flex mx-auto items-center gap-4 md:justify-between justify-end text-base "
+    >
+      <div class="flex gap-4 z-[51]">
+        {{ partial "header/localeSwitcher.html" . }}
+
+        {{ partial "header/themModeButton.html" . }}
+      </div>
+
+      <label
+        role="menu-triger"
+        id="menu-icon-wrapper"
+        class="menu-icon-wrapper peer z-50 md:hidden"
+        style="visibility:visible"
+        for="burger-button"
+        tabindex="-1"
+      >
+        <svg width="1e3" height="1e3">
+          <path
+            class="path1"
+            d="M3e2 4e2H7e2c2e2.0 2e2 350-1e2 450A4e2 4e2.0 012e2 2e2L8e2 8e2"
+          ></path>
+          <path class="path2" d="M3e2 5e2H7e2"></path>
+          <path
+            class="path3"
+            d="M7e2 6e2H3e2c-2e2.0-2e2-4e2 1e2-450A4e2 380 0 112e2 8e2L8e2 2e2"
+          ></path>
+        </svg>
+        <input
+          tabindex="-1"
+          role="button"
+          id="burger-button"
+          class="appearance-none menu-icon-trigger checked:bg-red-500/70 checked:dark:bg-red-800/70 checked:z-30 checked:fixed checked:top-0 checked:left-0 checked:right-0 checked:bottom-0 checked:opacity-25"
+          type="checkbox"
+        />
+      </label>
+      <div class="menu-item z-[51]">
+        {{ partial "header/menu.html" . }}
+      </div>
+    </div>
+  </nav>
+  <!-- {{ partial "header/hero.html" . }} -->
+
+  <!-- <h1 class="text-2xl  leading-3xl font-extrabold container mt-4 m-auto">
+    {{ $taxon := "" }}
+    {{ $type := .Type }}
+    {{ range $key, $value := .Site.Taxonomies }}
+    {{ if eq $type $key }}
+      {{ i18n ($key) }} -
+    {{ end }}
+  {{ end }}
+    {{ strings.FirstUpper .Title }}
+  
+
+  </h1> -->
+</header>
