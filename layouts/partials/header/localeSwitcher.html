@@ -1,11 +1,19 @@
 {{ if hugo.IsMultilingual }}
   {{ $currentLang := .Lang }}
+
+
   <!-- Store the current language -->
   {{ with .AllTranslations }}
-    <ul>
+    <ul class="flex gap-1 rounded-[40px] px-2 localy-container overflow-hidden">
       {{ range . }}
-        <li>
-          <a href="{{ .RelPermalink }}" hreflang="{{ .Language.LanguageCode }}">
+        <li class="flex ">
+          <a
+            class=" m-auto px-1 localy-button {{ if eq .Lang $currentLang }}
+              localy-button
+            {{ end }}"
+            href="{{ .RelPermalink }}"
+            hreflang="{{ .Language.LanguageCode }}"
+          >
             {{ if eq .Lang $currentLang }}
               <!-- Check if it is the current language -->
               <strong>{{ .Language.LanguageName }}</strong>

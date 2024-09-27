@@ -1,86 +1,143 @@
-<footer
-  class="container flex flex-wrap gap-5 mx-auto   items-center justify-between"
->
-  <hr
-    class="bg-black container m-auto dark:bg-white dark:opacity-50 mx-auto h-[1.5px] dark:h-[1px]"
-  />
-  <div
-    class="order-2  size-[75px] p-1 bg-neutral-800 shadow-white/15 shadow-[0_0_7px_0_var(--tw-shadow-color),0_4px_6px_-4px_var(--tw-shadow-color)]  rounded"
-  >
-    <img
-      src="/media/defaults/icons/logo.svg"
-      alt="logo main"
-      class="size-full"
-    />
-  </div>
+<footer class="bg-slate-200 relative">
+  <div class="container mx-auto   items-center justify-between">
+    <nav class="flex gap-4 justify-center" role="navigation">
+      {{ $mainURL := "/" | relLangURL }}
+      {{ if eq .Page.RelPermalink "/" }}
+        <button
+          disabled
+          class="text-black/50 font-bold curlyBraces dark:text-slate-300/50"
+          aria-current="page"
+          href="{{ $mainURL }}"
+        >
+          to Main
+          <!-- fixme i18n to main -->
+        </button>
+      {{ else }}
+        <a href="{{ $mainURL }}" class="text-black dark:text-slate-300">
+          <!-- fixme i18n to main -->
+          to Main
+        </a>
+      {{ end }}
 
-  {{ with site.Menus.mainmenu }}
-    <nav class="flex gap-4 order-3 ">
-      {{ range . }}
-        {{ if $.IsMenuCurrent .Menu . }}
-          <button
-            disabled
-            class="text-black/50 font-bold curlyBraces dark:text-slate-300/50"
-            aria-current="page"
-            href="{{ .URL }}"
-          >
-            {{ .Name }}
-          </button>
-        {{ else }}
-          <a href="{{ .URL }}" class="text-black dark:text-slate-300"
-            >{{ .Name }}</a
-          >
+      {{ with site.Menus.mainmenu }}
+        {{ range . }}
+          {{ if $.IsMenuCurrent .Menu . }}
+            <button
+              disabled
+              class="text-black/50 font-bold curlyBraces dark:text-slate-300/50"
+              aria-current="page"
+              href="{{ .URL }}"
+            >
+              {{ .Name }}
+            </button>
+          {{ else }}
+            <a href="{{ .URL }}" class="text-black dark:text-slate-300"
+              >{{ .Name }}</a
+            >
+          {{ end }}
         {{ end }}
       {{ end }}
     </nav>
-  {{ end }}
-
-
-  <ul class="space-y-1 order-1 w-full ">
-    {{ $ticon := partial "icons/telegram.html" . }}
-    {{ with resources.Get "json/contacts.json" }}
-      {{ with . | transform.Unmarshal }}
-        {{ range . }}
-          <li
-            class="p-4 w-full text-white relative bg-slate-600 dark:bg-slate-600/60 dark:bg-[#2b2431] rounded flex gap-3"
-          >
-            <a
-              href="{{ .original_url }}"
-              target="_blank"
-              class="flex peer gap-2 items-center"
-            >
-              <div class="size-5 dark:*:fill-slate-300 fill-[#1c93e3]">
-                {{ $ticon }}
-              </div>
-
-              <p class="">{{ .title }}</p>
-            </a>
-            <!-- pop up description -->
-            <div
-              class="fixed hidden  peer-hover:h-[200px] hover:h-[200px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  h-0  peer-hover:md:flex   overflow-hidden  bg-slate-600/60 backdrop-blur-sm  dark:bg-[#2b2431]  flex-col  rounded-xl"
-            >
-              <div class=" flex-[0.5] bg-[#1c93e3]  relative">
-                <img
-                  src="{{ .image }}"
-                  alt=""
-                  class="rounded-full size-20 absolute z-10 -translate-x-1/2 top-2 p-1 bg-[#1c93e3] left-1/2 "
-                />
-              </div>
-              <div class="relative pt-10 p-4 bg-inherit flex-1 text-center">
-                <p class="">{{ .title }}</p>
-                <p>{{ .description }}</p>
-
-                <p>
-                  <img src="{{ .icon }}" alt="" class="inline" />
-                  {{ .original_url }}
-                </p>
-              </div>
+    <div class="grid grid-cols-3">
+      <section>
+        <h2>
+          <!-- fixme i18n -->
+          news
+        </h2>
+        <ul role="navigation" aria-label="recent news" class="bg-green-200">
+          {{ $news := where .Site.Pages "Section" "news" }}
+          {{ range first 4 $news.ByPublishDate.Reverse }}
+            <h2><a href="{{ .RelPermalink }}">{{ .RelPermalink }}</a></h2>
+          {{ end }}
+        </ul>
+      </section>
+      <section>
+        <h2>
+          <!-- fixme i18n -->
+          Product category
+        </h2>
+        <ul
+          role="navigation"
+          aria-label="product categories"
+          class="bg-orange-200"
+        >
+          {{ range $name, $taxonomy := .Site.Taxonomies.products }}
+            <li>
+              <a
+                href="{{ $taxonomy.Page.Permalink }}"
+                class="text-black dark:text-slate-300"
+              >
+                {{ $name }}
+              </a>
+            </li>
+          {{ else }}
+            <li>No products found!</li>
+          {{ end }}
+        </ul>
+      </section>
+      <section>
+        <h2>
+          <!-- fixme i18n -->
+          Contact
+        </h2>
+        <ul class="bg-pink-200">
+          <li>
+            <div class="size-[75px]">
+              <img
+                src="{{ .Site.Data.settings.logo }}"
+                alt="logo"
+                class="size-full"
+              />
             </div>
-            <!--  -->
           </li>
-        {{ end }}
-      {{ end }}
-    {{ end }}
-
-  </ul>
+          <li role="contentinfo" class="flex">
+            <div class="size-[40px]">
+              <img
+                src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
+                alt="icon"
+                class="size-full"
+              />
+            </div>
+            <p>Email: {{ .Site.Data.settings.email }}</p>
+          </li>
+          <li role="contentinfo" class="flex">
+            <div class="size-[40px]">
+              <img
+                src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
+                alt="icon"
+                class="size-full"
+              />
+            </div>
+            <p>whatsapp: {{ .Site.Data.settings.phone }}</p>
+          </li>
+          <li role="contentinfo" class="flex">
+            <div class="size-[40px]">
+              <img
+                src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
+                alt="icon"
+                class="size-full"
+              />
+            </div>
+            <p>Telegram: {{ .Site.Data.settings.phone }}</p>
+          </li>
+        </ul>
+      </section>
+      <div class="flex gap-5 fixed bottom-5 right-5 z-50">
+        <div class="size-[40px]">
+          <img
+            src="https://via.placeholder.com/40x40.png/FW4733?text=WHa"
+            alt="icon"
+            class="size-full"
+          />
+        </div>
+        <div class="size-[40px]">
+          <img
+            src="https://via.placeholder.com/40x40.png/F23733?text=Tel"
+            alt="icon"
+            class="size-full"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

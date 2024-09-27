@@ -10,7 +10,18 @@ slug:
   clean_accents: true
   sanitize_replacement: "_"
 
-# collections:
+collections:
+     - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "data/settings.yml" # Path to your global settings file
+        label: "General Settings"
+        name: "site_settings"
+        fields:
+          - { label: "Site Logo", name: "logo", widget: "image", required: false }
+          - { label: "Contact Email", name: "email", widget: "string" }
+          - { label: "Phone Number", name: "phone", widget: "string" }
+          - { label: "Address", name: "address", widget: "text" }
 #   - name: "home"
 #     label: "Главная"
 #     folder: "content"

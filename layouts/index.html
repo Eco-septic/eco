@@ -1,7 +1,10 @@
 {{ define "main" }}
-  <main class="container  mx-auto">
-    <div class="markdown">
-      <div>{{ .Content }}</div>
-    </div>
+  {{ partial "heros/main_hero.html" . }}
+  <main class="mx-auto container bg-blue-200">
+    <section class="">
+      <div class="markdown">
+        <div>{{ .Content }}</div>
+      </div>
+    </section>
   </main>
 {{ end }}

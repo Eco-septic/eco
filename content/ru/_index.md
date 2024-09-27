@@ -5,11 +5,22 @@ sitemap:
   changefreq: monthly
   priority: 1
   disable: false
-menu:
-  mainmenu:
-    name: main
-    pageRef: /
-    weight: 1
+heroImages:
+  - https://via.placeholder.com/1200x600.png?text=Slide+1
+  - https://via.placeholder.com/1200x600.png?text=Slide+2
+  - https://via.placeholder.com/1200x600.png?text=Slide+3
 ---
+
+# hellow world
+
+# hellow world
+
+# hellow world
+
+# hellow world
+
+# hellow world
+
+# hellow world
 
 # hellow world

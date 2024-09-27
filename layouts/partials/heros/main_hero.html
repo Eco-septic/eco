@@ -1,0 +1,96 @@
+<section
+  aria-label="Hero section"
+  class="relative flex h-[calc(100vh_-_3.5rem)] lg:h-[calc(100vh_-_5rem)] overflow-hidden"
+>
+  <!-- Image Slider Container -->
+  <div id="slider" aria-label="image slider" class="absolute inset-0">
+    <!-- Slider Images -->
+    {{ range $index, $image := .Params.heroImages }}
+      <img
+        class="size-full object-cover absolute top-0 left-0 bottom-0 right-0 transition-opacity duration-700 ease-in-out"
+        src="{{ $image }}"
+        alt="Slide {{ $index }}"
+      />
+    {{ end }}
+  </div>
+
+  <!-- Navigation Buttons -->
+  <button
+    id="prevBtn"
+    class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
+  >
+    &larr;
+  </button>
+  <button
+    id="nextBtn"
+    class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
+  >
+    &rarr;
+  </button>
+
+  <!-- Pagination Dots -->
+  <div
+    id="pagination"
+    class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"
+  >
+    {{ range $index, $image := .Params.heroImages }}
+      <span
+        class="dot w-3 h-3 bg-gray-300 rounded-full cursor-pointer"
+        data-index="{{ $index }}"
+      ></span>
+    {{ end }}
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.getElementById("slider");
+    const dots = document.querySelectorAll(".dot");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentIndex = 0;
+    const totalSlides = slider.children.length;
+
+    // Helper function to update slider position with opacity transitions
+    const updateSliderPosition = () => {
+      Array.from(slider.children).forEach((img, index) => {
+        if (index === currentIndex) {
+          img.style.opacity = "1"; // Show the active image
+          img.style.zIndex = "1"; // Make sure the current image is on top
+        } else {
+          img.style.opacity = "0"; // Hide other images
+          img.style.zIndex = "0"; // Push non-active images back
+        }
+      });
+
+      // Update dots to reflect the current slide
+      dots.forEach((dot, index) => {
+        dot.style.backgroundColor = index === currentIndex ? "gray" : "#E5E7EB"; // Change dot color for active slide
+      });
+    };
+
+    // Next Button Event Listener
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSliderPosition();
+    });
+
+    // Previous Button Event Listener
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSliderPosition();
+    });
+
+    // Pagination Dots Event Listener
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        currentIndex = parseInt(dot.getAttribute("data-index"));
+        updateSliderPosition();
+      });
+    });
+
+    // Initial Slider Position
+    updateSliderPosition();
+  });
+</script>

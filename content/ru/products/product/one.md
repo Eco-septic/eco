@@ -5,110 +5,13 @@ sitemap:
   changefreq: monthly
   priority: 1
   disable: false
-heroImages:
-  - https://via.placeholder.com/1200x600.png?text=Slide+1
-  - https://via.placeholder.com/1200x600.png?text=Slide+2
-  - https://via.placeholder.com/1200x600.png?text=Slide+3
+
+products:
+  - one
+  - two
+  - three
+  - four
+  - five
 ---
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
-
-# hellow world
 
 # hellow world

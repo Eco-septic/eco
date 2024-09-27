@@ -1,15 +1,15 @@
-<header class="top-0 fixed bg-red-400 w-full h-14 z-50 lg:h-20">
-  <nav class="   w-full">
+<header class="top-0 fixed  w-full h-14 z-50 lg:h-20">
+  <div
+    class="bg-white/30 dark:bg-black/35 backdrop-blur-md absolute -z-10 size-full"
+  ></div>
+  <nav class="h-full w-full container mx-auto">
     <div
-      class="bg-white/30 dark:bg-black/35 backdrop-blur-md absolute size-full"
-    ></div>
-    <div
-      class=" h-full w-full container flex mx-auto items-center gap-4 md:justify-between justify-end text-base "
+      class=" h-full w-full  flex  items-center gap-4 md:justify-between justify-end text-base "
     >
-      <div class="flex gap-4 z-[51]">
-        {{ partial "header/localeSwitcher.html" . }}
-
-        {{ partial "header/themModeButton.html" . }}
+      <div class="size-14 lg:size-16">
+        <a href="{{ .Lang | relLangURL }}" lang="{{ .Lang }}">
+          <img src="{{ "media/main-logo.png" | relURL }}" alt="Logo" />
+        </a>
       </div>
 
       <label
@@ -39,23 +39,15 @@
           type="checkbox"
         />
       </label>
-      <div class="menu-item z-[51]">
+      <div class="menu-item ">
         {{ partial "header/menu.html" . }}
+      </div>
+
+      <div class="flex gap-4 ">
+        {{ partial "header/localeSwitcher.html" . }}
+
+        {{ partial "header/themModeButton.html" . }}
       </div>
     </div>
   </nav>
-  <!-- {{ partial "header/hero.html" . }} -->
-
-  <!-- <h1 class="text-2xl  leading-3xl font-extrabold container mt-4 m-auto">
-    {{ $taxon := "" }}
-    {{ $type := .Type }}
-    {{ range $key, $value := .Site.Taxonomies }}
-    {{ if eq $type $key }}
-      {{ i18n ($key) }} -
-    {{ end }}
-  {{ end }}
-    {{ strings.FirstUpper .Title }}
-  
-
-  </h1> -->
 </header>

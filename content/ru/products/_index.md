@@ -7,10 +7,10 @@ sitemap:
   disable: false
 menu:
   mainmenu:
-    name: Products
+    name: ProductsRU
     pageRef: /products
     weight: 0.8
-language: kg
+language: ru
 ---
 
 # hellow world

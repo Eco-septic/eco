@@ -20,7 +20,7 @@ languages:
     disabled: false
     languageCode: ru-RU
     languageDirection: ltr
-    languageName: Русский
+    languageName: RU
     weight: 1
 
   kg:
@@ -28,7 +28,7 @@ languages:
     disabled: false
     languageCode: kg
     languageDirection: ltr
-    languageName: Кыргызча
+    languageName: KG
     weight: 2
 
 markup:

@@ -17,3 +17,15 @@
     {{- end }}
   {{- end }}
 {{- end }}
+<script>
+  (function () {
+    if (!localStorage.getItem("isDark")) {
+      localStorage.setItem(
+        "isDark",
+        window.matchMedia("(prefers-color-scheme: dark)").matches.toString(),
+      );
+    }
+    const isDark = localStorage.getItem("isDark") === "true";
+    document.documentElement.className = isDark ? "dark" : "light";
+  })();
+</script>
