@@ -1,13 +1,12 @@
-<footer class="bg-slate-200 relative">
-  <div class="container mx-auto   items-center justify-between">
+<footer class="bg-[rgb(179_220_251)] dark:bg-[rgb(26_41_58)] relative py-10">
+  <div class="container mx-auto space-y-5  items-center justify-between">
     <nav class="flex gap-4 justify-center" role="navigation">
       {{ $mainURL := "/" | relLangURL }}
       {{ if eq .Page.RelPermalink "/" }}
         <button
           disabled
-          class="text-black/50 font-bold curlyBraces dark:text-slate-300/50"
+          class="text-black/50 font-bold  dark:text-slate-300/50"
           aria-current="page"
-          href="{{ $mainURL }}"
         >
           to Main
           <!-- fixme i18n to main -->
@@ -24,9 +23,8 @@
           {{ if $.IsMenuCurrent .Menu . }}
             <button
               disabled
-              class="text-black/50 font-bold curlyBraces dark:text-slate-300/50"
+              class="text-black/50 font-bold  dark:text-slate-300/50"
               aria-current="page"
-              href="{{ .URL }}"
             >
               {{ .Name }}
             </button>
@@ -38,30 +36,35 @@
         {{ end }}
       {{ end }}
     </nav>
-    <div class="grid grid-cols-3">
-      <section>
-        <h2>
-          <!-- fixme i18n -->
+    <div class="grid grid-cols-3 gap-4">
+      <!-- <section>
+        <p>
           news
-        </h2>
+        </p>
         <ul role="navigation" aria-label="recent news" class="bg-green-200">
           {{ $news := where .Site.Pages "Section" "news" }}
           {{ range first 4 $news.ByPublishDate.Reverse }}
-            <h2><a href="{{ .RelPermalink }}">{{ .RelPermalink }}</a></h2>
-          {{ end }}
+        <p><a href="{{ .RelPermalink }}">{{ .Params.title }}</a></p>
+      {{ end }}
         </ul>
+      </section> -->
+      <section>
+        <a class="size-[75px] block" href="{{ $mainURL }}" alt="to main">
+          <img
+            src="{{ .Site.Data.settings.logo }}"
+            alt="logo"
+            class="size-full"
+          />
+        </a>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, at.</p>
       </section>
       <section>
-        <h2>
+        <p>
           <!-- fixme i18n -->
           Product category
-        </h2>
-        <ul
-          role="navigation"
-          aria-label="product categories"
-          class="bg-orange-200"
-        >
-          {{ range $name, $taxonomy := .Site.Taxonomies.products }}
+        </p>
+        <ul role="navigation" aria-label="product categories">
+          {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
             <li>
               <a
                 href="{{ $taxonomy.Page.Permalink }}"
@@ -76,26 +79,17 @@
         </ul>
       </section>
       <section>
-        <h2>
+        <p>
           <!-- fixme i18n -->
           Contact
-        </h2>
-        <ul class="bg-pink-200">
-          <li>
-            <div class="size-[75px]">
-              <img
-                src="{{ .Site.Data.settings.logo }}"
-                alt="logo"
-                class="size-full"
-              />
-            </div>
-          </li>
+        </p>
+        <ul class="">
           <li role="contentinfo" class="flex">
             <div class="size-[40px]">
               <img
                 src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
                 alt="icon"
-                class="size-full"
+                class="size-full rounded-full"
               />
             </div>
             <p>Email: {{ .Site.Data.settings.email }}</p>
@@ -105,7 +99,7 @@
               <img
                 src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
                 alt="icon"
-                class="size-full"
+                class="size-full rounded-full"
               />
             </div>
             <p>whatsapp: {{ .Site.Data.settings.phone }}</p>
@@ -115,28 +109,59 @@
               <img
                 src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
                 alt="icon"
-                class="size-full"
+                class="size-full rounded-full"
               />
             </div>
             <p>Telegram: {{ .Site.Data.settings.phone }}</p>
           </li>
         </ul>
       </section>
-      <div class="flex gap-5 fixed bottom-5 right-5 z-50">
+      <div class="flex flex-col gap-5 fixed bottom-10  right-5 z-50">
         <div class="size-[40px]">
           <img
             src="https://via.placeholder.com/40x40.png/FW4733?text=WHa"
             alt="icon"
-            class="size-full"
+            class="size-full rounded-full"
           />
         </div>
-        <div class="size-[40px]">
+        <div class="size-[40px] rounded-full">
           <img
             src="https://via.placeholder.com/40x40.png/F23733?text=Tel"
             alt="icon"
-            class="size-full"
+            class="size-full rounded-full"
           />
         </div>
+        <button
+          class="scroll-progress-btn relative rounded-full bg-green-500 text-white size-[40px] shadow-lg flex items-center justify-center overflow-hidden"
+        >
+          <span class="relative z-10 text-lg">↑</span>
+          <!-- Circular Progress Background -->
+          <svg
+            class="absolute inset-0 z-0 w-full h-full"
+            style="transform: rotate(-90deg);"
+          >
+            <circle
+              cx="50%"
+              cy="50%"
+              r="16"
+              class="stroke-gray-300"
+              stroke-width="4"
+              fill="none"
+            />
+            <circle
+              cx="50%"
+              cy="50%"
+              r="16"
+              class="stroke-green-500"
+              stroke-width="4"
+              fill="none"
+              pathLength="100"
+              stroke-dasharray="100"
+              stroke-dashoffset="100"
+              id="progress-circle"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   </div>

@@ -1,0 +1,85 @@
+<section
+  aria-label="news featuring"
+  class="container relative space-y-10 pt-20 pb-28"
+>
+  <!-- News Section Title & Description -->
+  <h2
+    id="newsTitle"
+    class="text-3xl font-bold text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+  >
+    {{ .Params.newsSection.title }}
+  </h2>
+  <p
+    id="newsDescription"
+    class="text-xl text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+  >
+    {{ .Params.newsSection.description }}
+  </p>
+
+  {{ $news := (where .Site.RegularPages "Type" "news") }}
+
+
+  <!-- News Cards Container -->
+  <div id="newsCardContainer" class="grid grid-cols-1 gap-4 md:grid-cols-3">
+    {{ range $index, $pages := $news }}
+      <div
+        class="news-card opacity-0 translate-y-5 transform transition-all duration-500 ease-out"
+        data-item="news"
+      >
+        <img
+          src="{{ $pages.Params.titleImage }}"
+          alt="{{ $pages.Params.title }}"
+          class="object-cover w-full h-48 mb-4 rounded-lg"
+        />
+        <h3 class="text-base font-semibold">{{ $pages.Params.title }}</h3>
+        <p class="text-sm">{{ .Params.date }}</p>
+        <p class="text-base">{{ $pages.Params.description }}</p>
+        <a href="{{ .RelPermalink }}" class="block text-sm">read more >></a>
+      </div>
+    {{ end }}
+  </div>
+
+  <!-- Pagination Navigation Container -->
+  <div
+    class="flex items-center justify-center absolute bottom-5 left-1/2 -translate-x-1/2"
+  >
+    <!-- Previous Skip Button -->
+    <button
+      id="newsPrevSkipBtn"
+      class="px-4 py-2 inactive rounded-lg mr-2"
+      aria-label="Skip Previous Pages"
+    >
+      &lt;&lt;
+    </button>
+
+    <!-- Previous Page Button -->
+    <button
+      id="newsPrevPageBtn"
+      class="px-4 py-2 inactive rounded-lg"
+      aria-label="Previous Page"
+    >
+      &laquo;
+    </button>
+
+    <!-- Pagination Dots Container -->
+    <div id="newsPaginationDots" class="flex space-x-2 mx-4"></div>
+
+    <!-- Next Page Button -->
+    <button
+      id="newsNextPageBtn"
+      class="px-4 py-2 inactive rounded-lg"
+      aria-label="Next Page"
+    >
+      &raquo;
+    </button>
+
+    <!-- Next Skip Button -->
+    <button
+      id="newsNextSkipBtn"
+      class="px-4 py-2 inactive rounded-lg ml-2"
+      aria-label="Skip Next Pages"
+    >
+      &gt;&gt;
+    </button>
+  </div>
+</section>

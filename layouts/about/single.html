@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <!-- Main Content Container -->
+  <main class="bg-blue-300 container mx-auto flex flex-col items-center">
+    {{ partial "breadcrumbs.html" . }}
+    <div class="markdown">
+      <div>{{ .Content }}</div>
+    </div>
+  </main>
+{{ end }}

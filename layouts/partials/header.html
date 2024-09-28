@@ -1,4 +1,4 @@
-<header class="top-0 fixed  w-full h-14 z-50 lg:h-20">
+<header class="top-0 fixed  w-full h-14 z-50 lg:h-20 bg-grannary-effect">
   <div
     class="bg-white/30 dark:bg-black/35 backdrop-blur-md absolute -z-10 size-full"
   ></div>
@@ -8,7 +8,7 @@
     >
       <div class="size-14 lg:size-16">
         <a href="{{ .Lang | relLangURL }}" lang="{{ .Lang }}">
-          <img src="{{ "media/main-logo.png" | relURL }}" alt="Logo" />
+          <img src="{{ .Site.Data.settings.logo }}" alt="Logo" />
         </a>
       </div>
 

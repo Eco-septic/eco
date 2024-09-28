@@ -6,7 +6,7 @@ sitemap:
   priority: 1
   disable: false
 
-categories: one
+categories: five
 ---
 
 # hellow world

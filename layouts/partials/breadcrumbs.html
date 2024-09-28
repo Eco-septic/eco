@@ -1,0 +1,26 @@
+<!-- Breadcrumb Container -->
+<nav
+  class="breadcrumb-container w-full
+   py-3  mb-5"
+  aria-label="Breadcrumb"
+>
+  <ol class="breadcrumb-list flex space-x-2 text-base text-gray-700">
+    <!-- Loop through Breadcrumb Path -->
+    {{ range $index, $element := .Ancestors }}
+      <li class="breadcrumb-item">
+        <a href="{{ $element.Permalink }}" class="hover:text-blue-500"
+          >{{ $element.LinkTitle }}</a
+        >
+        <span aria-hidden="true">/</span>
+      </li>
+    {{ end }}
+
+
+    <!-- Current Page -->
+    <li class="breadcrumb-item font-semibold text-blue-600">
+      <a aria-current="page" href="{{ .RelPermalink }}">
+        {{ .LinkTitle }}
+      </a>
+    </li>
+  </ol>
+</nav>

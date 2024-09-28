@@ -1,8 +1,8 @@
 ---
 description: "news "
-title: "news 🦖 two"
+title: "news 🦖 four"
 titleImage: https://via.placeholder.com/1200x600.png/783b0e?text=Title+Image
-date: "{{ .Date }}"
+date: "{ { .Date } }"
 sitemap:
   changefreq: monthly
   priority: 1

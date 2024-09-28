@@ -1,8 +1,8 @@
 baseURL: "https://topol-eco.netlify.app"
 
 taxonomies:
-  category: categories #product #news
-  product: products #type of product
+  category: categories #type of product
+  feature: features #news
   tag: tags # for any any above usage
 
 build:

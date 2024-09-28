@@ -1,0 +1,113 @@
+<section
+  class="relative container  overflow-hidden  pt-20 pb-28 space-y-8"
+  aria-label="products categories featuring"
+>
+  <!-- Product Section Title & Description -->
+  <h2
+    id="productTitle"
+    class="text-xl font-bold text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+  >
+    {{ .Params.productSection.title }}
+  </h2>
+  <p
+    id="productDescription"
+    class="text-lg text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+  >
+    {{ .Params.productSection.description }}
+  </p>
+
+  <!-- Category Filter Buttons -->
+  <div
+    aria-label="filter product categories"
+    class="flex justify-center gap-2 mt-4"
+  >
+    <button
+      data-filter="all"
+      class="filter-button text-base px-4 py-2 bg-blue-500 rounded-lg opacity-0 translate-y-10 transition-all duration-500 ease-out"
+    >
+      all
+    </button>
+    {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+      <button
+        data-filter="{{ lower $name }}"
+        class="filter-button text-base px-4 py-2 inactive rounded-lg opacity-0 translate-y-10 transition-all duration-500 ease-out"
+      >
+        {{ $name }}
+      </button>
+    {{ end }}
+  </div>
+
+  <!-- Product List Container -->
+  <div
+    id="productSectionList"
+    class="relative container mx-auto my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+  >
+    <!-- Group products by categories -->
+    {{ $products := (where .Site.RegularPages "Type" "products") }}
+    {{ range $index, $pages :=  $products.ByPublishDate.Reverse }}
+      <div
+        class="product-item"
+        data-item="{{ $pages.Params.categories | lower }}"
+      >
+        <div class="relative w-full" style="padding-top: 100%;">
+          <!-- Aspect ratio container -->
+          <img
+            class="absolute inset-0 size-full object-cover"
+            src="https://via.placeholder.com/100x100/FF5733/ffffff?text=product"
+            alt=""
+          />
+        </div>
+        <p
+          class="product-title text-base font-semibold opacity-0 translate-y-5 transition-all duration-500 ease-out"
+        >
+          {{ $pages.Params.title }}
+        </p>
+        <p class="text-xsm">price</p>
+      </div>
+    {{ end }}
+  </div>
+
+  <!-- Pagination Navigation Container -->
+  <div
+    id="paginationContainer"
+    class="mt-8 flex justify-center items-center gap-2 absolute bottom-10 left-1/2 -translate-x-1/2"
+  >
+    <button
+      id="productPrevSkipBtn"
+      class="px-4 py-2 inactive rounded-lg mr-2"
+      aria-label="Skip Previous Pages"
+    >
+      <<
+    </button>
+
+    <!-- Previous Page Button -->
+    <button
+      id="productPrevPageBtn"
+      class="px-4 py-2 inactive rounded-lg"
+      aria-label="Previous Page"
+    >
+      <
+    </button>
+
+    <!-- Pagination Dots Container -->
+    <div id="productPaginationDots" class="flex space-x-2 mx-4"></div>
+
+    <!-- Next Page Button -->
+    <button
+      id="productNextPageBtn"
+      class="px-4 py-2 inactive rounded-lg"
+      aria-label="Next Page"
+    >
+      >
+    </button>
+
+    <!-- Next Skip Button -->
+    <button
+      id="productNextSkipBtn"
+      class="px-4 py-2 inactive rounded-lg ml-2"
+      aria-label="Skip Next Pages"
+    >
+      >>
+    </button>
+  </div>
+</section>

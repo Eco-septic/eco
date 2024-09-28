@@ -11,6 +11,7 @@ menu:
     pageRef: /about
     weight: 0.9
 language: ru
+type: "about"
 ---
 
 # hellow world

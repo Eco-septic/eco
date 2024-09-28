@@ -10,7 +10,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ["Montserrat"],
+      sans: ["'Gilroy', Arial, sans-serif;"],
     },
     extend: {
       keyframes: {
@@ -34,8 +34,11 @@ module.exports = {
       },
       colors: {
         primary: "rgb(255 84 47)",
-        darkMode: "rgb(25, 25, 25)",
-        lightMode: "rgb(249, 249, 249)",
+        darkMode: "rgb(36, 36, 36)",
+        lightMode: "rgb(240, 240, 240)",
+        inactive: "rgb(84, 84, 84)",
+        inactiveDark: "rgb(225, 225, 225)",
+        active: "rgb(220, 220, 220)",
       },
 
       typography: {
@@ -71,9 +74,9 @@ module.exports = {
       },
       container: {
         padding: {
-          DEFAULT: "1rem",
-          sm: "1rem",
-          lg: "1rem",
+          DEFAULT: "4rem",
+          sm: "4rem",
+          lg: "4rem",
           xl: "5rem",
           "2xl": "6rem",
         },

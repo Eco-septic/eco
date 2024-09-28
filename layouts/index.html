@@ -1,10 +1,8 @@
 {{ define "main" }}
   {{ partial "heros/main_hero.html" . }}
-  <main class="mx-auto container bg-blue-200">
-    <section class="">
-      <div class="markdown">
-        <div>{{ .Content }}</div>
-      </div>
-    </section>
+  <main class="flex flex-col items-center ">
+    {{ partial "sections/products.html" . }}
+    {{ partial "sections/pitches.html" . }}
+    {{ partial "sections/news.html" . }}
   </main>
 {{ end }}
