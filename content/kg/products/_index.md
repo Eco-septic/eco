@@ -1,6 +1,7 @@
 ---
 description: ""
 title: "index"
+linktitle: "products"
 sitemap:
   changefreq: monthly
   priority: 1

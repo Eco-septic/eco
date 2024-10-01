@@ -1,0 +1,58 @@
+<!-- Display Parameters -->
+<div class="product-parameters space-y-2">
+  {{ with .Params.paramters.max_people_usage }}
+    <div class="parameter">
+      <strong>Max People Usage:</strong> {{ . }}
+    </div>
+  {{ end }}
+
+  {{ with .Params.paramters.processing_volume }}
+    <div class="parameter">
+      <strong>Processing Volume:</strong> {{ . }} m<sup>3</sup>/day
+    </div>
+  {{ end }}
+
+  {{ with .Params.paramters.peak_discharge }}
+    <div class="parameter"><strong>Peak Discharge:</strong> {{ . }} L</div>
+  {{ end }}
+
+  {{ with .Params.paramters.weight }}
+    <div class="parameter"><strong>Weight:</strong> {{ . }} kg</div>
+  {{ end }}
+
+  {{ with .Params.paramters.length }}
+    <div class="parameter"><strong>Length:</strong> {{ . }} m</div>
+  {{ end }}
+
+  {{ with .Params.paramters.width }}
+    <div class="parameter"><strong>Width:</strong> {{ . }} m</div>
+  {{ end }}
+
+  {{ with .Params.paramters.height }}
+    <div class="parameter"><strong>Height:</strong> {{ . }} m</div>
+  {{ end }}
+
+  {{ with .Params.paramters.depth_of_installation }}
+    <div class="parameter">
+      <strong>Depth of Installation:</strong> {{ . }} cm
+    </div>
+  {{ end }}
+
+  {{ with .Params.paramters.energy_consumption }}
+    <div class="parameter">
+      <strong>Energy Consumption:</strong> {{ . }} kW/day
+    </div>
+  {{ end }}
+
+  {{ with .Params.paramters.internal_capacity }}
+    <div class="parameter">
+      <strong>Internal Capacity:</strong> {{ . }} m<sup>3</sup>
+    </div>
+  {{ end }}
+
+  {{ with .Params.paramters.performance }}
+    <div class="parameter">
+      <strong>Performance:</strong> {{ . }} m<sup>3</sup>/hour
+    </div>
+  {{ end }}
+</div>

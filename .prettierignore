@@ -1,0 +1,6 @@
+# Ignore node_modules
+node_modules
+# Ignore build directories
+public
+# Ignore minified JavaScript files
+*.min.js

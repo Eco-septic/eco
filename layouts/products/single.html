@@ -1,0 +1,71 @@
+{{ define "main" }}
+  <main class="container mx-auto bg-pink-200">
+    {{ partial "breadcrumbs.html" . }}
+    <div
+      class="flex flex-col lg:flex-row gap-4 justify-between"
+      aria-label="product information"
+    >
+      {{ partial "products/images.html" . }}
+      <section aria-label="product details" class="">
+        <h2 class="text-xl font-bold mb-3">{{ .Title}}</h2>
+        <p>categories: {{ .Params.categories }}</p>
+        {{ if .Params.paramters.show }}
+        <aside>
+          <p>
+            Parameters: 
+          </p>
+          {{ partial "products/parameters.html" . }}
+          {{ else }}
+          <p class="text-gray-600">Product details will be available soon.</p>
+        </aside>
+        {{ end }}
+        {{ if .Params.benefits.show }}
+        <aside aria-label="Product Benefits" class="p-4 bg-gray-100 rounded-lg">
+          <h2 class="text-xl font-bold mb-4">Product Benefits</h2>
+          <ul class="list-disc list-inside">
+            {{ range .Params.benefits.list }}
+              <li class="mb-2">{{ . }}</li>
+            {{ end }}
+          </ul>
+        </aside>
+        {{ end }}
+      </section>
+    </div>
+    <div class="markdown mb-9"></div>
+      <div>{{ .Content }}</div>
+    </div>
+    <section aria-label="similar products">
+<div>
+
+  <h2>Similar products: i18n</h2>
+  <div>
+    <button data-control-similar="left">left</button>
+    <button data-control-similar="right">right</button>
+  </div>
+</div>
+    <div aria-label="ignore"></div>
+    {{ $products := (where .Site.RegularPages "Type" "products") }}
+    {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
+    {{ range $index, $pages :=  $category.ByPublishDate.Reverse }}
+      <div
+        class="bg-lime-300"
+        
+      >
+        <!-- <div class="relative w-full" style="padding-top: 100%;">
+          <img
+            class="absolute inset-0 size-full object-cover"
+            src="https://via.placeholder.com/100x100/FF5733/ffffff?text=product"
+            alt=""
+          />
+        </div> -->
+        <p
+          class=" text-base font-semibold "
+        >
+          {{ $pages.Params.title }}
+        </p>
+        <p class="text-xsm">price</p>
+      </div>
+    {{ end }}
+    </section>
+  </main>
+{{ end }}

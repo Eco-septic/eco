@@ -4,10 +4,12 @@
    py-3  mb-5"
   aria-label="Breadcrumb"
 >
-  <ol class="breadcrumb-list flex space-x-2 text-base text-gray-700">
+  <ol
+    class="breadcrumb-list flex flex-nowrap space-x-2 text-base text-gray-700"
+  >
     <!-- Loop through Breadcrumb Path -->
-    {{ range $index, $element := .Ancestors }}
-      <li class="breadcrumb-item">
+    {{ range $index, $element := .Ancestors.Reverse }}
+      <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
         <a href="{{ $element.Permalink }}" class="hover:text-blue-500"
           >{{ $element.LinkTitle }}</a
         >
@@ -17,10 +19,12 @@
 
 
     <!-- Current Page -->
-    <li class="breadcrumb-item font-semibold text-blue-600">
-      <a aria-current="page" href="{{ .RelPermalink }}">
+    <li
+      class="breadcrumb-item font-semibold text-blue-600 overflow-hidden text-ellipsis whitespace-nowrap"
+    >
+      <span aria-current="page" href="{{ .RelPermalink }}">
         {{ .LinkTitle }}
-      </a>
+      </span>
     </li>
   </ol>
 </nav>

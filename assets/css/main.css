@@ -242,3 +242,60 @@ p {
 .heroCharDicAnimation {
   @apply inline-block transform translate-y-0 opacity-100 transition-all duration-700 ease-out;
 }
+
+#paginationContainer {
+  position: relative; /* Set to relative by default */
+  z-index: 100; /* Make sure it stays above other elements */
+  transition: all 0.3s ease; /* Smooth transition for fixed positioning */
+}
+
+.sticky-navigation {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed to create space from the bottom */
+  left: 50%;
+  transform: translateX(-50%); /* Center it horizontally */
+  width: calc(100% - 40px); /* Adjust width as needed */
+  background-color: white; /* Background color to maintain visibility */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+.current-displaye-image-style {
+  @apply outline-2 outline outline-offset-2 outline-blue-500 rounded;
+}
+
+dialog {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+dialog img {
+  max-width: 90vw;
+  max-height: 80vh;
+  display: none;
+}
+
+button[data-control] {
+  background: transparent;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+button[data-control]:hover {
+  color: #4a90e2;
+}
+
+[data-container="scroll"] {
+  /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+[data-container="scroll"]::-webkit-scrollbar {
+  display: none; /* WebKit browsers (Chrome, Safari) */
+}

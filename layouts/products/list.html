@@ -1,0 +1,377 @@
+{{ define "main" }}
+  <main class="container mx-auto">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="text-2xl font-bold mb-4">Product Listings</h1>
+
+    <div class="flex justify-between items-center mb-4">
+      <!-- Category Filter Dropdown -->
+      <div>
+        <label for="categoryFilter" class="mr-2">Category:</label>
+        <select id="categoryFilter" class="border rounded p-2">
+          <option value="all">All Categories i18n</option>
+          {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+            <option value="{{ $name }}">{{ $name }}</option>
+          {{ end }}
+        </select>
+      </div>
+
+      <!-- Price Filter Range -->
+      <div class="flex-[0.7]">
+        <label for="priceFilter" class="mr-2">Price Range: i18n</label>
+        <input
+          type="range"
+          id="priceFilter"
+          min="0"
+          max="100000"
+          step="100"
+          class="slider w-1/2"
+        />
+        <span id="priceValue" class="ml-2">0</span> KGS
+      </div>
+    </div>
+
+    <!-- Products Container -->
+    <div id="empty_product" class="flex text-center m-52">
+      <p>no product to display i18n</p>
+    </div>
+    <div
+      id="productsContainer"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+    >
+      {{ $products := where .Site.RegularPages "Section" "products" }}
+      {{ range $products }}
+        {{ $dataPrice := .Params.price }}
+
+        {{ if .Params.promo }}
+          {{ $discountedPrice := mul $dataPrice (sub 1 (div .Params.promo 100)) }}
+          {{ $dataPrice = $discountedPrice }}
+        {{ else if .Params.newPrice }}
+          {{ $dataPrice = .Params.newPrice }}
+        {{ end }}
+
+
+        <a href="{{ .RelPermalink }}">
+          <div
+            class="product-item group relative p-4 border rounded shadow-lg"
+            data-product-category="{{ .Params.categories }}"
+            data-product-price="{{ $dataPrice }}"
+          >
+            {{ if or .Params.promo .Params.newPrice }}
+              <img
+                src="https://via.placeholder.com/50x50.png/FF0000/FFFFFF?text=SALE"
+                alt="Promo"
+                class="absolute top-2 left-2 w-12 z-10 h-12 rounded-full"
+              />
+            {{ end }}
+
+
+            <div
+              class="group relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg"
+            >
+              <img
+                src="https://via.placeholder.com/400x282.png/28a745/ffffff?text=Product"
+                alt="{{ .Title }}"
+                class="w-full h-auto group-hover:scale-150 object-cover transition duration-300 ease-in-out transform"
+                loading="lazy"
+              />
+              <p
+                class="absolute inset-0 flex items-center justify-center p-4 text-black transition-all duration-500 ease-in-out transform -translate-y-full group-hover:translate-y-0 group-hover:text-white group-hover:bg-black/50 overflow-hidden"
+              >
+                {{ .Params.description }}
+              </p>
+            </div>
+
+            <h2 class="text-xl font-semibold mt-4">{{ .Params.categories }}</h2>
+            <p class="text-sm text-gray-600 mb-2">{{ .Params.description }}</p>
+
+            <div class="text-lg">
+              {{ $price := float .Params.price }}
+              {{ $promo := float .Params.promo }}
+              {{ $newPrice := float .Params.newPrice }}
+
+              {{ if and $promo (gt $promo 0) }}
+                {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+                <p>
+                  <span class="line-through text-gray-500"
+                    >{{ printf "%.0f" $price }} KGS</span
+                  >
+                  <span class="text-red-500 font-bold ml-2"
+                    >{{ printf "%.0f" $discountedPrice }} KGS</span
+                  >
+                  <span class="text-green-600 text-sm"
+                    >({{ printf "%.2f" $promo }}% off)</span
+                  >
+                </p>
+              {{ else if and (not $promo) (gt $newPrice 0) }}
+                {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+                <p>
+                  <span class="line-through text-gray-500"
+                    >{{ printf "%.0f" $price }} KGS</span
+                  >
+                  <span class="text-red-500 font-bold ml-2"
+                    >{{ printf "%.0f" $newPrice }} KGS</span
+                  >
+                  <span class="text-green-600 text-sm"
+                    >({{ printf "%.2f" $discount }}% off)</span
+                  >
+                </p>
+              {{ else }}
+                <p class="text-blue-700 font-bold">
+                  {{ printf "%.0f" $price }} KGS
+                </p>
+              {{ end }}
+            </div>
+
+            <a
+              href="{{ .RelPermalink }}"
+              class="text-blue-500 underline mt-2 block"
+              >Read more i18n</a
+            >
+          </div>
+        </a>
+      {{ end }}
+    </div>
+
+    <!-- Pagination Navigation Container -->
+    <div
+      id="paginationContainer"
+      class="mt-8 flex justify-center items-center gap-2"
+    >
+      <button
+        id="productPrevSkipBtn"
+        class="px-4 py-2 inactive rounded-lg mr-2"
+      >
+        <<
+      </button>
+      <button id="productPrevPageBtn" class="px-4 py-2 inactive rounded-lg">
+        <
+      </button>
+      <div id="productPaginationDots" class="flex space-x-2 mx-4"></div>
+      <button id="productNextPageBtn" class="px-4 py-2 inactive rounded-lg">
+        >
+      </button>
+      <button
+        id="productNextSkipBtn"
+        class="px-4 py-2 inactive rounded-lg ml-2"
+      >
+        >>
+      </button>
+    </div>
+
+    <!-- JavaScript for Pagination and Filtering -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const productsContainer = document.getElementById("productsContainer");
+        const categoryFilter = document.getElementById("categoryFilter");
+        const priceFilter = document.getElementById("priceFilter");
+        const priceValue = document.getElementById("priceValue");
+        const paginationDots = document.getElementById("productPaginationDots");
+        const paginationContainer = document.getElementById(
+          "paginationContainer",
+        );
+        const prevPageBtn = document.getElementById("productPrevPageBtn");
+        const nextPageBtn = document.getElementById("productNextPageBtn");
+        const nextSkip = document.getElementById("productNextSkipBtn");
+        const prevSkip = document.getElementById("productPrevSkipBtn");
+        const empty_product = document.getElementById("empty_product");
+
+        // Default variables
+        let allProducts = []; // Array to hold all product items
+        let filteredProducts = []; // Array to hold filtered product items
+        const itemsPerPage = 12; // Number of items per page
+        let currentPage = 0; // 0-based index
+        let prevPage = 0;
+        let maxRange = 0;
+        let minRange = Infinity;
+
+        // Fetch all product items into the allProducts array
+        function initializeProducts() {
+          document.querySelectorAll(".product-item").forEach((item) => {
+            const productCategory = item.getAttribute("data-product-category");
+            const productPrice = item.getAttribute("data-product-price");
+            maxRange = Math.max(maxRange, productPrice);
+            minRange = Math.min(minRange, productPrice);
+            allProducts.push({
+              element: item,
+              category: productCategory,
+              price: productPrice,
+            });
+          });
+          priceFilter.max = maxRange;
+          priceFilter.min = minRange;
+          priceFilter.value = maxRange;
+          priceValue.innerText = maxRange;
+          filteredProducts = [...allProducts]; // Initialize filteredProducts with allProducts
+          displayProducts(); // Display all products initially
+        }
+
+        // Update displayed products based on the current page
+
+        function displayProducts() {
+          productsContainer.innerHTML = ""; // Clear existing products
+          const startIndex = currentPage * itemsPerPage;
+          const endIndex = startIndex + itemsPerPage;
+          const productsToDisplay = filteredProducts.slice(
+            startIndex,
+            endIndex,
+          );
+
+          if (!productsToDisplay.length) {
+            paginationContainer.style.display = "none";
+            empty_product.style.display = "block";
+          } else {
+            empty_product.style.display = "none";
+            paginationContainer.style.display = "flex";
+          }
+
+          // Determine the animation direction based on page change
+          const directionClass =
+            currentPage > prevPage ? "slide-left" : "slide-right";
+          prevPage = currentPage; // Update previous page to the current one
+
+          productsToDisplay.forEach((product) => {
+            // Append the product element to the container
+            product.element.classList.add(directionClass); // Add the slide class
+            productsContainer.appendChild(product.element);
+          });
+
+          // Remove the animation class after the animation duration (optional)
+          setTimeout(() => {
+            productsToDisplay.forEach((product) => {
+              product.element.classList.remove("slide-left", "slide-right");
+            });
+          }, 600); // Match this timeout with your CSS animation duration
+
+          updatePagination(); // Update pagination
+        }
+
+        // Filter products based on selected category and price range
+        function filterProducts() {
+          const selectedCategory = categoryFilter.value;
+          const selectedPrice = Number(priceFilter.value); // Convert to number
+
+          // Check if we're resetting filters to show all products
+          const isCategoryAll = selectedCategory === "all";
+          const isMaxPrice = selectedPrice >= maxRange;
+
+          // Filter based on category and price
+          filteredProducts = allProducts.filter((product) => {
+            const matchesCategory =
+              isCategoryAll || product.category === selectedCategory;
+            const matchesPrice =
+              isMaxPrice || Number(product.price) <= selectedPrice;
+            // return matchesCategory ;
+            return matchesCategory && matchesPrice;
+          });
+
+          currentPage = 0; // Reset to first page after filtering
+          displayProducts();
+        }
+
+        // Update pagination based on filtered products
+        function updatePagination() {
+          const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+          renderPaginationDots(totalPages);
+          updateButtonStates(totalPages);
+        }
+
+        // Render pagination dots based on the number of pages
+        function renderPaginationDots(totalPages) {
+          paginationDots.innerHTML = "";
+
+          // Define how many dots to show on either side of the current page
+          const dotsToShow = 1; // Number of dots to show on each side
+
+          // Calculate the start and end page numbers
+          let startPage = Math.max(0, currentPage - dotsToShow); // At least show page 0
+          let endPage = Math.min(totalPages - 1, currentPage + dotsToShow); // At most show the last page
+
+          // Adjust start and end to ensure we always show 3 dots
+          if (endPage - startPage < 2) {
+            if (currentPage === totalPages - 1) {
+              startPage = Math.max(0, endPage - 2); // Adjust if at the last page
+            } else if (currentPage === 0) {
+              endPage = Math.min(totalPages - 1, startPage + 2); // Adjust if at the first page
+            } else {
+              // Center the dots around the current page
+              startPage = Math.max(0, currentPage - 1);
+              endPage = Math.min(totalPages - 1, currentPage + 1);
+            }
+          }
+          for (let i = startPage; i <= endPage; i++) {
+            const dot = document.createElement("button");
+            dot.classList.add("px-2", "py-1", "inactive", "rounded-lg");
+            dot.textContent = i + 1; // Display 1-based index for user
+
+            if (i === currentPage) {
+              dot.classList.remove("inactive");
+              dot.classList.add("bg-blue-500", "text-white");
+              dot.disabled = true;
+            } else {
+              dot.disabled = false;
+              dot.classList.remove("bg-blue-500", "text-white"); // Ensure to remove active classes for non-current dots
+            }
+            dot.addEventListener("click", () => {
+              currentPage = i;
+              displayProducts();
+            });
+
+            paginationDots.appendChild(dot);
+          }
+        }
+
+        // Update the state of the navigation buttons
+        function updateButtonStates(totalPages) {
+          prevPageBtn.disabled = currentPage === 0;
+          nextPageBtn.disabled = currentPage === totalPages - 1;
+          prevSkip.disabled = currentPage === 0;
+          nextSkip.disabled = currentPage === totalPages - 1;
+        }
+
+        // Event listeners for category and price filters
+        categoryFilter.addEventListener("change", filterProducts);
+        priceFilter.addEventListener("input", (e) => {
+          priceValue.innerText = e.target.value;
+          filterProducts();
+        });
+
+        // Event listeners for pagination buttons
+        prevPageBtn.addEventListener("click", () => {
+          if (currentPage > 0) {
+            currentPage--;
+            displayProducts();
+          }
+        });
+
+        nextPageBtn.addEventListener("click", () => {
+          if (
+            currentPage <
+            Math.ceil(filteredProducts.length / itemsPerPage) - 1
+          ) {
+            currentPage++;
+            displayProducts();
+          }
+        });
+
+        prevSkip.addEventListener("click", () => {
+          if (currentPage > 0) {
+            currentPage = 0; // Skip to first page
+            displayProducts();
+          }
+        });
+
+        nextSkip.addEventListener("click", () => {
+          if (
+            currentPage <
+            Math.ceil(filteredProducts.length / itemsPerPage) - 1
+          ) {
+            currentPage = Math.ceil(filteredProducts.length / itemsPerPage) - 1; // Skip to last page
+            displayProducts();
+          }
+        });
+
+        initializeProducts(); // Initialize products on page load
+      });
+    </script>
+  </main>
+{{ end }}

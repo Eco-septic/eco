@@ -1,0 +1,20 @@
+certificates:
+  - title: "Completion Certificate"
+    description: "Awarded upon successful completion of the training program."
+    image: "https://via.placeholder.com/200x150.png/FF5733/ffffff?text=Completion+Certificate"
+
+  - title: "Achievement Award"
+    description: "Recognizes outstanding performance in the course."
+    image: "https://via.placeholder.com/200x150.png/4287f5/ffffff?text=Achievement+Award"
+
+  - title: "Excellence in Project Management"
+    description: "Presented for demonstrating excellence in managing projects."
+    image: "https://via.placeholder.com/200x150.png/28a745/ffffff?text=Excellence+in+Project+Management"
+
+  - title: "Certified Professional"
+    description: "Certification for achieving professional competency in the field."
+    image: "https://via.placeholder.com/200x150.png/ff8c00/ffffff?text=Certified+Professional"
+
+  - title: "Leadership Training Certification"
+    description: "Acknowledges the completion of the leadership training program."
+    image: "https://via.placeholder.com/200x150.png/6f42c1/ffffff?text=Leadership+Training+Certification"

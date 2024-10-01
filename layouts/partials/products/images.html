@@ -1,0 +1,119 @@
+<section
+  aria-label="product photos"
+  class="product-main-image flex flex-col gap-4 lg:max-w-lg xl:max-w-2xl"
+>
+  <div data-display-index="0">
+    <a href="/media/test.png" data-fslightbox="gallery">
+      <img
+        src="{{ .Params.image }}"
+        alt="featured product image"
+        class="w-full h-auto rounded-lg"
+      />
+    </a>
+  </div>
+  <div class="product-images flex justify-between">
+    <button data-control="image_left"><</button>
+    <div class="w-10/12 overflow-x-scroll " data-container="scroll">
+      <div data-range="{start: 0, end: 2}" class="flex gap-4 flex-nowrap">
+        <a
+          href="https://www.youtube.com/watch?v=3nQNiWdeH2Q"
+          data-fslightbox="gallery"
+        >
+          <div
+            class=" size-24 md:size-32 min-w-24 md:min-w-32 m-2 current-displaye-image-style"
+          >
+            <img
+              src="{{ .Params.image }}"
+              alt="Product Image"
+              class="size-full object-contain rounded-lg  "
+              data-index="0"
+              data-image="{{ .Params.image }}"
+            />
+          </div>
+        </a>
+        {{ range $index, $image := .Params.images }}
+          <a href="/media/test.png" data-fslightbox="gallery">
+            <div class=" size-24 md:size-32 min-w-24 md:min-w-32  m-2">
+              <img
+                src="{{ $image }}"
+                alt="Product Image"
+                class="size-full object-contain rounded-lg "
+                data-index="{{ add $index 1 }}"
+                data-image="{{ $image }}"
+              />
+            </div>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+    <button data-control="image_right">></button>
+  </div>
+</section>
+
+<!-- Include FsLightbox Library -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mainContainer = document.querySelector(
+      'section[aria-label="product photos"]',
+    );
+    const featuredImageContainer = mainContainer.querySelector(
+      "[data-display-index]",
+    );
+    const rangeContainer = mainContainer.querySelector("[data-range]");
+    let currentIndex = 0;
+
+    // Function to update featured image and range display
+    function updateImages(index) {
+      const images = Array.from(rangeContainer.querySelectorAll("img"));
+      const totalImages = images.length;
+
+      // Set the displayed image based on index
+      currentIndex = index >= 0 && index < totalImages ? index : 0;
+      featuredImageContainer.querySelector("img").src =
+        images[currentIndex].getAttribute("data-image");
+
+      // Update range based on current index
+      let start = Math.max(0, currentIndex - 1);
+      let end = Math.min(totalImages - 1, start + 2);
+      rangeContainer.dataset.range = JSON.stringify({ start, end });
+
+      // Highlight the currently displayed image
+      images.forEach((img, idx) => {
+        if (idx === currentIndex) {
+          img.parentElement.classList.add("current-displaye-image-style");
+          img.parentElement.parentElement.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center", // Keep the image centered horizontally in the container
+          });
+        } else {
+          img.parentElement.classList.remove("current-displaye-image-style");
+        }
+
+        // Add a click event listener to each image to update style and index
+        img.addEventListener("click", () => {
+          updateImages(idx);
+        });
+      });
+    }
+
+    // Example usage
+    updateImages(0); // Initialize with the first image
+
+    // Navigation controls for left/right buttons
+    mainContainer.querySelectorAll("[data-control]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const controlType = button.getAttribute("data-control");
+        if (controlType === "image_left") {
+          updateImages(currentIndex - 1);
+        } else if (controlType === "image_right") {
+          updateImages(currentIndex + 1);
+        }
+      });
+    });
+
+    // Initialize the lightbox
+    refreshFsLightbox();
+  });
+</script>

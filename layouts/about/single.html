@@ -1,9 +1,75 @@
 {{ define "main" }}
   <!-- Main Content Container -->
-  <main class="bg-blue-300 container mx-auto flex flex-col items-center">
+  <main class="bg-blue-300 container mx-auto flex flex-col gap-10 items-center">
     {{ partial "breadcrumbs.html" . }}
-    <div class="markdown">
-      <div>{{ .Content }}</div>
-    </div>
+    <section aria-label="about us" class="text-start w-full">
+      <h2>
+        {{ .Params.aboutUsSection.title }}
+      </h2>
+      <p>
+        {{ .Params.aboutUsSection.description }}
+      </p>
+    </section>
+    {{ if .Params.aboutHistorySection.description }}
+      <section aria-label="our history" class="w-full">
+        <h2>
+          {{ .Params.aboutHistorySection.title }}
+        </h2>
+        <p>
+          {{ .Params.aboutHistorySection.description }}
+        </p>
+      </section>
+    {{ end }}
+
+
+    <section aria-label="licenses">
+      <h2>our licenses I18n fix</h2>
+      <div
+        class="grid grid-flow-row gap-8 p-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+      >
+        {{ range .Site.Data.licenses.licenses }}
+          <div class="p-4 bg-white shadow-md rounded-lg">
+            <!-- Image Container with A4 Aspect Ratio -->
+            <div
+              class="w-full aspect-[1/1.414] overflow-hidden rounded-t-lg mb-4"
+            >
+              <img
+                src="{{ .image }}"
+                alt="{{ .title }}"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <!-- Title & Description -->
+            <p class="text-lg font-semibold mb-2">{{ .title }}</p>
+            <p class="text-sm text-gray-600">{{ .description }}</p>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+
+    <section aria-label="certificates">
+      <h2>our certificates I18n fix</h2>
+      <div
+        class="grid grid-flow-row gap-8 p-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+      >
+        {{ range .Site.Data.certificates.certificates }}
+          <div class="p-4 bg-white shadow-md rounded-lg">
+            <!-- Image Container with A4 Aspect Ratio -->
+            <div
+              class="w-full aspect-[1/1.414] overflow-hidden rounded-t-lg mb-4"
+            >
+              <img
+                src="{{ .image }}"
+                alt="{{ .title }}"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <!-- Title & Description -->
+            <p class="text-lg font-semibold mb-2">{{ .title }}</p>
+            <p class="text-sm text-gray-600">{{ .description }}</p>
+          </div>
+        {{ end }}
+      </div>
+    </section>
   </main>
 {{ end }}
