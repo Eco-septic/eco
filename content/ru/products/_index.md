@@ -9,7 +9,7 @@ menu:
   mainmenu:
     name: ProductsRU
     pageRef: /products
-    weight: 0.8
+    weight: 2
 language: ru
 ---
 

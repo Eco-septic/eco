@@ -1,16 +1,24 @@
 ---
-description: "Hello IT Safari — Ваш партнер в поиске идеальной работы в IT. Мы, HITS (Hello IT Safari), специализируемся на рекрутинге и карьерной поддержке IT-специалистов в Бишкеке, Кыргызстане и за его пределами. Наша миссия — помочь вам найти работу, соответствующую вашим ожиданиям и навыкам. Мы предоставляем комплексные услуги: от составления резюме и улучшения профиля на LinkedIn до анализа вакансий и подготовки к интервью. Мы также проводим технические интервью и предоставляем детализированную обратную связь для выявления слабых мест и их устранения. Узнайте больше о нас и читайте отзывы на тему аутсорсинга и рекрутинга на сайте Hello IT Safari."
-title: "Добро пожаловать в Hello IT Safari 🦖"
+description: "Hello"
+title: "FAQ"
 sitemap:
-  changefreq: monthly
+  changefreq: yearly
   priority: 1
   disable: false
+
 menu:
   mainmenu:
     name: FAQ
     pageRef: /faq
-    weight: 0.7
+    weight: 3
 language: kg
+list:
+  - question: "What is lorem ipsum?"
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  - question: "Why do we use lorem ipsum?"
+    answer: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  - question: "Where does lorem ipsum come from?"
+    answer: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  - question: "How can I generate lorem ipsum text?"
+    answer: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 ---
-
-# hellow world

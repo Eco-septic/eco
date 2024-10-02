@@ -16,7 +16,7 @@ menu:
   mainmenu:
     name: About
     pageRef: /about
-    weight: 0.9
+    weight: 1
 language: kg
 type: "about"
 ---

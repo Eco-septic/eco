@@ -9,7 +9,7 @@ menu:
   mainmenu:
     name: Contacts
     pageRef: /contacts
-    weight: 0.6
+    weight: 5
 language: ru
 ---
 

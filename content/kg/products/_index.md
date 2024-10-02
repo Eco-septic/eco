@@ -10,7 +10,7 @@ menu:
   mainmenu:
     name: ProductsKG
     pageRef: /products
-    weight: 0.8
+    weight: 2
 language: kg
 ---
 

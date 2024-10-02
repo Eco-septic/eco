@@ -289,13 +289,11 @@ button[data-control]:hover {
   color: #4a90e2;
 }
 
-[data-container="scroll"] {
-  /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.remove-scroll-style {
   -webkit-overflow-scrolling: touch; /* Enable smooth scrolling */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
-}
-
-[data-container="scroll"]::-webkit-scrollbar {
-  display: none; /* WebKit browsers (Chrome, Safari) */
+  -ms-overflow-style: none;
+  -webkit-scrollbar {
+    display: none;
+  }
 }

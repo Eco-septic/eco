@@ -9,7 +9,7 @@ menu:
   mainmenu:
     name: FAQ
     pageRef: /faq
-    weight: 0.7
+    weight: 3
 language: ru
 ---
 

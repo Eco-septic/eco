@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <main class="container mx-auto bg-pink-200">
+  <main class="container mx-auto ">
     {{ partial "breadcrumbs.html" . }}
     <div
       class="flex flex-col lg:flex-row gap-4 justify-between"
@@ -34,38 +34,57 @@
     <div class="markdown mb-9"></div>
       <div>{{ .Content }}</div>
     </div>
-    <section aria-label="similar products">
-<div>
+    <section aria-label="similar products" class="my-10">
+        <div class="flex justify-between">
+          <p>i18n Similar products in category: {{ .Params.categories }}</p>
+          <div>
+            <button data-control-similar="left" class="scroll-button">Left</button>
+            <button data-control-similar="right" class="scroll-button">Right</button>
+          </div>
+        </div>
+        <div class="overflow-x-scroll grid-flow-col grid gap-4 py-4 remove-scroll-style" id="product-container">
+          {{ $products := (where .Site.RegularPages "Type" "products") }}
+          {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
+          {{ range $index, $pages :=  $category.ByPublishDate.Reverse }}
+            <div class="border rounded border-gray-600 w-[220px] inline-flex flex-col">
+              <div class="group overflow-hidden relative w-full" style="padding-top: 100%;">
+                <img
+                  class="absolute inset-0 size-full object-cover"
+                  src="https://via.placeholder.com/100x100/FF5733/ffffff?text=product"
+                  alt="{{ $pages.Params.title }}"
+                />
+                <p
+                class="absolute inset-0 flex items-center justify-center p-4 text-black transition-all duration-500 ease-in-out transform -translate-y-full group-hover:translate-y-0 group-hover:text-white group-hover:bg-black/50 overflow-hidden"
+              >
+                {{ .Params.description }}
+              </p>
+              </div>
+              <div class="flex-grow flex flex-col justify-between text-center my-6">
+                <p class="text-sm">{{ $pages.Params.title }}</p>
+                <p class="text-xsm">price</p>
+              </div>
+            </div>
+          {{ end }}
+        </div>
+      </section>
 
-  <h2>Similar products: i18n</h2>
-  <div>
-    <button data-control-similar="left">left</button>
-    <button data-control-similar="right">right</button>
-  </div>
-</div>
-    <div aria-label="ignore"></div>
-    {{ $products := (where .Site.RegularPages "Type" "products") }}
-    {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
-    {{ range $index, $pages :=  $category.ByPublishDate.Reverse }}
-      <div
-        class="bg-lime-300"
-        
-      >
-        <!-- <div class="relative w-full" style="padding-top: 100%;">
-          <img
-            class="absolute inset-0 size-full object-cover"
-            src="https://via.placeholder.com/100x100/FF5733/ffffff?text=product"
-            alt=""
-          />
-        </div> -->
-        <p
-          class=" text-base font-semibold "
-        >
-          {{ $pages.Params.title }}
-        </p>
-        <p class="text-xsm">price</p>
-      </div>
-    {{ end }}
-    </section>
-  </main>
+      <script>
+        const productContainer = document.getElementById('product-container');
+        const buttons = document.querySelectorAll('.scroll-button');
+
+        buttons.forEach(button => {
+          button.addEventListener('click', () => {
+            const direction = button.getAttribute('data-control-similar');
+            const scrollAmount = 220; // The width of each product item
+            const scrollOptions = { behavior: 'smooth', block: 'nearest' };
+
+            if (direction === 'left') {
+              productContainer.scrollBy({ left: -scrollAmount, ...scrollOptions });
+            } else if (direction === 'right') {
+              productContainer.scrollBy({ left: scrollAmount, ...scrollOptions });
+            }
+          });
+        });
+      </script>
+</main>
 {{ end }}

@@ -720,9 +720,19 @@ video {
   margin-right: auto;
 }
 
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
 .my-20 {
   margin-top: 5rem;
   margin-bottom: 5rem;
+}
+
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .mb-2 {
@@ -779,6 +789,10 @@ video {
 
 .flex {
   display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
 }
 
 .grid {
@@ -870,6 +884,10 @@ video {
   width: 0.75rem;
 }
 
+.w-\[220px\] {
+  width: 220px;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -885,6 +903,10 @@ video {
 
 .flex-\[0\.7\] {
   flex: 0.7;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .-translate-x-1\/2 {
@@ -936,6 +958,10 @@ video {
 
 .grid-flow-row {
   grid-auto-flow: row;
+}
+
+.grid-flow-col {
+  grid-auto-flow: column;
 }
 
 .grid-cols-1 {
@@ -1095,6 +1121,11 @@ video {
   border-width: 1px;
 }
 
+.border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
 .bg-\[rgb\(179_220_251\)\] {
   --tw-bg-opacity: 1;
   background-color: rgb(179 220 251 / var(--tw-bg-opacity));
@@ -1145,9 +1176,9 @@ video {
   background-color: rgb(101 163 13 / var(--tw-bg-opacity));
 }
 
-.bg-pink-200 {
+.bg-orange-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(251 207 232 / var(--tw-bg-opacity));
+  background-color: rgb(254 215 170 / var(--tw-bg-opacity));
 }
 
 .bg-red-300 {
@@ -1164,9 +1195,9 @@ video {
   background-color: rgb(255 255 255 / 0.3);
 }
 
-.bg-lime-300 {
+.bg-green-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(190 242 100 / var(--tw-bg-opacity));
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
 .bg-grannary-effect {
@@ -1240,6 +1271,11 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-28 {
@@ -1923,19 +1959,15 @@ button[data-control]:hover {
   color: #4a90e2;
 }
 
-[data-container="scroll"] {
-  /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.remove-scroll-style {
   -webkit-overflow-scrolling: touch;
   /* Enable smooth scrolling */
   scrollbar-width: none;
   /* Hide scrollbar for Firefox */
   -ms-overflow-style: none;
-  /* Hide scrollbar for IE and Edge */
-}
-
-[data-container="scroll"]::-webkit-scrollbar {
-  display: none;
-  /* WebKit browsers (Chrome, Safari) */
+  -webkit-scrollbar {
+    display: none;
+  }
 }
 
 .checked\:fixed:checked {

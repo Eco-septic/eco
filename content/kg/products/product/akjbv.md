@@ -50,8 +50,6 @@ benefits:
     - "Versatile Use: Suitable for a variety of applications and environments."
 ---
 
-# ajsldkj
-
 ХАРАКТЕРИСТИКИ:
 
 max_people_usage:

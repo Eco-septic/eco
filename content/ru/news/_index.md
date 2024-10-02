@@ -9,7 +9,7 @@ menu:
   mainmenu:
     name: News
     pageRef: /news
-    weight: 0.8
+    weight: 4
 
 language: ru
 ---
