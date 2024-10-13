@@ -1,6 +1,7 @@
 {{ define "main" }}
   <main class="container mx-auto bg-green-400">
     {{ partial "breadcrumbs.html" . }}
+    <h2>{{ .Type }}</h2>
     <div class="markdown">
       <div>{{ .Content }}</div>
     </div>

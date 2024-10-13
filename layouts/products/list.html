@@ -1,7 +1,7 @@
 {{ define "main" }}
-  <main class="container mx-auto">
+  <main class="container mx-auto mb-10">
     {{ partial "breadcrumbs.html" . }}
-    <h1 class="text-2xl font-bold mb-4">Product Listings</h1>
+    <h1 class="text-2xl font-bold mb-4">{{ .Title }}</h1>
 
     <div class="flex justify-between items-center mb-4">
       <!-- Category Filter Dropdown -->

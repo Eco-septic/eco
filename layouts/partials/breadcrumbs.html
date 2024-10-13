@@ -9,12 +9,32 @@
   >
     <!-- Loop through Breadcrumb Path -->
     {{ range $index, $element := .Ancestors.Reverse }}
-      <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
-        <a href="{{ $element.Permalink }}" class="hover:text-blue-500"
-          >{{ $element.LinkTitle }}</a
+      {{ if eq $element.LinkTitle "Features" }}
+        <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
+          <a
+            href="{{ (site.GetPage "section" "news").RelPermalink }}"
+            class="hover:text-blue-500"
+          >
+            {{ (site.GetPage "section" "news").LinkTitle }}</a
+          >
+          <span aria-hidden="true">/</span>
+        </li>
+        <li
+          class="breadcrumb-item   overflow-hidden text-ellipsis whitespace-nowrap"
         >
-        <span aria-hidden="true">/</span>
-      </li>
+          <span aria-current="categories" href="{{ .RelPermalink }}">
+            category
+          </span>
+          <span aria-hidden="true">/</span>
+        </li>
+      {{ else }}
+        <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
+          <a href="{{ $element.Permalink }}" class="hover:text-blue-500"
+            >{{ $element.LinkTitle }}</a
+          >
+          <span aria-hidden="true">/</span>
+        </li>
+      {{ end }}
     {{ end }}
 
 

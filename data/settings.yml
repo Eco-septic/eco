@@ -1,4 +1,21 @@
-logo: "/media/logo.png"
-email: "contact@example.com"
-phone: "+123456789"
-address: "123 Street Name, City, Country"
+ky:
+  telegram: "+000000"
+  telegram_logo: /media/uploads/telegram.svg
+  email_logo: /media/uploads/email-outline.svg
+  main_logo: /media/uploads/feather.png
+  whatsapp: "+000000"
+  address: 123 Street Name, City, Country
+  whatsapp_logo: /media/uploads/whatsapp.svg
+  email: contact@example.com
+  description: Киргизчa баяндама
+ru:
+  telegram: "+000000"
+  telegram_logo: /media/uploads/telegram.svg
+  email_logo: /media/uploads/email-outline.svg
+  main_logo: /media/uploads/feather.png
+  whatsapp: "+000000"
+  address: 123 Street Name, City, Country
+  whatsapp_logo: /media/uploads/whatsapp.svg
+  email: contact@example.com
+  description: Киргизчa баяндама
+  description: russian description

@@ -9,12 +9,19 @@
       <section aria-label="product details" class="">
         <h2 class="text-xl font-bold mb-3">{{ .Title}}</h2>
         <p>categories: {{ .Params.categories }}</p>
-        {{ if .Params.paramters.show }}
+        {{ if .Params.parameters.show }}
         <aside>
           <p>
             Parameters: 
           </p>
-          {{ partial "products/parameters.html" . }}
+          {{ range .Params.parameters.list }}
+            <div class="product-parameters space-y-2">
+              <div class="parameter">
+                <strong>{{ .attribute }}:</strong> {{ .value }}
+              </div>
+            </div>
+          {{ end }}
+        </aside>
           {{ else }}
           <p class="text-gray-600">Product details will be available soon.</p>
         </aside>

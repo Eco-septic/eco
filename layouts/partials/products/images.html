@@ -2,14 +2,20 @@
   aria-label="product photos"
   class="product-main-image flex flex-col gap-4 lg:max-w-lg xl:max-w-2xl"
 >
-  <div data-display-index="0">
-    <a href="/media/test.png" data-fslightbox="gallery">
-      <img
-        src="{{ .Params.image }}"
-        alt="featured product image"
-        class="w-full h-auto rounded-lg"
-      />
-    </a>
+  <div class="relative w-full pt-[66%]">
+    <div data-display-index="0" class="absolute centric">
+      <a
+        href="/media/test.png"
+        data-fslightbox="gallery"
+        class="size-full block"
+      >
+        <img
+          src="{{ .Params.image }}"
+          alt="featured product image"
+          class="size-full rounded-lg object-cover absolute centric"
+        />
+      </a>
+    </div>
   </div>
   <div class="product-images flex justify-between">
     <button data-control="image_left"><</button>

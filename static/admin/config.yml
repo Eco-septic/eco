@@ -1,350 +1,724 @@
 local_backend: true
 backend:
   name: git-gateway
-  branch: deploy # Branch to update (optional; defaults to master)
+  branch: main # Branch to update (optional; defaults to master)
 media_folder: "static/media/uploads"
 public_folder: "/media/uploads"
 locale: "ru"
+editor:
+  preview: false
 slug:
   encoding: "ascii"
   clean_accents: true
   sanitize_replacement: "_"
 
+i18n:
+  # Required and can be one of multiple_folders, multiple_files or single_file
+  # multiple_folders - persists files in `<folder>/<locale>/<slug>.<extension>`
+  # multiple_files - persists files in `<folder>/<slug>.<locale>.<extension>`
+  # single_file - persists a single file in `<folder>/<slug>.<extension>`
+  structure: multiple_files
+
+  # Required - a list of locales to show in the editor UI
+  locales: [ru, ky]
+
+  # Optional, defaults to the first item in locales.
+  # The locale to be used for fields validation and as a baseline for the entry.
+  default_locale: ky
+
 collections:
+  # Main Page
   - name: "settings"
     label: "Site Settings"
+    i18n:
+      structure: single_file
+      locales: [ky, ru]
     files:
-      - file: "data/settings.yml" # Path to your global settings file
-        label: "General Settings"
-        name: "site_settings"
+      - file: data/settings.yml
+        label: "Settings"
+        name: "settings"
+        i18n: true
         fields:
           - {
-              label: "Site Logo",
-              name: "logo",
+              label: "main logo",
+              name: "main_logo",
               widget: "image",
-              required: false,
-              media_folder: "static/media/logo",
-              public_folder: "/media/logo",
+              i18n: duplicate,
             }
-          - { label: "Contact Email", name: "email", widget: "string" }
-          - { label: "Phone Number", name: "phone", widget: "string" }
-          - { label: "Address", name: "address", widget: "text" }
-
-  - name: "certificates"
-    label: "Certificates"
-    file: "data/certificates.yml" # Store certificate details in this file
+          - { label: "email", name: "email", widget: "string", i18n: duplicate }
+          - {
+              label: "email logo",
+              name: "email_logo",
+              widget: "image",
+              i18n: duplicate,
+            }
+          - {
+              label: "whatsapp",
+              name: "whatsapp",
+              widget: "string",
+              i18n: duplicate,
+            }
+          - {
+              label: "whatsapp logo",
+              name: "whatsapp_logo",
+              widget: "image",
+              i18n: duplicate,
+            }
+          - {
+              label: "telegram",
+              name: "telegram",
+              widget: "string",
+              i18n: duplicate,
+            }
+          - {
+              label: "telegram logo",
+              name: "telegram_logo",
+              widget: "image",
+              i18n: duplicate,
+            }
+          - { label: "address", name: "address", widget: "string", i18n: true }
+          - {
+              label: "Description",
+              name: "description",
+              widget: "string",
+              i18n: true,
+            }
+  - name: "home"
+    label: "Главная"
+    folder: "content"
+    create: false
+    delete: false
+    slug: "_index"
+    i18n: true
     fields:
-      - label: "Certificates List"
-        name: "certificates_list"
-        widget: "list"
+      - {
+          label: "title",
+          name: "title",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+      - {
+          label: "description",
+          name: "description",
+          widget: "text",
+          required: true,
+          i18n: true,
+        }
+      - {
+          label: "linkTitle",
+          name: "linkTitle",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+      - label: "Menu"
+        name: "menu"
+        widget: "object"
+        collapsed: true
+        i18n: true
         fields:
-          - { label: "Certificate Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - {
-              label: "Certificate Image",
-              name: "image",
-              widget: "image",
-              media_folder: "static/media/certificates",
-              public_folder: "/media/certificates",
-            }
+          - label: "Main Menu"
+            name: "mainmenu"
+            widget: "object"
+            i18n: true
+            fields:
+              - label: "Name"
+                name: "name"
+                widget: "text"
+                i18n: true
+      - name: "hero"
+        label: "Hero"
+        widget: "object"
+        collapsed: true
+        i18n: true # Enable i18n for the entire object
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            i18n: true # Enable i18n for the title
+          - label: "Text Animation"
+            name: "textAnimation"
+            widget: "string"
+            i18n: true # Enable i18n for the text animation field
+          - label: "Pitch List"
+            name: "pitchList"
+            widget: "list"
+            max: 3
+            min: 1
+            i18n: true # Enable i18n for the list items
+            field: { label: "Item", name: "item", widget: "string", i18n: true }
+          - label: "Featured Image"
+            name: "images"
+            widget: "image"
+            choose_url: true
+            i18n: duplicate
+            media_library:
+              config:
+                multiple: true
 
-  - name: "licenses"
-    label: "Licenses"
-    file: "data/licenses.yml" # Store license details in this file
+      - name: "productSection" # Name of the collection for news content
+        label: "product Section" # Label for the collection in the CMS
+        i18n: true
+        collapsed: true
+        widget: "object"
+        fields:
+          - {
+              label: "product Section Title",
+              name: "title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              label: "product Section Description",
+              name: "description",
+              widget: "text",
+              i18n: true,
+            }
+      - name: "pitchSection" # Name of the collection for pitch section content
+        label: "Pitch Section" # Label for the collection in the CMS
+        i18n: true
+        collapsed: true
+        widget: "object"
+        fields:
+          - {
+              label: "Background",
+              name: "background",
+              widget: "image",
+              i18n: duplicate,
+            }
+          - label: "List"
+            name: "list"
+            widget: "list"
+            max: 4
+            min: 4
+            i18n: true
+            fields:
+              - {
+                  label: "Icon",
+                  name: "icon",
+                  widget: "image",
+                  i18n: duplicate,
+                }
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - {
+                  label: "Description",
+                  name: "description",
+                  widget: "text",
+                  i18n: true,
+                }
+      - name: "newsSection" # Name of the collection for news content
+        label: "News Section" # Label for the collection in the CMS
+        i18n: true
+        collapsed: true
+        widget: "object"
+        fields:
+          - {
+              label: "News Section Title",
+              name: "title",
+              widget: "string",
+              i18n: true,
+            }
+          - {
+              label: "News Section Description",
+              name: "description",
+              widget: "text",
+              i18n: true,
+            }
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Sitemap Settings" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Change Frequency",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly"],
+              i18n: duplicate,
+            }
+          - {
+              label: "Priority",
+              name: "priority",
+              widget: "number",
+              required: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Disable",
+              name: "disable",
+              widget: "boolean",
+              i18n: duplicate,
+            }
+  - name: "about" # Name of the collection
+    label: "About Page" # Label for the collection in the CMS
+    folder: "content/about" # Path to the folder containing content files for different languages
+    slug: "index"
+    create: false # Allow creating new entries
+    delete: false
+    i18n: true # Enable internationalization
     fields:
-      - label: "Licenses List"
-        name: "licenses_list"
-        widget: "list"
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - {
+          label: "linkTitle",
+          name: "linkTitle",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          i18n: true,
+        }
+      - { label: "Link Title", name: "linktitle", widget: "string", i18n: true }
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Sitemap Settings" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
         fields:
-          - { label: "License Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
           - {
-              label: "License Image",
-              name: "image",
-              widget: "image",
-              media_folder: "static/media/licenses",
-              public_folder: "/media/licenses",
+              label: "Change Frequency",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly"],
+              i18n: duplicate,
             }
-#   - name: "home"
-#     label: "Главная"
-#     folder: "content"
-#     create: false
-#     delete: false
-#     editor:
-#       preview: true
-#     sortable_fields: []
-#     fields:
-#       - { label: "title", name: "title", widget: "string", required: true }
-#       - {
-#           label: "description",
-#           name: "description",
-#           widget: "string",
-#           required: true,
-#         }
-#       - { label: "og_image", name: "og_image", widget: "image", required: true }
-#       - label: "Menu"
-#         name: "menu"
-#         widget: "object"
-#         collapsed: true
-#         fields:
-#           - label: "Main Menu"
-#             name: "mainmenu"
-#             widget: "object"
-#             fields:
-#               - label: "Name"
-#                 name: "name"
-#                 widget: "text"
-#               - label: "Page Reference"
-#                 name: "pageRef"
-#                 widget: "text"
-#               - label: "Weight"
-#                 name: "weight"
-#                 widget: "number"
-
-#       - { label: "hero bg ", name: "hero_bg", widget: "image", required: true }
-#       - {
-#           label: "customIcon",
-#           name: "customIcon",
-#           widget: "string",
-#           required: false,
-#         }
-#       - { label: "Body", name: "body", widget: "markdown" }
-# - name: "service"
-#   label: "Услуги"
-#   folder: "content/service"
-#   delete: false
-#   create: false
-#   sortable_fields: []
-#   editor:
-#     preview: true
-#   fields:
-#     - { label: "title", name: "title", widget: "string", required: true }
-#     - {
-#         label: "description",
-#         name: "description",
-#         widget: "string",
-#         required: true,
-#       }
-#     - { label: "og_image", name: "og_image", widget: "image", required: true }
-#     - label: "Menu"
-#       name: "menu"
-#       widget: "object"
-#       collapsed: true
-#       fields:
-#         - label: "Main Menu"
-#           name: "mainmenu"
-#           widget: "object"
-#           fields:
-#             - label: "Name"
-#               name: "name"
-#               widget: "text"
-#             - label: "Page Reference"
-#               name: "pageRef"
-#               widget: "text"
-#             - label: "Weight"
-#               name: "weight"
-#               widget: "number"
-
-#     - { label: "hero bg ", name: "hero_bg", widget: "image", required: true }
-#     - {
-#         label: "customIcon",
-#         name: "customIcon",
-#         widget: "string",
-#         required: false,
-#       }
-#     - { label: "Body", name: "body", widget: "markdown" }
-# - name: "guide"
-#   label: "page Гайды"
-#   folder: "content/guides"
-#   delete: false
-#   create: false
-#   sortable_fields: []
-#   editor:
-#     preview: true
-#   fields:
-#     - { label: "title", name: "title", widget: "string", required: true }
-#     - {
-#         label: "description",
-#         name: "description",
-#         widget: "string",
-#         required: true,
-#       }
-#     - { label: "og_image", name: "og_image", widget: "image", required: true }
-#     - label: "Menu"
-#       name: "menu"
-#       widget: "object"
-#       collapsed: true
-#       fields:
-#         - label: "Main Menu"
-#           name: "mainmenu"
-#           widget: "object"
-#           fields:
-#             - label: "Name"
-#               name: "name"
-#               widget: "text"
-#             - label: "Page Reference"
-#               name: "pageRef"
-#               widget: "text"
-#             - label: "Weight"
-#               name: "weight"
-#               widget: "number"
-
-#     - { label: "hero bg ", name: "hero_bg", widget: "image", required: true }
-#     - {
-#         label: "customIcon",
-#         name: "customIcon",
-#         widget: "string",
-#         required: false,
-#       }
-
-# - name: "guides"
-#   label: "list Гайды"
-#   folder: "content/guides/guide"
-#   create: true
-#   slug: "{{slug}}"
-#   editor:
-#     preview: true
-#   fields:
-#     - { label: "hero bg ", name: "hero_bg", widget: "image", required: false }
-#     - {
-#         label: "custom Icon",
-#         name: "customIcon",
-#         widget: "string",
-#         required: false,
-#       }
-#     - { label: "Title", name: "title", widget: "string" }
-#     - { label: "Description", name: "description", widget: "string" }
-#     - {
-#         label: "description",
-#         name: "description",
-#         widget: "string",
-#         required: false,
-#       }
-#     - { label: "categories", name: "categories", widget: "list" }
-#     - { label: "tag", name: "tags", widget: "list" }
-#     - {
-#         label: "Publish Date",
-#         name: "date",
-#         widget: "datetime",
-#         format: "YYYY-MM-DD",
-#       }
-#     - { label: "Body", name: "body", widget: "markdown", required: false }
-#     - {
-#         label: "Author",
-#         name: "author",
-#         widget: "string",
-#         default: "HITS",
-#         required: false,
-#       }
-# - name: "testimonial"
-#   label: "page Отзывов"
-#   folder: "content/testimonials"
-#   delete: false
-#   create: false
-#   sortable_fields: []
-#   editor:
-#     preview: true
-#   fields:
-#     - { label: "title", name: "title", widget: "string", required: true }
-#     - {
-#         label: "description",
-#         name: "description",
-#         widget: "string",
-#         required: true,
-#       }
-#     - { label: "og_image", name: "og_image", widget: "image", required: true }
-#     - label: "Menu"
-#       name: "menu"
-#       widget: "object"
-#       collapsed: true
-#       required: true
-#       fields:
-#         - label: "Main Menu"
-#           name: "mainmenu"
-#           widget: "object"
-#           fields:
-#             - label: "Name"
-#               name: "name"
-#               widget: "text"
-#             - label: "Page Reference"
-#               name: "pageRef"
-#               widget: "text"
-#             - label: "Weight"
-#               name: "weight"
-#               widget: "number"
-
-#     - { label: "hero bg ", name: "hero_bg", widget: "image", required: false }
-#     - {
-#         label: "customIcon",
-#         name: "customIcon",
-#         widget: "string",
-#         required: false,
-#       }
-#     - { label: "Body", name: "body", widget: "markdown" }
-
-# - name: "testimonials"
-#   label: "list Отзывы"
-#   folder: "content/testimonials/feedback"
-#   create: true
-#   slug: "{{slug}}"
-#   editor:
-#     preview: true
-#   fields:
-#     - { label: "hero bg ", name: "hero_bg", widget: "image", required: false }
-#     - {
-#         label: "custom Icon",
-#         name: "customIcon",
-#         widget: "string",
-#         required: false,
-#       }
-#     - { label: "Title", name: "title", widget: "string", required: true }
-#     - {
-#         label: "Description",
-#         name: "description",
-#         widget: "string",
-#         required: false,
-#       }
-#     - {
-#         label: "description",
-#         name: "description",
-#         widget: "string",
-#         required: false,
-#       }
-#     - {
-#         label: "Publish Date",
-#         name: "date",
-#         widget: "datetime",
-#         format: "YYYY-MM-DD",
-#       }
-#     - { label: "Recomender", name: "recomendedBy", widget: "string" }
-#     - label: "linkedIn"
-#       name: "linkedIn"
-#       widget: "object"
-#       collapsed: true
-#       required: false
-#       fields:
-#         - label: "username"
-#           name: "username"
-#           widget: "string"
-#           required: false
-#         - label: "link"
-#           name: "link"
-#           widget: "string"
-#           required: false
-
-#     - { label: "image path", name: "image", widget: "image" }
-#     - {
-#         label: "Link to single Page",
-#         name: "relatePage",
-#         widget: "boolean",
-#         default: false,
-#         required: false,
-#       }
-#     - { label: "Body", name: "body", widget: "markdown", required: false }
-#     - {
-#         label: "Author",
-#         name: "author",
-#         widget: "author",
-#         default: "HITS",
-#         required: false,
-#       }
+          - {
+              label: "Priority",
+              name: "priority",
+              widget: "number",
+              required: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Disable",
+              name: "disable",
+              widget: "boolean",
+              i18n: duplicate,
+            }
+      - label: "About Us Section"
+        name: "aboutUsSection"
+        widget: "object"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - {
+              label: "Description",
+              name: "description",
+              widget: "text",
+              i18n: true,
+            }
+      - label: "About History Section"
+        name: "aboutHistorySection"
+        widget: "object"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - {
+              label: "Description",
+              name: "description",
+              widget: "text",
+              i18n: true,
+            }
+      - label: "Menu"
+        name: "menu"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - label: "About Menu"
+            name: "mainmenu"
+            widget: "object"
+            i18n: true
+            fields:
+              - label: "Name"
+                name: "name"
+                widget: "text"
+                i18n: true
+      - { label: "Language", name: "language", widget: "hidden", default: "ky" }
+      - { label: "Type", name: "type", widget: "hidden", default: "about" }
+  - name: "faq" # Name of the collection
+    label: "FAQ Page" # Label in the CMS
+    folder: "content/faq" # Path to the folder for each language
+    create: true # Allow creating new entries
+    slug: "index" # Slug for new entries
+    i18n: true
+    fields:
+      - {
+          label: "linkTitle",
+          name: "linkTitle",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Sitemap Settings" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Change Frequency",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly"],
+              i18n: duplicate,
+            }
+          - {
+              label: "Priority",
+              name: "priority",
+              widget: "number",
+              required: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Disable",
+              name: "disable",
+              widget: "boolean",
+              i18n: duplicate,
+            }
+      - label: "Menu"
+        name: "menu"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - label: "Faq Menu"
+            name: "mainmenu"
+            widget: "object"
+            i18n: true
+            fields:
+              - label: "Name"
+                name: "name"
+                widget: "text"
+                i18n: true
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          i18n: true,
+        }
+      - label: "FAQ List"
+        name: "list"
+        widget: "list"
+        i18n: true
+        fields:
+          - {
+              label: "Question",
+              name: "question",
+              widget: "string",
+              i18n: true,
+            }
+          - { label: "Answer", name: "answer", widget: "text", i18n: true }
+      - { label: "Type", name: "type", widget: "hidden", default: "faq" }
+  - name: "news" # Name of the collection
+    label: "News Page" # Label in the CMS
+    folder: "content/news" # Path to the folder for each language
+    create: true # Allow creating new entries
+    slug: "_index" # Slug for new entries
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - {
+          label: "linkTitle",
+          name: "linkTitle",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          i18n: true,
+        }
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Sitemap Settings" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Change Frequency",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly"],
+              i18n: duplicate,
+            }
+          - {
+              label: "Priority",
+              name: "priority",
+              widget: "number",
+              required: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Disable",
+              name: "disable",
+              widget: "boolean",
+              i18n: duplicate,
+            }
+      - label: "Menu"
+        name: "menu"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - label: "Faq Menu"
+            name: "mainmenu"
+            widget: "object"
+            i18n: true
+            fields:
+              - label: "Name"
+                name: "name"
+                widget: "text"
+                i18n: true
+  - name: "posts" # Collection name
+    label: "News posts" # Label for the CMS
+    folder: "content/news/posts" # Path to the folder containing content files for different languages
+    create: true # Allow creating new entries
+    slug: "{{month}}-{{day}}_{{slug}}" # Slug for new entries
+    i18n: true # Enable multilingual support
+    fields:
+      - { label: "Features", name: "features", widget: "string", i18n: true }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "string",
+          i18n: true,
+        }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - {
+          label: "Title Image",
+          name: "titleImage",
+          widget: "image",
+          i18n: true,
+        }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DDTHH:mm:ssZ", # Match Hugo format
+          default: "now",
+          i18n: duplicate,
+        }
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Sitemap Settings" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Change Frequency",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly"],
+              i18n: duplicate,
+            }
+          - {
+              label: "Priority",
+              name: "priority",
+              widget: "number",
+              required: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Disable",
+              name: "disable",
+              widget: "boolean",
+              default: true,
+              i18n: duplicate,
+            }
+      - { label: "News post content", name: "body", widget: "markdown" }
+  - name: "products"
+    label: "List of products" # Label for the CMS
+    folder: "content/products/product" # Path to the folder containing content files for different languages
+    create: true # Allow creating new entries
+    slug: "{{month}}-{{day}}_{{slug}}" # Slug for new entries
+    i18n: true # Enable multilingual support
+    fields:
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Sitemap Settings" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Change Frequency",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly"],
+              i18n: duplicate,
+            }
+          - {
+              label: "Priority",
+              name: "priority",
+              widget: "number",
+              required: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Disable",
+              name: "disable",
+              widget: "boolean",
+              default: true,
+              i18n: duplicate,
+            }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          i18n: true,
+        }
+      - { label: "Price", name: "price", widget: "number", i18n: true }
+      - {
+          label: "Percentage",
+          name: "promo",
+          widget: "number",
+          i18n: true,
+          required: false,
+        }
+      - { label: "New Price", name: "newPrice", widget: "number", i18n: true }
+      - {
+          label: "Image",
+          name: "image",
+          widget: "image",
+          allow_multiple: true,
+          i18n: true,
+        }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        i18n: true
+        field:
+          { label: "Image URL", name: "imageUrl", widget: "image", i18n: true }
+      - label: "Parameters"
+        name: "parameters"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Show Parameters",
+              name: "show",
+              widget: "boolean",
+              i18n: true,
+            }
+          - label: "List"
+            name: "list"
+            widget: "list"
+            i18n: true
+            fields:
+              - {
+                  label: "Attribute",
+                  name: "attribute",
+                  widget: "string",
+                  i18n: true,
+                }
+              - { label: "Value", name: "value", widget: "string", i18n: true }
+      - label: "Benefits"
+        name: "benefits"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Show Benefits",
+              name: "show",
+              widget: "boolean",
+              i18n: true,
+            }
+          - label: "List"
+            name: "list"
+            widget: "list"
+            i18n: true
+            field:
+              {
+                label: "Benefit",
+                name: "benefit",
+                widget: "string",
+                i18n: true,
+              }
+      - {
+          label: "Categories",
+          name: "categories",
+          widget: "string",
+          i18n: true,
+        }
+      - {
+          label: "News post content",
+          name: "body",
+          widget: "markdown",
+          i18n: true,
+        }
+  - name: "product"
+    label: "products page"
+    folder: "content/products" # Path to the folder containing content files for different languages
+    create: true # Allow creating new entries
+    slug: "_index" # Slug for new entries
+    i18n: true # Enable multilingual support
+    fields:
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Sitemap Settings" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Change Frequency",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly"],
+              i18n: duplicate,
+            }
+          - {
+              label: "Priority",
+              name: "priority",
+              widget: "number",
+              required: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Disable",
+              name: "disable",
+              widget: "boolean",
+              default: true,
+              i18n: duplicate,
+            }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          i18n: true,
+        }
+      - {
+          label: "linkTitle",
+          name: "linkTitle",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+      - label: "Menu"
+        name: "menu"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - label: "About Menu"
+            name: "mainmenu"
+            widget: "object"
+            i18n: true
+            fields:
+              - label: "Name"
+                name: "name"
+                widget: "text"
+                i18n: true
+      - { label: "Language", name: "language", widget: "hidden", default: "ky" }
+      - { label: "Type", name: "type", widget: "hidden", default: "about" }

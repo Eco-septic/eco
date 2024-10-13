@@ -21,6 +21,10 @@ export const scrollPercent = () => {
 
     // Show or hide the button based on scroll position
     if (scrollPercent > 5) {
+      scrollBtn.classList.remove("hidden");
+      scrollBtn.classList.add("flex");
+    }
+    if (scrollPercent > 6) {
       scrollBtn.classList.remove("opacity-0", "pointer-events-none");
     } else {
       scrollBtn.classList.add("opacity-0", "pointer-events-none");

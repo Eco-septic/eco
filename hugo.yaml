@@ -11,25 +11,23 @@ build:
 
 enableRobotsTXT: false
 
-defaultContentLanguage: kg
+defaultContentLanguage: ky
 defaultContentLanguageInSubdir: false
 
 languages:
   ru:
-    contentDir: content/ru
     disabled: false
     languageCode: ru-RU
     languageDirection: ltr
     languageName: RU
-    weight: 1
-
-  kg:
-    contentDir: content/kg
-    disabled: false
-    languageCode: kg
-    languageDirection: ltr
-    languageName: KG
     weight: 2
+
+  ky:
+    disabled: false
+    languageCode: ru_KG
+    languageDirection: ltr
+    languageName: KY
+    weight: 1
 
 markup:
   goldmark:

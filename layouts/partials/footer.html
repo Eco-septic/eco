@@ -5,21 +5,6 @@
   <div class="container mx-auto space-y-5  items-center justify-between">
     <nav class="flex gap-4 justify-center" role="navigation">
       {{ $mainURL := "/" | relLangURL }}
-      {{ if eq .Page.RelPermalink "/" }}
-        <button
-          disabled
-          class="text-black/50 font-bold  dark:text-slate-300/50"
-          aria-current="page"
-        >
-          to Main
-          <!-- fixme i18n to main -->
-        </button>
-      {{ else }}
-        <a href="{{ $mainURL }}" class="text-black dark:text-slate-300">
-          <!-- fixme i18n to main -->
-          to Main
-        </a>
-      {{ end }}
 
       {{ with site.Menus.mainmenu }}
         {{ range . }}
@@ -52,14 +37,12 @@
         </ul>
       </section> -->
       <section>
-        <a class="size-[75px] block" href="{{ $mainURL }}" alt="to main">
-          <img
-            src="{{ .Site.Data.settings.logo }}"
-            alt="logo"
-            class="size-full"
-          />
-        </a>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, at.</p>
+        {{ with index .Site.Data.settings .Lang }}
+          <a class="size-[75px] block" href="{{ $mainURL }}" alt="to main">
+            <img src="{{ .logo }}" alt="logo" class="size-full" />
+          </a>
+          <p>{{ .description }}</p>
+        {{ end }}
       </section>
       <section>
         <p>
@@ -81,61 +64,49 @@
           {{ end }}
         </ul>
       </section>
-      <section>
-        <p>
-          <!-- fixme i18n -->
-          Contact
-        </p>
-        <ul class="">
-          <li role="contentinfo" class="flex">
-            <div class="size-[40px]">
-              <img
-                src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
-                alt="icon"
-                class="size-full rounded-full"
-              />
-            </div>
-            <p>Email: {{ .Site.Data.settings.email }}</p>
-          </li>
-          <li role="contentinfo" class="flex">
-            <div class="size-[40px]">
-              <img
-                src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
-                alt="icon"
-                class="size-full rounded-full"
-              />
-            </div>
-            <p>whatsapp: {{ .Site.Data.settings.phone }}</p>
-          </li>
-          <li role="contentinfo" class="flex">
-            <div class="size-[40px]">
-              <img
-                src="https://via.placeholder.com/40x40.png/FF5733?text=icon"
-                alt="icon"
-                class="size-full rounded-full"
-              />
-            </div>
-            <p>Telegram: {{ .Site.Data.settings.phone }}</p>
-          </li>
-        </ul>
-      </section>
+      {{ with index .Site.Data.settings .Lang }}
+        <section>
+          <p>
+            <!-- fixme i18n -->
+            Contact
+          </p>
+          <ul class="">
+            <li role="contentinfo" class="flex">
+              <div class="size-[40px]">
+                <img
+                  src="{{ .email_logo }}"
+                  alt="icon"
+                  class="size-full rounded-full"
+                />
+              </div>
+              <p>{{ .email }}</p>
+            </li>
+            <li role="contentinfo" class="flex">
+              <div class="size-[40px]">
+                <img
+                  src="{{ .whatsapp_logo }}"
+                  alt="icon"
+                  class="size-full rounded-full"
+                />
+              </div>
+              <p>{{ .whatsapp }}</p>
+            </li>
+            <li role="contentinfo" class="flex">
+              <div class="size-[40px]">
+                <img
+                  src="{{ .telegram_logo }}"
+                  alt="icon"
+                  class="size-full rounded-full"
+                />
+              </div>
+              <p>{{ .telegram }}</p>
+            </li>
+          </ul>
+        </section>
+      {{ end }}
       <div class="flex flex-col gap-5 fixed bottom-10  right-5 z-50">
-        <div class="size-[40px]">
-          <img
-            src="https://via.placeholder.com/40x40.png/FW4733?text=WHa"
-            alt="icon"
-            class="size-full rounded-full"
-          />
-        </div>
-        <div class="size-[40px] rounded-full">
-          <img
-            src="https://via.placeholder.com/40x40.png/F23733?text=Tel"
-            alt="icon"
-            class="size-full rounded-full"
-          />
-        </div>
         <button
-          class="scroll-progress-btn relative rounded-full bg-green-500 text-white size-[40px] shadow-lg flex items-center justify-center overflow-hidden"
+          class="scroll-progress-btn hidden relative rounded-full bg-green-500 text-white size-[40px] shadow-lg  items-center justify-center overflow-hidden"
         >
           <span class="relative z-10 text-lg">↑</span>
           <!-- Circular Progress Background -->
@@ -165,6 +136,26 @@
             />
           </svg>
         </button>
+        {{ with index .Site.Data.settings .Lang }}
+          <div class="size-[40px]">
+            <a href="https://wa.me/{{ .whatsapp }}">
+              <img
+                src="{{ .whatsapp_logo }}"
+                alt="icon"
+                class="size-full rounded-full"
+              />
+            </a>
+          </div>
+          <div class="size-[40px] rounded-full">
+            <a href="https://t.me/{{ .telegram }}">
+              <img
+                src="{{ .telegram_logo }}"
+                alt="icon"
+                class="size-full rounded-full"
+              />
+            </a>
+          </div>
+        {{ end }}
       </div>
     </div>
   </div>

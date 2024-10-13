@@ -4,13 +4,13 @@
 
   <!-- Store the current language -->
   {{ with .AllTranslations }}
-    <ul class="flex gap-1 rounded-[40px] px-2 localy-container overflow-hidden">
+    <div
+      class="flex gap-1 rounded-[40px] px-2 localy-container overflow-hidden"
+    >
       {{ range . }}
-        <li class="flex ">
+        <div class="flex ">
           <a
-            class=" m-auto px-1 localy-button {{ if eq .Lang $currentLang }}
-              localy-button
-            {{ end }}"
+            class=" m-auto px-1 localy-button"
             href="{{ .RelPermalink }}"
             hreflang="{{ .Language.LanguageCode }}"
           >
@@ -21,8 +21,8 @@
               {{ .Language.LanguageName }}
             {{ end }}
           </a>
-        </li>
+        </div>
       {{ end }}
-    </ul>
+    </div>
   {{ end }}
 {{ end }}

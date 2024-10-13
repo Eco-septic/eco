@@ -1,0 +1,43 @@
+{{ define "main" }}
+  <main class="container mx-auto bg-blue-400">
+    {{ partial "breadcrumbs.html" . }}
+
+
+    <div class="flex gap-4 size-full">
+      {{ $news := where .Site.RegularPages "Section" "news" }}
+      <aside class="bg-pink-400 size-full max-w-80">
+        <section aria-label="news categories">
+          <p>Categories i18n</p>
+          <ul>
+            {{ range $name, $taxonomy := .Site.Taxonomies.features }}
+              <li>
+                <a href="{{ $taxonomy.Page.RelPermalink }}">
+                  {{ $name }}
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
+        <section aria-label="recent news">
+          <p>recent news i18n</p>
+          <ul>
+            {{ range $news.ByPublishDate.Reverse.Limit 5 }}
+              <li>
+                <a href="{{ .RelPermalink }}">
+                  {{ .Params.Title }}
+                </a>
+                <p>
+                  {{ .Params.date | time.Format ":date_long" }}
+                </p>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
+      </aside>
+      <section class="markdown" aria-label="news Content">
+        <h2>{{ .Title }}</h2>
+        <div>{{ .Content }}</div>
+      </section>
+    </div>
+  </main>
+{{ end }}

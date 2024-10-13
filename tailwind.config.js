@@ -13,6 +13,9 @@ module.exports = {
       sans: ["'Gilroy', Arial, sans-serif;"],
     },
     extend: {
+      transitionProperty: {
+        "grid-row": "grid",
+      },
       keyframes: {
         borderSpin: {
           "100%": {
@@ -35,7 +38,7 @@ module.exports = {
       colors: {
         primary: "rgb(255 84 47)",
         darkMode: "rgb(36, 36, 36)",
-        lightMode: "rgb(240, 240, 240)",
+        lightMode: "rgb(249, 249, 249)",
         inactive: "rgb(84, 84, 84)",
         inactiveDark: "rgb(225, 225, 225)",
         active: "rgb(220, 220, 220)",
