@@ -32,20 +32,20 @@
     window.addEventListener('resize', showScreenDimensions);
   </script>
 
-  <!-- <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then(function (registration) {
-          // console.log(
-          //   "ServiceWorker registration successful with scope: ",
-          //   registration.scope,
-          // );
-        })
-        .catch(function (error) {
-          // console.log("ServiceWorker registration failed: ", error);
-        });
-    }
+  <script>
+    // if ("serviceWorker" in navigator) {
+    //   navigator.serviceWorker
+    //     .register("/sw.js")
+    //     .then(function (registration) {
+    //       // console.log(
+    //       //   "ServiceWorker registration successful with scope: ",
+    //       //   registration.scope,
+    //       // );
+    //     })
+    //     .catch(function (error) {
+    //       // console.log("ServiceWorker registration failed: ", error);
+    //     });
+    // }
 
     const tokens = ["#invite_token", "#email_change_token", "#confirmation_token", "#recovery_token"];
     const currentHash = window.location.hash;
@@ -54,5 +54,5 @@
       const urlSplit = document.URL.split("#");
       window.location = `/admin/#${urlSplit[1]}`;
     }
-  </script> -->
+  </script>
 </html>
