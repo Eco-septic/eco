@@ -4,7 +4,7 @@
 >
   <div class="container mx-auto space-y-5  items-center justify-between">
     <nav
-      class="flex gap-4 justify-center border-b border-lightMode dark:border-darkMode pb-5"
+      class="flex gap-4 justify-center border-b border-lightMode dark:border-darkMode pb-10"
       role="navigation"
     >
       {{ $mainURL := "/" | relLangURL }}
@@ -21,7 +21,9 @@
         {{ end }}
       {{ end }}
     </nav>
-    <div class="grid grid-cols-3 gap-4">
+    <div
+      class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:pt-10 space-y-10 lg:space-y-0"
+    >
       <!-- <section>
         <p>
           news
@@ -33,10 +35,12 @@
       {{ end }}
         </ul>
       </section> -->
-      <section class="border-r border-lightMode dark:border-darkMode">
+      <section
+        class="lg:border-r border-b lg:col-span-1 pb-10 lg:pb-0 lg:border-b-0 md:col-span-2 border-lightMode dark:border-darkMode p-4"
+      >
         {{ with index .Site.Data.settings .Lang }}
           <a
-            class="size-[75px] block mx-auto"
+            class="size-[75px] block mx-auto mb-2"
             href="{{ $mainURL }}"
             alt="to main"
           >
@@ -45,7 +49,10 @@
           <p class="text-base">{{ .description }}</p>
         {{ end }}
       </section>
-      <section class="border-r border-lightMode dark:border-darkMode">
+
+      <section
+        class="md:border-r border-b md:border-b-0 border-lightMode dark:border-darkMode p-4 "
+      >
         <p class="text-center text-base mb-4">
           <!-- fixme i18n -->
           Product category i18n
@@ -66,7 +73,7 @@
         </ul>
       </section>
       {{ with index .Site.Data.settings .Lang }}
-        <section>
+        <section class="p-4 ">
           <p class="text-center text-base mb-4">
             <!-- fixme i18n -->
             Contact i18n
