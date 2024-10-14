@@ -7,7 +7,8 @@ ky:
   address: 123 Street Name, City, Country
   whatsapp_logo: /media/uploads/whatsapp.svg
   email: contact@example.com
-  description: Киргизчa баяндама
+  description: KY Компания «ТОПЛОС» — Cпециализирующаяся на поставке, установке и
+    обслуживании систем очистки сточных вод
 ru:
   telegram: "+000000"
   telegram_logo: /media/uploads/telegram.svg
@@ -17,5 +18,5 @@ ru:
   address: 123 Street Name, City, Country
   whatsapp_logo: /media/uploads/whatsapp.svg
   email: contact@example.com
-  description: Киргизчa баяндама
-  description: russian description
+  description: Компания «ТОПЛОС» — Cпециализирующаяся на поставке, установке и
+    обслуживании систем очистки сточных вод

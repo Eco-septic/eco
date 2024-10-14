@@ -7,7 +7,7 @@ title: 2.	Echoes of Midnight Dreams !
 description: Hello IT
 price: 100200
 newPrice: 80000
-image: https://dummyimage.com/600x400/000/fff&text=Fast+Image1
+image: /media/uploads/topollium-5-scaled-1-1024x791.jpg
 images:
   - /media/uploads/wallpaperflare.com_wallpaper.jpg
   - null

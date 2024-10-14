@@ -26,7 +26,7 @@
                   {{ .Params.Title }}
                 </a>
                 <p>
-                  {{ .Params.date | time.Format ":date_long" }}
+                  {{ .Params.date }}
                 </p>
               </li>
             {{ end }}
@@ -50,7 +50,11 @@
                 </a>
               </h3>
               <p>
-                {{ .Params.date | time.Format ":date_long" }}
+                {{ with .Params.date }}
+                  {{ . | time.Format ":date_long" }}
+                {{ else }}
+                  <span>No date available</span>
+                {{ end }}
               </p>
               <p>
                 {{ .Params.features }}

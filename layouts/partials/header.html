@@ -6,10 +6,18 @@
     <div
       class=" h-full w-full  flex  items-center gap-4 justify-between text-base "
     >
-      <div class="size-14 lg:size-16 p-[2px]">
-        <a href="{{ .Lang | relLangURL }}" lang="{{ .Lang }}">
+      <div class="flex justify-center items-center p-[2px] relative">
+        <a
+          href="{{ .Lang | relLangURL }}"
+          lang="{{ .Lang }}"
+          class="block w-full h-full"
+        >
           {{ with index .Site.Data.settings .Lang }}
-            <img src="{{ .main_logo }}" alt="Logo" />
+            <img
+              src="{{ .main_logo }}"
+              alt="Logo"
+              class="object-contain w-full h-full"
+            />
           {{ end }}
         </a>
       </div>
@@ -37,11 +45,11 @@
           tabindex="-1"
           role="button"
           id="burger-button"
-          class="appearance-none menu-icon-trigger checked:bg-blue-500/70 checked:dark:bg-red-800/70 checked:z-30 checked:fixed checked:top-0 checked:left-0 checked:right-0 checked:bottom-0 checked:opacity-25"
+          class="appearance-none menu-icon-trigger checked:bg-black checked:dark:bg-black checked:z-30 checked:fixed checked:top-0 checked:left-0 checked:right-0 checked:bottom-0 checked:opacity-25"
           type="checkbox"
         />
       </label>
-      <div class="menu-item ">
+      <div class="menu-item">
         {{ partial "header/menu.html" . }}
         <div class="flex gap-4 ">
           {{ partial "header/localeSwitcher.html" . }}

@@ -1,7 +1,8 @@
 <section
-  class="relative container  overflow-hidden  pt-20 pb-28 space-y-8"
+  class="relative container  overflow-hidden  pt-20 pb-10 space-y-8"
   aria-label="products categories featuring"
 >
+  {{ $currentLang := .Lang }}
   <!-- Product Section Title & Description -->
   <h2
     id="productTitle"
@@ -40,30 +41,82 @@
   <!-- Product List Container -->
   <div
     id="productSectionList"
-    class="relative container mx-auto my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    class="relative mx-auto my-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 gap-x-4"
   >
     <!-- Group products by categories -->
     {{ $products := (where .Site.RegularPages "Type" "products") }}
     {{ range $index, $pages :=  $products.ByPublishDate.Reverse }}
       <div
-        class="product-item"
+        class="product-item flex flex-col space-y-2 justify-between"
         data-item="{{ $pages.Params.categories | lower }}"
       >
         <div class="relative w-full" style="padding-top: 100%;">
           <!-- Aspect ratio container -->
-          <img
-            class="absolute inset-0 size-full object-cover"
-            src="https://via.placeholder.com/100x100/FF5733/ffffff?text=product"
-            alt=""
-          />
+          {{ if or .Params.promo .Params.newPrice }}
+            <img
+              src="static/promo.svg"
+              alt="Promo"
+              class="absolute top-0 left-0 size-8 z-10  rounded-full"
+            />
+          {{ end }}
+          <a href="{{ .RelPermalink }}">
+            <img
+              class="absolute inset-0 size-full object-cover hover:brightness-90 hover:cursor-pointer"
+              src="{{ .Params.image }}"
+              alt=""
+            />
+          </a>
         </div>
         <p
-          class="product-title text-base font-semibold opacity-0 translate-y-5 transition-all duration-500 ease-out"
+          class="product-title text-center text-base font-semibold opacity-0 translate-y-5 transition-all duration-500 ease-out"
         >
           {{ $pages.Params.title }}
         </p>
-        
-        <p class="text-xsm">price</p>
+
+        <div class="*:text-sm *:text-center">
+          {{ $price := float .Params.price }}
+          {{ $promo := float .Params.promo }}
+          {{ $newPrice := float .Params.newPrice }}
+
+          {{ if and $promo (gt $promo 0) }}
+            {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+            <p>
+              <span class="line-through text-gray-500"
+                >{{ printf "%.0f" $price }} KGS</span
+              >
+              <span class="text-red-500 font-bold ml-2"
+                >{{ printf "%.0f" $discountedPrice }} KGS</span
+              >
+              <span class="text-green-600 text-sm"
+                >({{ printf "%.2f" $promo }}% off)</span
+              >
+            </p>
+          {{ else if and (not $promo) (gt $newPrice 0) }}
+            {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+            <p>
+              <span class="line-through text-gray-500"
+                >{{ printf "%.0f" $price }} KGS</span
+              >
+              <span class="text-red-500 font-bold ml-2"
+                >{{ printf "%.0f" $newPrice }} KGS</span
+              >
+              <span class="text-green-600 text-sm"
+                >({{ printf "%.2f" $discount }}% off)</span
+              >
+            </p>
+          {{ else }}
+            <p class="text-blue-700 font-bold">
+              {{ printf "%.0f" $price }} KGS
+            </p>
+          {{ end }}
+        </div>
+        <a href="{{ .RelPermalink }}" class="block">
+          <button
+            class="rounded-3xl p-2 bg-lime-600 hover:bg-lime-600/50 hover:text-black text-white w-full"
+          >
+            more..i18n
+          </button>
+        </a>
       </div>
     {{ end }}
   </div>
@@ -71,7 +124,7 @@
   <!-- Pagination Navigation Container -->
   <div
     id="paginationContainer"
-    class="mt-8 flex justify-center items-center gap-2 absolute bottom-10 left-1/2 -translate-x-1/2"
+    class="mt-8 flex justify-center items-center gap-2 absolute bottom-0 left-1/2 -translate-x-1/2"
   >
     <button
       id="productPrevSkipBtn"
@@ -127,7 +180,8 @@
       // Default variables
       let filteredItems = Array.from(productItems);
       let currentPage = 0;
-      const itemsPerPage = 8;
+      const itemsPerPage =
+        window.innerWidth > 1023 ? 8 : window.innerWidth < 768 ? 6 : 9;
       const curFilter = new Map();
       const allButton = Array.from(filterButtons).find(
         (button) => button.getAttribute("data-filter") === "all",
@@ -166,7 +220,7 @@
             index >= currentPage * itemsPerPage &&
             index < (currentPage + 1) * itemsPerPage
           ) {
-            item.style.display = "block";
+            item.style.display = "flex";
             item.classList.add(directionClass);
           } else {
             item.style.display = "none";
@@ -210,11 +264,13 @@
 
           if (i === currentPage) {
             dot.classList.remove("inactive");
+            dot.classList.remove("PaginationDotsInActive"); // Ensure to remove active classes for non-current dots
             dot.classList.add("PaginationDotsActive");
             dot.disabled = true;
           } else {
             dot.disabled = false;
             dot.classList.remove("PaginationDotsActive"); // Ensure to remove active classes for non-current dots
+            dot.classList.add("PaginationDotsInActive"); // Ensure to remove active classes for non-current dots
           }
 
           dot.addEventListener("click", () => {
@@ -232,21 +288,51 @@
         nextPageBtn.disabled = currentPage === totalPages - 1;
         prevSkip.disabled = currentPage < 3;
         nextSkip.disabled = currentPage > totalPages - 3;
+
+        // Add PaginationDotsInActive to buttons that are not disabled
+        const navigationButtons = [
+          prevPageBtn,
+          nextPageBtn,
+          prevSkip,
+          nextSkip,
+        ];
+        navigationButtons.forEach((btn) => {
+          if (!btn.disabled) {
+            btn.classList.add("PaginationDotsInActive");
+          } else {
+            btn.classList.remove("PaginationDotsInActive");
+          }
+        });
       };
 
       // Filter Button Event Listener
       filterButtons.forEach((button) => {
+        button.classList.add("PaginationDotsInActive");
         button.addEventListener("click", () => {
+          // Remove active class from previously selected filter
           if (curFilter.get("button")) {
             curFilter.get("button").classList.remove("PaginationDotsActive");
             curFilter.get("button").classList.add("inactive");
           }
+
+          // Add active class to the current button
           button.classList.add("PaginationDotsActive");
           button.classList.remove("inactive");
           curFilter.set("button", button);
 
+          // Apply the filter
           const filter = button.getAttribute("data-filter");
           applyFilter(filter);
+
+          // Update all filter buttons: add PaginationDotsInActive to inactive buttons
+          filterButtons.forEach((filterBtn) => {
+            if (filterBtn !== button) {
+              filterBtn.classList.remove("PaginationDotsActive");
+              filterBtn.classList.add("PaginationDotsInActive"); // Add inactive class to other buttons
+            } else {
+              filterBtn.classList.remove("PaginationDotsInActive"); // Ensure the current button doesn't get this class
+            }
+          });
         });
       });
 

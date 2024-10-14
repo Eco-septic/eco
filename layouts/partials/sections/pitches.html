@@ -1,19 +1,28 @@
 {{ $bgImage := .Params.pitchSection.background }}
 {{ $list := .Params.pitchSection.list }}
 <section
-  class="w-full bg-cover bg-center h-[450px] flex items-center justify-center"
+  class="w-full relative bg-cover bg-center h-[450px] flex items-center  justify-center "
   style="background-image: url('{{ $bgImage }}');"
 >
+  <div class="absolute inset-0 bg-green-600/60 shadow-circle"></div>
   <!-- Container for the pitch section -->
-  <div class="container  grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div
+    class="container grid  z-1 grid-cols-2 lg:grid-cols-4 gap-1 gap-y-4 md:gap-4 "
+  >
     <!-- Loop through the list items -->
     {{ range $index, $item := $list }}
-      <div class="pitch-item flex flex-col items-center">
-        <div class="icon">
-          <img src="{{ $item.icon }}" alt="" class="icon-image rounded-full" />
+      <div
+        class="pitch-item flex flex-col gap-4 text-white justify-center items-center"
+      >
+        <div
+          class="icon size-20 rounded-full shadow-circle  hover:bg-green-600 hover:cursor-pointer flex items-center justify-center"
+        >
+          <img src="{{ $item.icon }}" alt="" role="icon" class="size-9" />
         </div>
         <p class="pitch-title text-lg">{{ $item.title }}</p>
-        <p class="pitch-description text-sm">{{ $item.description }}</p>
+        <p class="pitch-description text-sm text-center text-balance">
+          {{ $item.description }}
+        </p>
       </div>
     {{ end }}
 

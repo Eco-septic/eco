@@ -9,10 +9,19 @@ module.exports = {
     ],
   ],
   theme: {
+    boxShadow: {
+      circle: "0 0 18px -11px #000",
+    },
     fontFamily: {
-      sans: ["'Gilroy', Arial, sans-serif;"],
+      sans: ["'Montserrat', Arial, sans-serif;"],
     },
     extend: {
+      zIndex: {
+        1: "1",
+      },
+      transitionTimingFunction: {
+        "fall-in": "cubic-bezier(0.1, 0, 0.1, 1)",
+      },
       transitionProperty: {
         "grid-row": "grid",
       },
@@ -38,7 +47,7 @@ module.exports = {
       colors: {
         primary: "rgb(255 84 47)",
         darkMode: "rgb(36, 36, 36)",
-        lightMode: "rgb(249, 249, 249)",
+        lightMode: "rgb(255, 255, 255)",
         inactive: "rgb(84, 84, 84)",
         inactiveDark: "rgb(225, 225, 225)",
         active: "rgb(220, 220, 220)",

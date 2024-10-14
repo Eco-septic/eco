@@ -2,7 +2,7 @@
 features: five
 description: "news  "
 title: news 🦖 five
-titleImage: https://via.placeholder.com/1200x600.png/783b0e?text=Title+Image
+titleImage: /media/uploads/wallpaperflare.com_wallpaper.jpg
 date: 2024-10-10T01:04:00+03:00
 sitemap:
   changefreq: monthly

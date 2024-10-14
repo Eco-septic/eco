@@ -20,7 +20,7 @@ i18n:
   structure: multiple_files
 
   # Required - a list of locales to show in the editor UI
-  locales: [ru, ky]
+  locales: [ky, ru]
 
   # Optional, defaults to the first item in locales.
   # The locale to be used for fields validation and as a baseline for the entry.
@@ -482,22 +482,22 @@ collections:
     label: "News posts" # Label for the CMS
     folder: "content/news/posts" # Path to the folder containing content files for different languages
     create: true # Allow creating new entries
-    slug: "{{month}}-{{day}}_{{slug}}" # Slug for new entries
+    slug: "{{month}}{{day}}{{hour}}{{minute}}_{{slug}}" # Slug for new entries
     i18n: true # Enable multilingual support
     fields:
-      - { label: "Features", name: "features", widget: "string", i18n: true }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
       - {
           label: "Description",
           name: "description",
           widget: "string",
           i18n: true,
         }
-      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Features", name: "features", widget: "string", i18n: true }
       - {
           label: "Title Image",
           name: "titleImage",
           widget: "image",
-          i18n: true,
+          i18n: duplicate,
         }
       - {
           label: "Date",
@@ -534,12 +534,17 @@ collections:
               default: true,
               i18n: duplicate,
             }
-      - { label: "News post content", name: "body", widget: "markdown" }
+      - {
+          label: "News post content",
+          name: "body",
+          widget: "markdown",
+          i18n: true,
+        }
   - name: "products"
     label: "List of products" # Label for the CMS
     folder: "content/products/product" # Path to the folder containing content files for different languages
     create: true # Allow creating new entries
-    slug: "{{month}}-{{day}}_{{slug}}" # Slug for new entries
+    slug: "{{month}}{{day}}{{hour}}{{minute}}_{{slug}}" # Slug for new entries
     i18n: true # Enable multilingual support
     fields:
       - name: "sitemap" # Name of the collection for sitemap settings
@@ -585,19 +590,17 @@ collections:
           required: false,
         }
       - { label: "New Price", name: "newPrice", widget: "number", i18n: true }
-      - {
-          label: "Image",
-          name: "image",
-          widget: "image",
-          allow_multiple: true,
-          i18n: true,
-        }
-      - label: "Images"
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        i18n: duplicate
+      - label: "add on Images"
         name: "images"
-        widget: "list"
-        i18n: true
-        field:
-          { label: "Image URL", name: "imageUrl", widget: "image", i18n: true }
+        widget: "image"
+        i18n: duplicate
+        media_library:
+          config:
+            multiple: true
       - label: "Parameters"
         name: "parameters"
         widget: "object"

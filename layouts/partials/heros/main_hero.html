@@ -7,17 +7,17 @@
     <div id="textAnimation" class="text-2xl font-bold overflow-visible">
       {{ .Params.hero.textAnimation }}
     </div>
-    <h1 class="text-2xl">
+    <h1 class="text-2xl " id="hero-title">
       {{ .Params.title }}
     </h1>
-    <ul class="list-disc pl-4">
+    <ul class="list-disc pl-4 " id="hero-pitch">
       {{ range .Params.hero.pitchList }}
-        <li>{{ . }}</li>
+        <li class="text-sm">{{ . }}</li>
       {{ end }}
     </ul>
     {{ with site.Menus.mainmenu }}
       {{ range where . "PageRef" "/products" }}
-        <a href="{{ .URL }}" class="block">
+        <a href="{{ .URL }}" class="block " id="hero-button">
           <button class="rounded-3xl py-2 px-4 bg-lime-600">{{ .Name }}</button>
         </a>
       {{ end }}
@@ -29,7 +29,7 @@
     <!-- Slider Images -->
     {{ range $index, $image := .Params.hero.images }}
       <img
-        class="size-full object-cover brightness-50 absolute top-0 left-0 bottom-0 right-0 transition-opacity duration-700 ease-in-out"
+        class="size-full object-cover brightness-50 absolute top-0 left-0 bottom-0 right-0 "
         src="{{ $image }}"
         alt="Slide {{ $index }}"
       />
@@ -39,15 +39,15 @@
   <!-- Navigation Buttons -->
   <button
     id="prevBtn"
-    class="absolute left-5 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full z-20"
+    class="absolute left-5 top-1/2 transform -translate-y-1/ shadow-2xl bg-white/50 size-9 md:size-12 lg:size-14 p-1 rounded-full z-20 hover:bg-black/50 transition-all active:-translate-x-3 duration-150"
   >
-    &larr;
+    <img src="static/left.svg" alt="" class="size-full" />
   </button>
   <button
     id="nextBtn"
-    class="absolute right-5 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full z-20"
+    class="absolute right-5 top-1/2 transform -translate-y-1/2 size-9 md:size-12 lg:size-14 bg-white/50 p-1 hover:bg-black/50 transition-all active:translate-x-3 duration-150 rounded-full z-20"
   >
-    &rarr;
+    <img src="static/right.svg" alt="" class="size-full" />
   </button>
 
   <!-- Pagination Dots -->
@@ -68,27 +68,13 @@
     const textContainer = document.getElementById("textAnimation");
     const text = textContainer.textContent.trim(); // Get the original text
     textContainer.textContent = ""; // Clear the container
-
+    const heroTitle = document.getElementById("hero-title");
+    const heroButton = document.getElementById("hero-button");
+    const heroPitch = document.getElementById("hero-pitch");
     // Create a wrapper div to contain all character divs
     const wrapperDiv = document.createElement("div");
     wrapperDiv.className = "heroWrapperDiv"; // Tailwind classes for centering and layout
     textContainer.appendChild(wrapperDiv);
-
-    // Split text into individual characters and wrap in divs
-    text.split("").forEach((char, index) => {
-      const charDiv = document.createElement("div");
-      charDiv.className = "heroCharDic";
-      charDiv.textContent = char === " " ? "\u00A0" : char; // Replace space with non-breaking space for correct spacing
-
-      // Append each character div to the wrapper div
-      wrapperDiv.appendChild(charDiv);
-
-      // Animate the character div from top to its final position
-      setTimeout(() => {
-        charDiv.classList.remove("heroCharDic"); // Remove initial classes for animation
-        charDiv.classList.add("heroCharDicAnimation"); // Add final classes for animation
-      }, index * 100); // 0.1s delay for each character
-    });
 
     const slider = document.getElementById("slider");
     const dots = document.querySelectorAll(".dot");
@@ -98,15 +84,51 @@
     let currentIndex = 0;
     const totalSlides = slider.children.length;
 
+    const refreshAnimation = () => {
+      updateSliderPosition();
+      wrapperDiv.innerHTML = "";
+      heroTitle.classList.add("hero-title-before");
+      heroPitch.classList.add("hero-pitch-before");
+      heroButton.classList.add("hero-pitch-before");
+      heroTitle.classList.remove("hero-title-after");
+      heroPitch.classList.remove("hero-pitch-after");
+      heroButton.classList.remove("hero-pitch-after");
+      text.split("").forEach((char, index) => {
+        const charDiv = document.createElement("div");
+        charDiv.className = "heroCharDic";
+        charDiv.textContent = char === " " ? "\u00A0" : char; // Replace space with non-breaking space for correct spacing
+
+        // Append each character div to the wrapper div
+        wrapperDiv.appendChild(charDiv);
+
+        // Animate the character div from top to its final position
+        setTimeout(() => {
+          charDiv.classList.remove("heroCharDic"); // Remove initial classes for animation
+          charDiv.classList.add("heroCharDicAnimation"); // Add final classes for animation
+        }, index * 100); // 0.1s delay for each character
+        // Calculate the total time after which all animations are done
+        const totalAnimationTime = text.length * 100 + 500; // Assuming each character animation lasts 500ms
+
+        // Log when all animations are done
+        setTimeout(() => {
+          heroTitle.classList.remove("hero-title-before");
+          heroPitch.classList.remove("hero-pitch-before");
+          heroButton.classList.remove("hero-pitch-before");
+          heroTitle.classList.add("hero-title-after");
+          heroPitch.classList.add("hero-pitch-after");
+          heroButton.classList.add("hero-pitch-after");
+        }, totalAnimationTime);
+      });
+    };
     // Helper function to update slider position with opacity transitions
     const updateSliderPosition = () => {
       Array.from(slider.children).forEach((img, index) => {
+        img.classList.remove("hero-image-active");
+        img.classList.add("hero-image-inactive");
+        void img.offsetWidth;
         if (index === currentIndex) {
-          img.style.opacity = "1"; // Show the active image
-          img.style.zIndex = "1"; // Make sure the current image is on top
-        } else {
-          img.style.opacity = "0"; // Hide other images
-          img.style.zIndex = "0"; // Push non-active images back
+          img.classList.remove("hero-image-inactive");
+          img.classList.add("hero-image-active");
         }
       });
 
@@ -119,13 +141,13 @@
     // Next Button Event Listener
     nextBtn.addEventListener("click", () => {
       currentIndex = (currentIndex + 1) % totalSlides;
-      updateSliderPosition();
+      refreshAnimation();
     });
 
     // Previous Button Event Listener
     prevBtn.addEventListener("click", () => {
       currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateSliderPosition();
+      refreshAnimation();
     });
 
     // Pagination Dots Event Listener
@@ -137,6 +159,6 @@
     });
 
     // Initial Slider Position
-    updateSliderPosition();
+    refreshAnimation();
   });
 </script>
