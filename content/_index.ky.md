@@ -1,10 +1,10 @@
 ---
 title: title in russion
 description: descirption in russionss
-linkTitle: home
+linkTitle: Главная
 menu:
   mainmenu:
-    name: MainKY
+    name: Главная
     pageRef: /
     weight: 1
 hero:
@@ -38,8 +38,10 @@ pitchSection:
       title: Lorem ipsup
       description: Lorem ipsupLorem ipsup Lorem ipsup
 newsSection:
-  title: Lorem Upsim
-  description: nnews desciption
+  title: News
+  description: Автономные канализационные системы и дополнительные оборудования,
+    производимые крупной Российской компанией специализирующейся на производстве
+    очистных сооружений.
 sitemap:
   changefreq: monthly
   priority: 1

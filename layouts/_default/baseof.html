@@ -7,7 +7,14 @@
     {{ partial "head.html" . }}
     <!-- {{ partial "opengraph.html" . }}
     {{ partial "twitter.html" . }} -->
-
+    {{ with index .Site.Data.settings .Lang }}
+      <style>
+        :root {
+          --light-color: {{ .lightColor | safeCSS }};
+          --dark-color: {{ .darkColor | safeCSS }};
+        }
+      </style>
+    {{ end }}
   </head>
 
   <body

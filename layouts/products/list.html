@@ -1,32 +1,18 @@
 {{ define "main" }}
   <main class="container mx-auto mb-10">
     {{ partial "breadcrumbs.html" . }}
-    <h1 class="text-2xl font-bold mb-4">{{ .Title }}</h1>
+    <h1 class="text-2xl font-bold my-14">{{ .Title }}</h1>
 
     <div class="flex justify-between items-center mb-4">
       <!-- Category Filter Dropdown -->
       <div>
-        <label for="categoryFilter" class="mr-2">Category:</label>
+        <label for="categoryFilter" class="mr-2">Category i18n:</label>
         <select id="categoryFilter" class="border rounded p-2">
           <option value="all">All Categories i18n</option>
           {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
             <option value="{{ $name }}">{{ $name }}</option>
           {{ end }}
         </select>
-      </div>
-
-      <!-- Price Filter Range -->
-      <div class="flex-[0.7]">
-        <label for="priceFilter" class="mr-2">Price Range: i18n</label>
-        <input
-          type="range"
-          id="priceFilter"
-          min="0"
-          max="100000"
-          step="100"
-          class="slider w-1/2"
-        />
-        <span id="priceValue" class="ml-2">0</span> KGS
       </div>
     </div>
 
@@ -58,7 +44,7 @@
           >
             {{ if or .Params.promo .Params.newPrice }}
               <img
-                src="https://via.placeholder.com/50x50.png/FF0000/FFFFFF?text=SALE"
+                src="static/promo.svg"
                 alt="Promo"
                 class="absolute top-2 left-2 w-12 z-10 h-12 rounded-full"
               />
@@ -69,7 +55,7 @@
               class="group relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg"
             >
               <img
-                src="https://via.placeholder.com/400x282.png/28a745/ffffff?text=Product"
+                src="{{ .Params.image }}"
                 alt="{{ .Title }}"
                 class="w-full h-auto group-hover:scale-150 object-cover transition duration-300 ease-in-out transform"
                 loading="lazy"
@@ -163,8 +149,6 @@
       document.addEventListener("DOMContentLoaded", () => {
         const productsContainer = document.getElementById("productsContainer");
         const categoryFilter = document.getElementById("categoryFilter");
-        const priceFilter = document.getElementById("priceFilter");
-        const priceValue = document.getElementById("priceValue");
         const paginationDots = document.getElementById("productPaginationDots");
         const paginationContainer = document.getElementById(
           "paginationContainer",
@@ -188,19 +172,11 @@
         function initializeProducts() {
           document.querySelectorAll(".product-item").forEach((item) => {
             const productCategory = item.getAttribute("data-product-category");
-            const productPrice = item.getAttribute("data-product-price");
-            maxRange = Math.max(maxRange, productPrice);
-            minRange = Math.min(minRange, productPrice);
             allProducts.push({
               element: item,
               category: productCategory,
-              price: productPrice,
             });
           });
-          priceFilter.max = maxRange;
-          priceFilter.min = minRange;
-          priceFilter.value = maxRange;
-          priceValue.innerText = maxRange;
           filteredProducts = [...allProducts]; // Initialize filteredProducts with allProducts
           displayProducts(); // Display all products initially
         }
@@ -248,20 +224,16 @@
         // Filter products based on selected category and price range
         function filterProducts() {
           const selectedCategory = categoryFilter.value;
-          const selectedPrice = Number(priceFilter.value); // Convert to number
 
           // Check if we're resetting filters to show all products
           const isCategoryAll = selectedCategory === "all";
-          const isMaxPrice = selectedPrice >= maxRange;
 
           // Filter based on category and price
           filteredProducts = allProducts.filter((product) => {
             const matchesCategory =
               isCategoryAll || product.category === selectedCategory;
-            const matchesPrice =
-              isMaxPrice || Number(product.price) <= selectedPrice;
             // return matchesCategory ;
-            return matchesCategory && matchesPrice;
+            return matchesCategory;
           });
 
           currentPage = 0; // Reset to first page after filtering
@@ -330,10 +302,6 @@
 
         // Event listeners for category and price filters
         categoryFilter.addEventListener("change", filterProducts);
-        priceFilter.addEventListener("input", (e) => {
-          priceValue.innerText = e.target.value;
-          filterProducts();
-        });
 
         // Event listeners for pagination buttons
         prevPageBtn.addEventListener("click", () => {

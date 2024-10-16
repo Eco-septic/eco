@@ -1,21 +1,21 @@
 {{ define "main" }}
   <!-- Main Content Container -->
-  <main class=" container mx-auto flex flex-col gap-10 items-center">
+  <main class=" container mx-auto mb-14 flex flex-col gap-10 items-center">
     {{ partial "breadcrumbs.html" . }}
     <section aria-label="about us" class="text-start w-full">
-      <h2>
+      <h2 class="text-lg">
         {{ .Params.aboutUsSection.title }}
       </h2>
-      <p>
+      <p class="text-base text-balance mt-10">
         {{ .Params.aboutUsSection.description }}
       </p>
     </section>
     {{ if .Params.aboutHistorySection.description }}
       <section aria-label="our history" class="w-full">
-        <h2>
+        <h2 class="text-lg">
           {{ .Params.aboutHistorySection.title }}
         </h2>
-        <p>
+        <p class="text-base text-balance mt-10">
           {{ .Params.aboutHistorySection.description }}
         </p>
       </section>
@@ -23,50 +23,52 @@
 
 
     <section aria-label="licenses">
-      <h2>our licenses I18n fix</h2>
+      {{ $title := .Params.licensesSection.title }}
+      <h2 class="text-lg">{{ $title }}</h2>
       <div
-        class="grid grid-flow-row gap-8 p-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+        class="grid grid-flow-row gap-8 mt-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {{ range .Site.Data.licenses.licenses }}
-          <div class="p-4 bg-white shadow-md rounded-lg">
+        {{ range .Params.licensesSection.licenses }}
+          <div class=" shadow-md ">
             <!-- Image Container with A4 Aspect Ratio -->
-            <div
-              class="w-full aspect-[1/1.414] overflow-hidden rounded-t-lg mb-4"
-            >
+            <div class="w-full aspect-[1/1.414] overflow-hidden  mb-4">
               <img
                 src="{{ .image }}"
-                alt="{{ .title }}"
+                alt="{{ $title }} {{ .registrNumber }}"
                 class="w-full h-full object-cover"
               />
             </div>
             <!-- Title & Description -->
-            <p class="text-lg font-semibold mb-2">{{ .title }}</p>
-            <p class="text-sm text-gray-600">{{ .description }}</p>
+            <p class="text-sm text-center font-semibold mb-2">
+              {{ .registrNumber }}
+            </p>
           </div>
         {{ end }}
       </div>
     </section>
 
     <section aria-label="certificates">
-      <h2>our certificates I18n fix</h2>
+      {{ $title := .Params.certificatesSection.title }}
+
+
+      <h2>{{ $title }}</h2>
       <div
-        class="grid grid-flow-row gap-8 p-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+        class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {{ range .Site.Data.certificates.certificates }}
-          <div class="p-4 bg-white shadow-md rounded-lg">
+        {{ range .Params.certificatesSection.certificates }}
+          <div class=" shadow-md ">
             <!-- Image Container with A4 Aspect Ratio -->
-            <div
-              class="w-full aspect-[1/1.414] overflow-hidden rounded-t-lg mb-4"
-            >
+            <div class="w-full aspect-[1/1.414] overflow-hidden  mb-4">
               <img
                 src="{{ .image }}"
-                alt="{{ .title }}"
+                alt="{{ $title }} {{ .registrNumber }}"
                 class="w-full h-full object-cover"
               />
             </div>
             <!-- Title & Description -->
-            <p class="text-lg font-semibold mb-2">{{ .title }}</p>
-            <p class="text-sm text-gray-600">{{ .description }}</p>
+            <p class="text-sm  text-center font-semibold mb-2">
+              {{ .registrNumber }}
+            </p>
           </div>
         {{ end }}
       </div>

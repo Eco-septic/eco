@@ -1,22 +1,32 @@
 {{ define "main" }}
   {{ partial "heros/main_hero.html" . }}
-  <main class="flex flex-col items-center ">
+  <main class="flex flex-col items-center">
     {{ partial "sections/products.html" . }}
     {{ partial "sections/pitches.html" . }}
     {{ partial "sections/news.html" . }}
-  </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const productTitle = document.getElementById("productTitle");
-      const productDescription = document.getElementById("productDescription");
-      const newsTitle = document.getElementById("newsTitle");
-      const newsDescription = document.getElementById("newsDescription");
-      const newsItems = document.getElementById("newsCardContainer");
-      const filterButtons = document.querySelectorAll(".filter-button");
-      const productItems = document.querySelectorAll(".product-item");
-      // Set up intersection observers for animations
-      setupIntersectionObservers(
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const productTitle = document.getElementById("productTitle");
+        const productDescription =
+          document.getElementById("productDescription");
+        const newsTitle = document.getElementById("newsTitle");
+        const newsDescription = document.getElementById("newsDescription");
+        const newsItems = document.getElementById("newsCardContainer");
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const productItems = document.querySelectorAll(".product-item");
+        // Set up intersection observers for animations
+        setupIntersectionObservers(
+          productTitle,
+          productDescription,
+          newsTitle,
+          newsDescription,
+          productItems,
+          filterButtons,
+          newsItems,
+        );
+      });
+      function setupIntersectionObservers(
         productTitle,
         productDescription,
         newsTitle,
@@ -24,78 +34,69 @@
         productItems,
         filterButtons,
         newsItems,
-      );
-    });
-    function setupIntersectionObservers(
-      productTitle,
-      productDescription,
-      newsTitle,
-      newsDescription,
-      productItems,
-      filterButtons,
-      newsItems,
-    ) {
-      const observerOptions = {
-        threshold: 0.3, // Trigger when 15% of the element is visible
-      };
+      ) {
+        const observerOptions = {
+          threshold: 0.15,
+        };
 
-      const productObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateElements(productTitle, productDescription);
-            animateFilterButtons(filterButtons);
-            animateProductItems(productItems);
-            productObserver.unobserve(entry.target); // Stop observing after animation
-          }
+        const productObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateElements(productTitle, productDescription);
+              animateFilterButtons(filterButtons);
+              animateProductItems(productItems);
+              productObserver.unobserve(entry.target); // Stop observing after animation
+            }
+          });
+        }, observerOptions);
+
+        const newsObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateElements(newsTitle, newsDescription);
+              newsItems.classList.remove("opacity-0", "translate-y-5");
+              newsObserver.unobserve(entry.target); // Stop observing after animation
+            }
+          });
+        }, observerOptions);
+
+        newsObserver.observe(
+          document.querySelector("section[aria-label='news featuring']"),
+        );
+        productObserver.observe(
+          document.querySelector(
+            "section[aria-label='products categories featuring']",
+          ),
+        );
+      }
+
+      function animateElements(...elements) {
+        elements.forEach((element) => {
+          element.classList.remove("opacity-0", "-translate-y-full");
         });
-      }, observerOptions);
+      }
 
-      const newsObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateElements(newsTitle, newsDescription);
-            newsItems.classList.remove("opacity-0", "translate-y-5");
-            newsObserver.unobserve(entry.target); // Stop observing after animation
+      function animateFilterButtons(filterButtons) {
+        filterButtons.forEach((button, index) => {
+          if (button.getAttribute("data-filter") === "all") {
+            button.classList.remove("PaginationDots");
+            button.classList.add("PaginationDotsActive");
           }
+          setTimeout(() => {
+            button.classList.remove("opacity-0", "translate-y-10");
+          }, index * 100); // Staggered effect for filter buttons
         });
-      }, observerOptions);
+      }
 
-      newsObserver.observe(
-        document.querySelector("section[aria-label='news featuring']"),
-      );
-      productObserver.observe(
-        document.querySelector(
-          "section[aria-label='products categories featuring']",
-        ),
-      );
-    }
-
-    function animateElements(...elements) {
-      elements.forEach((element) => {
-        element.classList.remove("opacity-0", "-translate-y-full");
-      });
-    }
-
-    function animateFilterButtons(filterButtons) {
-      filterButtons.forEach((button, index) => {
-        if (button.getAttribute("data-filter") === "all") {
-          button.classList.remove("PaginationDots");
-          button.classList.add("PaginationDotsActive");
-        }
-        setTimeout(() => {
-          button.classList.remove("opacity-0", "translate-y-10");
-        }, index * 100); // Staggered effect for filter buttons
-      });
-    }
-
-    function animateProductItems(productItems) {
-      productItems.forEach((item, index) => {
-        setTimeout(() => {
-          item
-            .querySelector(".product-title")
-            .classList.remove("opacity-0", "translate-y-5");
-        }, index * 150); // Staggered effect for product items
-      });
-    }
-  </script>
+      function animateProductItems(productItems) {
+        productItems.forEach((item, index) => {
+          setTimeout(() => {
+            item
+              .querySelector(".product-title")
+              .classList.remove("opacity-0", "translate-y-5");
+          }, index * 150); // Staggered effect for product items
+        });
+      }
+    </script>
+  </main>
 {{ end }}

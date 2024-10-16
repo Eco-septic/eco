@@ -1,15 +1,15 @@
 {{ define "main" }}
-  <main class="container mx-auto flex-grow">
+  <main class="container mx-auto flex-grow mb-10">
     {{ partial "breadcrumbs.html" . }}
     <section>
       <ul>
         {{ range $index, $item := .Params.list }}
           <li class="relative w-full  p-2 mb-2 rounded-md bg-slate-400/50">
             <details class="peer group cursor-pointer font-bold px-4">
-              <summary class="marker:content-none">
+              <summary class="marker:content-none marker:-z-10">
                 {{ $item.question }}
                 <span
-                  class="absolute right-4  group-open:rotate-90 transition-transform duration-500"
+                  class="absolute right-4  group-open:rotate-90 z-10 transition-transform duration-500"
                   >▶</span
                 >
               </summary>

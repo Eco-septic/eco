@@ -1,4 +1,4 @@
-local_backend: false
+local_backend: true
 backend:
   name: git-gateway
   branch: deploy # Branch to update (optional; defaults to master)
@@ -28,6 +28,31 @@ i18n:
 
 collections:
   # Main Page
+  - name: "categories"
+    label: "Product Categories"
+    i18n:
+      structure: single_file
+      locales: [ky, ru]
+    files:
+      - file: data/categories.yml
+        label: "Categories"
+        name: "categories"
+        i18n: true
+        fields:
+          - name: groups
+            label: "Groups"
+            widget: list
+            i18n: true
+            allow_add: true
+            fields:
+              - { label: "Group", name: "group", widget: "hidden" } # Disable editing for group
+              - {
+                  label: "Translation",
+                  name: "translation",
+                  widget: "string",
+                  i18n: true,
+                }
+
   - name: "settings"
     label: "Site Settings"
     i18n:
@@ -43,6 +68,22 @@ collections:
               label: "main logo",
               name: "main_logo",
               widget: "image",
+              i18n: duplicate,
+            }
+          - {
+              label: "Light Mode Color",
+              name: "lightColor",
+              widget: "color",
+              enableAlpha: true,
+              allowInput: true,
+              i18n: duplicate,
+            }
+          - {
+              label: "Dark Mode Color",
+              name: "darkColor",
+              widget: "color",
+              enableAlpha: true,
+              allowInput: true,
               i18n: duplicate,
             }
           - { label: "email", name: "email", widget: "string", i18n: duplicate }
@@ -261,19 +302,18 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
       - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          i18n: true,
+        }
+      - {
           label: "linkTitle",
           name: "linkTitle",
           widget: "string",
           required: true,
           i18n: true,
         }
-      - {
-          label: "Description",
-          name: "description",
-          widget: "text",
-          i18n: true,
-        }
-      - { label: "Link Title", name: "linktitle", widget: "string", i18n: true }
       - name: "sitemap" # Name of the collection for sitemap settings
         label: "Sitemap Settings" # Label for the collection in the CMS
         widget: "object"
@@ -303,6 +343,7 @@ collections:
       - label: "About Us Section"
         name: "aboutUsSection"
         widget: "object"
+        collapsed: true
         i18n: true
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
@@ -316,6 +357,7 @@ collections:
         name: "aboutHistorySection"
         widget: "object"
         i18n: true
+        collapsed: true
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - {
@@ -324,6 +366,61 @@ collections:
               widget: "text",
               i18n: true,
             }
+      - name: "certificatesSection"
+        label: "Certificates"
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - label: "List"
+            name: "certificates"
+            widget: "list"
+            i18n: true
+            minimize_collapsed: true
+            add_to_top: true
+            fields:
+              - {
+                  name: "registrNumber",
+                  label: "registr Number",
+                  widget: "string",
+                  i18n: duplicate,
+                }
+              - {
+                  label: "image",
+                  name: "image",
+                  widget: "image",
+                  i18n: duplicate,
+                }
+      - name: "licensesSection"
+        label: "Licenses"
+        i18n: true
+        collapsed: true
+        widget: "object"
+        fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            i18n: true
+          - label: "List"
+            name: "licenses"
+            widget: "list"
+            minimize_collapsed: true
+            add_to_top: true
+            i18n: true
+            fields:
+              - {
+                  name: "registrNumber",
+                  label: "registr Number",
+                  widget: "string",
+                  i18n: duplicate,
+                }
+              - {
+                  label: "image",
+                  name: "image",
+                  widget: "image",
+                  i18n: duplicate,
+                }
       - label: "Menu"
         name: "menu"
         widget: "object"
@@ -339,7 +436,6 @@ collections:
                 name: "name"
                 widget: "text"
                 i18n: true
-      - { label: "Language", name: "language", widget: "hidden", default: "ky" }
       - { label: "Type", name: "type", widget: "hidden", default: "about" }
   - name: "faq" # Name of the collection
     label: "FAQ Page" # Label in the CMS
@@ -581,15 +677,21 @@ collections:
           widget: "text",
           i18n: true,
         }
-      - { label: "Price", name: "price", widget: "number", i18n: true }
+      - { label: "Price", name: "price", widget: "number", i18n: duplicate }
       - {
           label: "Percentage",
           name: "promo",
           widget: "number",
-          i18n: true,
+          i18n: duplicate,
           required: false,
         }
-      - { label: "New Price", name: "newPrice", widget: "number", i18n: true }
+      - {
+          label: "New Price",
+          name: "newPrice",
+          widget: "number",
+          i18n: duplicate,
+          required: false,
+        }
       - label: "Image"
         name: "image"
         widget: "image"

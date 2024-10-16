@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start:css": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css -w",
-    "start:hugo": "hugo server",
+    "start:hugo": "hugo server --bind 0.0.0.0 --baseURL http://192.168.100.10 --port 1313",
     "start": "npm run clean && run-p start:*",
     "build:css": "npx tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css -m",
     "build:hugo": "hugo --minify",

@@ -3,13 +3,13 @@ sitemap:
   changefreq: monthly
   priority: 1
   disable: false
-title: index
-description: test
+title: Продукция
+description: testфыв фыдлвыдвлатфвав
 linktitle: products
-linkTitle: products
+linkTitle: Продукция
 menu:
   mainmenu:
-    name: ProductsKG
+    name: Продукция
     pageRef: /products
     weight: 3
 ---
