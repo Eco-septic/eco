@@ -255,21 +255,21 @@ p {
   @apply -translate-x-[200px] opacity-0 transition-all duration-300 ease-linear;
 }
 .hero-title-after {
-  @apply translate-x-0 opacity-100 transition-all duration-500 ease-linear;
+  @apply translate-x-0 opacity-100 transition-all duration-1000 ease-linear;
 }
 
 .hero-pitch-before {
   @apply translate-y-28 opacity-0 transition-all duration-300 ease-linear;
 }
 .hero-pitch-after {
-  @apply translate-y-0 opacity-100 transition-all duration-500 ease-linear;
+  @apply translate-y-0 opacity-100 transition-all duration-1000 ease-linear;
 }
 
 .hero-image-active {
   @apply scale-125 opacity-100 z-1;
   transition:
     opacity 300ms linear,
-    transform 10000ms linear;
+    transform 50s linear;
 }
 
 .hero-image-inactive {
@@ -331,4 +331,24 @@ button[data-control]:hover {
   -webkit-scrollbar {
     display: none;
   }
+}
+
+details {
+  /* Ensure the details element behaves like a list item */
+  display: list-item;
+}
+
+summary {
+  list-style: none; /* Remove bullet points */
+  counter-reset: none; /* Reset any counters if used */
+}
+
+/* Hide the default marker in WebKit browsers */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Additional rule for Firefox */
+summary {
+  display: list-item; /* Treat <summary> as a list item */
 }

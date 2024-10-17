@@ -107,8 +107,6 @@
           charDiv.classList.add("heroCharDicAnimation"); // Add final classes for animation
         }, index * 100); // 0.1s delay for each character
         // Calculate the total time after which all animations are done
-        const totalAnimationTime = text.length * 100 + 500; // Assuming each character animation lasts 500ms
-
         // Log when all animations are done
         setTimeout(() => {
           heroTitle.classList.remove("hero-title-before");
@@ -117,7 +115,7 @@
           heroTitle.classList.add("hero-title-after");
           heroPitch.classList.add("hero-pitch-after");
           heroButton.classList.add("hero-pitch-after");
-        }, totalAnimationTime);
+        }, 1000);
       });
     };
     // Helper function to update slider position with opacity transitions

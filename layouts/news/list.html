@@ -1,37 +1,75 @@
 {{ define "main" }}
-  <main class="container  mx-auto bg-blue-300 size-full mb-10">
+  <main class="container  mx-auto  size-full mb-10">
     {{ partial "breadcrumbs.html" . }}
 
 
-    <div class="size-full flex gap-4">
+    <div class="size-full flex gap-4 flex-col lg:flex-row ">
       {{ $news := where .Site.RegularPages "Section" "news" }}
-      <aside class="bg-pink-400 size-full max-w-80">
-        <section aria-label="news categories">
-          <p>Categories i18n</p>
-          <ul>
-            {{ range $name, $taxonomy := .Site.Taxonomies.features }}
-              <li>
-                <a href="{{ $taxonomy.Page.RelPermalink }}">
-                  {{ $name }}
-                </a>
-              </li>
-            {{ end }}
-          </ul>
+      <aside class="size-full lg:max-w-80 w-full">
+        <section
+          aria-label="news categories"
+          class="group transition-all duration-500 ease-linear"
+        >
+          <div class="relative flex justify-between">
+            <p>Categories i18n</p>
+            <label for="new-category-collapse" class="cursor-pointer lg:hidden">
+              <input
+                type="checkbox"
+                id="new-category-collapse"
+                class="appearance-none"
+              />
+              <span role="icon" class="group-has-[:checked]:text-red-500"
+                >+</span
+              >
+            </label>
+            <div class="w-full absolute bottom-0 border-b-2 border-black"></div>
+          </div>
+
+          <div
+            class="grid grid-rows-[0fr] lg:grid-rows-[1fr]  group-has-[:checked]:grid-rows-[1fr] transition-all duration-300 ease-linear"
+          >
+            <ul class="overflow-hidden">
+              {{ range $name, $taxonomy := .Site.Taxonomies.features }}
+                <li>
+                  <a href="{{ $taxonomy.Page.RelPermalink }}" class="">
+                    {{ $name }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
         </section>
-        <section aria-label="recent news">
-          <p>recent news i18n</p>
-          <ul>
-            {{ range $news.ByPublishDate.Reverse.Limit 5 }}
-              <li>
-                <a href="{{ .RelPermalink }}">
-                  {{ .Params.Title }}
-                </a>
-                <p>
-                  {{ .Params.date }}
-                </p>
-              </li>
-            {{ end }}
-          </ul>
+        <section aria-label="recent news" class="group">
+          <div class="relative flex justify-between">
+            <p>Recent news i18n</p>
+            <label for="news-recent-collapse" class="cursor-pointer lg:hidden">
+              <input
+                type="checkbox"
+                id="news-recent-collapse"
+                class="appearance-none"
+              />
+              <span role="icon" class="">+</span>
+            </label>
+            <div
+              class="w-full absolute bottom-0 border-b-2 border-black "
+            ></div>
+          </div>
+          <div
+            class="grid grid-rows-[0fr] lg:grid-rows-[1fr]  group-has-[:checked]:grid-rows-[1fr] transition-all duration-300 ease-linear"
+          >
+            <ul class=" overflow-hidden">
+              {{ range $news.ByPublishDate.Reverse.Limit 5 }}
+                <li class="">
+                  <a href="{{ .RelPermalink }}" class="overflow-hidden">
+                    {{ .Params.Title }}
+                  </a>
+                  <p class="">
+                    {{ .Params.date }}
+                  </p>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
         </section>
       </aside>
       <section class="bg-green-300 size-full">

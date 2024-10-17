@@ -8,9 +8,25 @@
       <div>
         <label for="categoryFilter" class="mr-2">Category i18n:</label>
         <select id="categoryFilter" class="border rounded p-2">
-          <option value="all">All Categories i18n</option>
-          {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-            <option value="{{ $name }}">{{ $name }}</option>
+          {{ $currentLang := index .Site.Data.categories .Lang }}
+          {{ $groups := $currentLang.groups }}
+
+          {{ range $groups }}
+            {{ if eq .group 0 }}
+              <option value="all">
+                {{ .translation }}
+              </option>
+            {{ end }}
+          {{ end }}
+          {{ range $number, $taxonomy := .Site.Taxonomies.categories }}
+            {{ $number := int $number }}
+            {{ range $groups }}
+              {{ if eq .group $number }}
+                <option value="{{ .group }}">
+                  {{ .translation }}
+                </option>
+              {{ end }}
+            {{ end }}
           {{ end }}
         </select>
       </div>
@@ -36,85 +52,95 @@
         {{ end }}
 
 
-        <a href="{{ .RelPermalink }}">
+        <div
+          class="product-item group relative p-4 border rounded shadow-lg"
+          data-product-category="{{ .Params.categories }}"
+          data-product-price="{{ $dataPrice }}"
+        >
+          {{ if or .Params.promo .Params.newPrice }}
+            <img
+              src="{{ "static/promo.svg" | relURL }}"
+              alt="Promo"
+              class="absolute top-2 left-2 w-12 z-20 h-12 rounded-full"
+            />
+          {{ end }}
+
+
           <div
-            class="product-item group relative p-4 border rounded shadow-lg"
-            data-product-category="{{ .Params.categories }}"
-            data-product-price="{{ $dataPrice }}"
+            class="group relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg"
           >
-            {{ if or .Params.promo .Params.newPrice }}
-              <img
-                src="static/promo.svg"
-                alt="Promo"
-                class="absolute top-2 left-2 w-12 z-10 h-12 rounded-full"
-              />
-            {{ end }}
-
-
-            <div
-              class="group relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg"
-            >
-              <img
-                src="{{ .Params.image }}"
-                alt="{{ .Title }}"
-                class="w-full h-auto group-hover:scale-150 object-cover transition duration-300 ease-in-out transform"
-                loading="lazy"
-              />
-              <p
-                class="absolute inset-0 flex items-center justify-center p-4 text-black transition-all duration-500 ease-in-out transform -translate-y-full group-hover:translate-y-0 group-hover:text-white group-hover:bg-black/50 overflow-hidden"
-              >
-                {{ .Params.description }}
-              </p>
-            </div>
-
-            <h2 class="text-xl font-semibold mt-4">{{ .Params.categories }}</h2>
-            <p class="text-sm text-gray-600 mb-2">{{ .Params.description }}</p>
-
-            <div class="text-lg">
-              {{ $price := float .Params.price }}
-              {{ $promo := float .Params.promo }}
-              {{ $newPrice := float .Params.newPrice }}
-
-              {{ if and $promo (gt $promo 0) }}
-                {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
-                <p>
-                  <span class="line-through text-gray-500"
-                    >{{ printf "%.0f" $price }} KGS</span
-                  >
-                  <span class="text-red-500 font-bold ml-2"
-                    >{{ printf "%.0f" $discountedPrice }} KGS</span
-                  >
-                  <span class="text-green-600 text-sm"
-                    >({{ printf "%.2f" $promo }}% off)</span
-                  >
-                </p>
-              {{ else if and (not $promo) (gt $newPrice 0) }}
-                {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
-                <p>
-                  <span class="line-through text-gray-500"
-                    >{{ printf "%.0f" $price }} KGS</span
-                  >
-                  <span class="text-red-500 font-bold ml-2"
-                    >{{ printf "%.0f" $newPrice }} KGS</span
-                  >
-                  <span class="text-green-600 text-sm"
-                    >({{ printf "%.2f" $discount }}% off)</span
-                  >
-                </p>
-              {{ else }}
-                <p class="text-blue-700 font-bold">
-                  {{ printf "%.0f" $price }} KGS
-                </p>
-              {{ end }}
-            </div>
-
+            <img
+              src="{{ .Params.image }}"
+              alt="{{ .Title }}"
+              class="w-full h-auto group-hover:scale-150 group-hover:brightness-75 object-cover transition duration-300 ease-in-out transform"
+              loading="lazy"
+            />
             <a
               href="{{ .RelPermalink }}"
-              class="text-blue-500 underline mt-2 block"
-              >Read more i18n</a
+              class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
             >
+              {{ $settings := index .Site.Data.settings .Lang }}
+              {{ $settings.more.product }}
+            </a>
           </div>
-        </a>
+
+          <h2 class="text-base font-semibold mt-4">
+            {{ .Params.title }}
+          </h2>
+          <p class="text-sm text-gray-600 mb-2">
+            {{ $categ := int .Params.categories }}
+            {{ with index .Site.Data.categories .Lang }}
+              {{ range .groups }}
+                {{ if eq .group $categ }}
+                  {{ .translation }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          </p>
+
+          <div class="text-lg">
+            {{ $price := float .Params.price }}
+            {{ $promo := float .Params.promo }}
+            {{ $newPrice := float .Params.newPrice }}
+
+            {{ if and $promo (gt $promo 0) }}
+              {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+              <p>
+                <span class="line-through text-gray-500"
+                  >{{ printf "%.0f" $price }} KGS</span
+                >
+                <span class="text-green-600 font-bold ml-2"
+                  >{{ printf "%.0f" $discountedPrice }} KGS</span
+                >
+                <span class="text-green-600 text-sm"
+                  >({{ printf "%.2f" $promo }}% off)</span
+                >
+              </p>
+            {{ else if and (not $promo) (gt $newPrice 0) }}
+              {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+              <p>
+                <span class="line-through text-gray-500"
+                  >{{ printf "%.0f" $price }} KGS</span
+                >
+                <span class="text-green-600 font-bold ml-2"
+                  >{{ printf "%.0f" $newPrice }} KGS</span
+                >
+                <span class="text-green-600 text-sm"
+                  >({{ printf "%.2f" $discount }}% off)</span
+                >
+              </p>
+            {{ else }}
+              <p class="">{{ printf "%.0f" $price }} KGS</p>
+            {{ end }}
+          </div>
+
+          <a
+            href="{{ .RelPermalink }}"
+            class="text-blue-500 underline mt-2 block"
+            >{{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.more.product }}</a
+          >
+        </div>
       {{ end }}
     </div>
 

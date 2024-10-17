@@ -54,10 +54,10 @@
           <!-- Aspect ratio container -->
           {{ if or .Params.promo .Params.newPrice }}
             <img
-              src="static/promo.svg"
+              src="{{ "static/promo.svg" | relURL }}"
               alt="Promo"
               role="icon"
-              class="absolute top-0 left-0 size-8 z-10  rounded-full"
+              class="absolute top-0 left-0 size-8 z-10 rounded-full"
             />
           {{ end }}
           <a href="{{ .RelPermalink }}">
@@ -85,7 +85,7 @@
               <span class="line-through text-gray-500"
                 >{{ printf "%.0f" $price }} KGS</span
               >
-              <span class="text-red-500 font-bold ml-2"
+              <span class="text-green-600 font-bold ml-2"
                 >{{ printf "%.0f" $discountedPrice }} KGS</span
               >
               <span class="text-green-600 text-sm"
@@ -98,7 +98,7 @@
               <span class="line-through text-gray-500"
                 >{{ printf "%.0f" $price }} KGS</span
               >
-              <span class="text-red-500 font-bold ml-2"
+              <span class="text-green-600 font-bold ml-2"
                 >{{ printf "%.0f" $newPrice }} KGS</span
               >
               <span class="text-green-600 text-sm"
@@ -106,9 +106,7 @@
               >
             </p>
           {{ else }}
-            <p class="text-blue-700 font-bold">
-              {{ printf "%.0f" $price }} KGS
-            </p>
+            <p class="">{{ printf "%.0f" $price }} KGS</p>
           {{ end }}
         </div>
         <a href="{{ .RelPermalink }}" class="block">

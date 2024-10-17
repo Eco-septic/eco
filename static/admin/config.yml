@@ -40,10 +40,12 @@ collections:
         i18n: true
         fields:
           - name: groups
-            label: "Groups"
+            label: "Categories"
             widget: list
             i18n: true
-            allow_add: true
+            allow_add: false
+            max: 21
+            min: 21
             fields:
               - { label: "Group", name: "group", widget: "hidden" } # Disable editing for group
               - {
@@ -677,6 +679,16 @@ collections:
           widget: "text",
           i18n: true,
         }
+      - {
+          label: "Category",
+          name: "categories",
+          widget: "number",
+          i18n: duplicate,
+          value_type: "int",
+          min: 1,
+          max: 20,
+          step: 1,
+        }
       - { label: "Price", name: "price", widget: "number", i18n: duplicate }
       - {
           label: "Percentage",
@@ -750,12 +762,6 @@ collections:
                 widget: "string",
                 i18n: true,
               }
-      - {
-          label: "Categories",
-          name: "categories",
-          widget: "string",
-          i18n: true,
-        }
       - {
           label: "News post content",
           name: "body",
