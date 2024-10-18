@@ -760,6 +760,10 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -770,6 +774,10 @@ video {
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .mb-3 {
@@ -964,10 +972,6 @@ video {
   max-width: 20rem;
 }
 
-.max-w-full {
-  max-width: 100%;
-}
-
 .flex-grow {
   flex-grow: 1;
 }
@@ -1057,18 +1061,6 @@ video {
 
 .grid-rows-\[0fr\] {
   grid-template-rows: 0fr;
-}
-
-.grid-rows-\[0px\] {
-  grid-template-rows: 0px;
-}
-
-.grid-rows-\[0\] {
-  grid-template-rows: 0;
-}
-
-.grid-rows-\[1fr\] {
-  grid-template-rows: 1fr;
 }
 
 .flex-col {
@@ -1178,10 +1170,6 @@ video {
 
 .overflow-hidden {
   overflow: hidden;
-}
-
-.overflow-clip {
-  overflow: clip;
 }
 
 .overflow-visible {
@@ -1358,6 +1346,11 @@ video {
 
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
+}
+
+.bg-pink-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 168 212 / var(--tw-bg-opacity));
 }
 
 .bg-grannary-effect {
@@ -2304,12 +2297,21 @@ summary {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.hover\:cursor-default:hover {
+  cursor: default;
+}
+
 .hover\:cursor-pointer:hover {
   cursor: pointer;
 }
 
 .hover\:bg-black\/50:hover {
   background-color: rgb(0 0 0 / 0.5);
+}
+
+.hover\:bg-blue-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-green-600:hover {
@@ -2406,29 +2408,8 @@ summary {
   background-color: rgb(36 36 36 / var(--tw-bg-opacity));
 }
 
-.group:has(:checked) .group-has-\[\:checked\]\:grid {
-  display: grid;
-}
-
-.group:has(:checked) .group-has-\[\:checked\]\:h-0 {
-  height: 0px;
-}
-
-.group:has(:checked) .group-has-\[\:checked\]\:min-h-4 {
-  min-height: 1rem;
-}
-
-.group:has(:checked) .group-has-\[\:checked\]\:grid-rows-1 {
-  grid-template-rows: repeat(1, minmax(0, 1fr));
-}
-
 .group:has(:checked) .group-has-\[\:checked\]\:grid-rows-\[1fr\] {
   grid-template-rows: 1fr;
-}
-
-.group:has(:checked) .group-has-\[\:checked\]\:border-green-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(34 197 94 / var(--tw-border-opacity));
 }
 
 .group:has(:checked) .group-has-\[\:checked\]\:text-red-500 {
@@ -2496,12 +2477,16 @@ summary {
     grid-column: span 1 / span 1;
   }
 
-  .lg\:mt-20 {
-    margin-top: 5rem;
+  .lg\:mb-0 {
+    margin-bottom: 0px;
   }
 
-  .lg\:flex {
-    display: flex;
+  .lg\:mb-20 {
+    margin-bottom: 5rem;
+  }
+
+  .lg\:mt-20 {
+    margin-top: 5rem;
   }
 
   .lg\:hidden {
@@ -2525,16 +2510,12 @@ summary {
     min-height: calc(100dvh - 5rem);
   }
 
-  .lg\:max-w-lg {
-    max-width: 32rem;
-  }
-
-  .lg\:max-w-full {
-    max-width: 100%;
-  }
-
   .lg\:max-w-80 {
     max-width: 20rem;
+  }
+
+  .lg\:max-w-lg {
+    max-width: 32rem;
   }
 
   .lg\:grid-cols-3 {
@@ -2547,10 +2528,6 @@ summary {
 
   .lg\:grid-rows-\[1fr\] {
     grid-template-rows: 1fr;
-  }
-
-  .lg\:grid-rows-\[0fr\] {
-    grid-template-rows: 0fr;
   }
 
   .lg\:flex-row {
@@ -2577,10 +2554,6 @@ summary {
 
   .lg\:pt-10 {
     padding-top: 2.5rem;
-  }
-
-  .group:has(:checked) .lg\:group-has-\[\:checked\]\:grid-rows-\[1fr\] {
-    grid-template-rows: 1fr;
   }
 }
 

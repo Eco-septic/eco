@@ -5,7 +5,7 @@
 
     <div class="size-full flex gap-4 flex-col lg:flex-row ">
       {{ $news := where .Site.RegularPages "Section" "news" }}
-      <aside class="size-full lg:max-w-80 w-full">
+      <aside class="size-full lg:max-w-80 w-full mb-20 lg:mb-0 space-y-5">
         <section
           aria-label="news categories"
           class="group transition-all duration-500 ease-linear"
@@ -72,40 +72,52 @@
           </div>
         </section>
       </aside>
-      <section class="bg-green-300 size-full">
+      <section class="size-full">
+        {{ $paginator := .Paginate $news.ByPublishDate.Reverse 2 }}
+        <div class=" p-4 flex justify-center">
+          {{ partial "pagination.html" . }}
+        </div>
         <ul>
-          {{ range $news }}
-            <li>
-              <div class="overflow-hidden">
+          {{ range $paginator.Pages }}
+            <li class="mb-10">
+              <div class="overflow-hidden mb-4">
                 <img
-                  src="{{ .Site.Data.settings.logo }}"
+                  src="{{ .Params.titleImage }}"
                   alt="{{ .Params.Title }}"
                   class="size-full hover:scale-125 hover:brightness-50 transition-all duration-300"
                 />
               </div>
-              <h3>
+              <h3 class="mb-2">
                 <a href="{{ .RelPermalink }}">
                   {{ .Params.Title }}
                 </a>
               </h3>
-              <p>
+              <p class="mb-1">
                 {{ with .Params.date }}
                   {{ . | time.Format ":date_long" }}
                 {{ else }}
                   <span>No date available</span>
                 {{ end }}
               </p>
-              <p>
-                {{ .Params.features }}
+              <p class="mb-4">
+                Categories i18n:
+                <strong>
+                  {{ .Params.features }}
+                </strong>
+              </p>
+              <p class="mb-2">
+                {{ .Params.description | truncate 80 }}
               </p>
               <p>
-                {{ .Params.description | truncate 80 }}
                 <a href="{{ .RelPermalink }}">...read mor i18n >></a>
               </p>
             </li>
           {{ end }}
         </ul>
       </section>
+    </div>
+    <div class=" p-4 flex justify-center">
+      {{ partial "pagination.html" . }}
     </div>
   </main>
 {{ end }}
