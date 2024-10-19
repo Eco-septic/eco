@@ -8,7 +8,7 @@
   <ol class="breadcrumb-list flex flex-nowrap space-x-2 text-base ">
     <!-- Loop through Breadcrumb Path -->
     {{ range $index, $element := .Ancestors.Reverse }}
-      {{ if eq $element.LinkTitle "Features" }}
+      {{ if eq $element.Type "featured" }}
         <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
           <a
             href="{{ (site.GetPage "section" "news").RelPermalink }}"
@@ -21,12 +21,8 @@
         <li
           class="breadcrumb-item   overflow-hidden text-ellipsis whitespace-nowrap "
         >
-          <span
-            aria-current="categories"
-            href="{{ .RelPermalink }}"
-            class="hover:text-logoLightColor dark:hover:text-logoDarkColor"
-          >
-            category
+          <span aria-current="categories" href="{{ .RelPermalink }}" class="">
+            category i18n
           </span>
           <span aria-hidden="true">/</span>
         </li>
@@ -49,7 +45,18 @@
       class="breadcrumb-item font-semibold text-logoLightColor dark:text-logoDarkColor overflow-hidden text-ellipsis whitespace-nowrap"
     >
       <span aria-current="page" href="{{ .RelPermalink }}">
-        {{ .LinkTitle }}
+        {{ $currentLang := index .Site.Data.featured .Lang }}
+        {{ $translationTaxonomy := $currentLang.groups }}
+        {{ $currentLinkTitle := .LinkTitle }}
+        {{ if eq .Type "featured" }}
+          {{ range $translationTaxonomy }}
+            {{ if eq .group $currentLinkTitle }}
+              {{ .translation }}
+            {{ end }}
+          {{ end }}
+        {{ else }}
+          {{ $currentLinkTitle }}
+        {{ end }}
       </span>
     </li>
   </ol>

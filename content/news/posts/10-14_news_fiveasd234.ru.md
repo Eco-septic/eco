@@ -1,7 +1,7 @@
 ---
 title: news 🦖 fiveasd234
 description: "news  "
-features: five
+featured: 1
 sitemap:
   changefreq: monthly
   priority: 1

@@ -8,7 +8,7 @@ sitemap:
   disable: false
 menu:
   mainmenu:
-    name: News
+    name: Новости
     pageRef: /news
     weight: 5
 ---

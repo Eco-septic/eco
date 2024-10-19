@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./layouts/**/*.html", "./content/**/*.md"],
+  content: ["./layouts/**/*.html", "./content/**/*.md", "./assets/js/**/*.js"],
   important: false,
   darkMode: [
     "variant",
@@ -13,7 +13,7 @@ module.exports = {
       circle: "0 0 18px -11px #000",
     },
     fontFamily: {
-      sans: ["'Montserrat', Arial, sans-serif;"],
+      sans: ["Montserrat"],
     },
     extend: {
       zIndex: {

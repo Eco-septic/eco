@@ -54,6 +54,32 @@ collections:
                   widget: "string",
                   i18n: true,
                 }
+  - name: "featured"
+    label: "News featured"
+    i18n:
+      structure: single_file
+      locales: [ky, ru]
+    files:
+      - file: data/featured.yml
+        label: "featured"
+        name: "featured"
+        i18n: true
+        fields:
+          - name: groups
+            label: "featured"
+            widget: list
+            i18n: true
+            allow_add: false
+            max: 21
+            min: 21
+            fields:
+              - { label: "Group", name: "group", widget: "hidden" } # Disable editing for group
+              - {
+                  label: "Translation",
+                  name: "translation",
+                  widget: "string",
+                  i18n: true,
+                }
 
   - name: "settings"
     label: "Site Settings"
@@ -590,7 +616,16 @@ collections:
           widget: "string",
           i18n: true,
         }
-      - { label: "Features", name: "features", widget: "string", i18n: true }
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "number",
+          i18n: duplicate,
+          value_type: "int",
+          min: 1,
+          max: 20,
+          step: 1,
+        }
       - {
           label: "Title Image",
           name: "titleImage",

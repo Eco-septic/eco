@@ -19,9 +19,11 @@
 
 {{- if in $validFormats $format }}
   {{- if gt $page.Paginator.TotalPages 1 }}
-    <ul class="pagination pagination-{{ $format }} flex gap-4 items-center">
-      {{- partial (printf "partials/inline/pagination/%s" $format) $page }}
-    </ul>
+    <div class=" pb-4 flex justify-center">
+      <ul class="pagination pagination-{{ $format }} flex gap-4 items-center">
+        {{- partial (printf "partials/inline/pagination/%s" $format) $page }}
+      </ul>
+    </div>
   {{- end }}
 {{- else }}
   {{- errorf $msg2 (delimit $validFormats ", ") }}
@@ -107,7 +109,9 @@
           >
         </li>
       {{- else if or (eq $k $left) (eq $k $right) }}
-        <li class="page-item py-1 px-2 rounded-lg inactive hover:bg-blue-500">
+        <li
+          class="page-item py-1 px-2 rounded-lg inactive hover:bg-blue-500 hover:text-white"
+        >
           <a
             href="{{ (index $.Paginator.Pagers (sub $k 1)).URL }}"
             aria-label="Page {{ $k }}"
@@ -117,7 +121,9 @@
           >
         </li>
       {{- else if and (eq $k $thirdRight) (eq $.Paginator.PageNumber 1) }}
-        <li class="page-item py-1 px-2 rounded-lg inactive hover:bg-blue-500">
+        <li
+          class="page-item py-1 px-2 rounded-lg inactive hover:bg-blue-500 hover:text-white"
+        >
           <a
             href="{{ (index $.Paginator.Pagers (sub $k 1)).URL }}"
             aria-label="Page {{ $k }}"
@@ -127,7 +133,9 @@
           >
         </li>
       {{- else if and (eq $k $thirdLeft) (eq $.Paginator.PageNumber $total) }}
-        <li class="page-item py-1 px-2 rounded-lg inactive hover:bg-blue-500">
+        <li
+          class="page-item py-1 px-2 rounded-lg inactive hover:bg-blue-500 hover:text-white"
+        >
           <a
             href="{{ (index $.Paginator.Pagers (sub $k 1)).URL }}"
             aria-label="Page {{ $k }}"
@@ -144,7 +152,7 @@
         <a
           href="{{ .URL }}"
           aria-label="Next"
-          class="page-link py-2 px-4 rounded-lg inactive hover:bg-blue-500"
+          class="page-link py-2 px-4 rounded-lg inactive hover:bg-blue-500 hover:text-white"
           role="button"
           ><span aria-hidden="true">&raquo;</span></a
         >
@@ -168,7 +176,7 @@
           <a
             href="{{ .URL }}"
             aria-label="Last"
-            class="page-link py-2 px-4 rounded-lg inactive hover:bg-blue-500"
+            class="page-link py-2 px-4 rounded-lg inactive hover:bg-blue-500 hover:text-white"
             role="button"
             ><span aria-hidden="true">&raquo;&raquo;</span></a
           >

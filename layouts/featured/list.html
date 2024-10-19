@@ -4,8 +4,9 @@
     {{ $currentPage := . }}
     {{ $currentLang := index .Site.Data.featured .Lang }}
     {{ $translationTaxonomy := $currentLang.groups }}
+
+
     <div class="size-full flex gap-4 flex-col lg:flex-row ">
-      {{ $news := where .Site.RegularPages "Section" "news" }}
       <aside class="size-full lg:max-w-80 w-full mb-20 lg:mb-0 space-y-5 ">
         <section aria-label="news categories" class="group ">
           <div class="relative flex justify-between pb-2">
@@ -75,13 +76,14 @@
               <span role="icon" class="absolute right-0">+</span>
             </label>
             <div
-              class="w-full absolute bottom-0 border-b-2 border-black dark:border-white "
+              class="w-full absolute bottom-0 border-b-2 border-black dark:border-white"
             ></div>
           </div>
           <div
             class="grid grid-rows-[0fr] lg:grid-rows-[1fr] py-4 group-has-[:checked]:grid-rows-[1fr] transition-all duration-300 ease-linear"
           >
             <ul class="space-y-2 overflow-hidden">
+              {{ $news := where .Site.RegularPages "Section" "news" }}
               {{ range $news.ByPublishDate.Reverse.Limit 5 }}
                 <li
                   class="border-b-[1px] border-black/20 space-y-1 dark:border-white/20"
@@ -102,8 +104,8 @@
           </div>
         </section>
       </aside>
-      <section class="size-full">
-        {{ $paginator := .Paginate $news.ByPublishDate.Reverse 2 }}
+      <section class=" size-full">
+        {{ $paginator := .Paginate .Pages.ByPublishDate.Reverse 2 }}
         {{ partial "pagination.html" . }}
         <ul>
           {{ range $paginator.Pages }}

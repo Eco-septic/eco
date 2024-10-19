@@ -6,7 +6,7 @@
     {{ $translationTaxonomy := $currentLang.groups }}
     <div class="size-full flex gap-4 flex-col lg:flex-row ">
       {{ $news := where .Site.RegularPages "Section" "news" }}
-      <aside class="size-full lg:max-w-80 w-full mb-20 lg:mb-0 space-y-5 ">
+      <aside class="size-full lg:max-w-80 w-full mb-5 lg:mb-0 space-y-5 ">
         <section aria-label="news categories" class="group ">
           <div class="relative flex justify-between pb-2">
             <p>{{ strings.ToUpper (printf "%s" "Categories i18n") }}</p>
@@ -102,62 +102,37 @@
           </div>
         </section>
       </aside>
-      <section class="size-full">
-        {{ $paginator := .Paginate $news.ByPublishDate.Reverse 2 }}
-        {{ partial "pagination.html" . }}
-        <ul>
-          {{ range $paginator.Pages }}
-            <li class="mb-10">
-              <div class="group relative overflow-hidden mb-4">
-                <img
-                  src="{{ .Params.titleImage }}"
-                  alt="{{ .Params.Title }}"
-                  class="size-full group-hover:scale-125 group-hover:brightness-50 transition-all duration-300"
-                />
-                <a
-                  href="{{ .RelPermalink }}"
-                  class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
-                >
-                  {{ $settings := index .Site.Data.settings .Lang }}
-                  {{ $settings.more.news }}
-                </a>
-              </div>
-              <h3 class="mb-2 text-lg">
-                <a href="{{ .RelPermalink }}">
-                  {{ .Params.Title }}
-                </a>
-              </h3>
-              <p class="mb-1 text-sm">
-                {{ with .Params.date }}
-                  {{ . | time.Format ":date_long" }}
-                {{ else }}
-                  <span>No date available</span>
-                {{ end }}
-              </p>
-              <p class="mb-4 text-sm">
-                Categories i18n:
-                <strong>
-                  {{ $paramsFeatured := string .Params.featured }}
-                  {{ range $translationTaxonomy }}
-                    {{ if eq .group $paramsFeatured }}
-                      {{ .translation }}
-                    {{ end }}
-                  {{ end }}
-                </strong>
-              </p>
-              <p class="mb-2 text-sm">
-                {{ .Params.description | truncate 80 }}
-              </p>
-              <p>
-                <a href="{{ .RelPermalink }}">
-                  {{ $settings := index .Site.Data.settings .Lang }}
-                  {{ $settings.more.news }}
-                </a>
-              </p>
-            </li>
+      <section class="" aria-label="news Content">
+        <div>
+          <img
+            src="{{ .Params.titleImage }}"
+            alt="{{ .Title }}"
+            class="w-full"
+          />
+        </div>
+
+        <p class="text-sm mt-4 text-right">
+          {{ with .Params.date }}
+            {{ . | time.Format ":date_long" }}
+          {{ else }}
+            <span>No date available</span>
           {{ end }}
-        </ul>
-        {{ partial "pagination.html" . }}
+        </p>
+
+        <h2 class="text-xl text-center">{{ .Title }}</h2>
+        <section class="my-10 markdown">{{ .Content }}</section>
+        <hr
+          class="bg-black container m-auto dark:bg-white dark:opacity-50 mx-auto h-[1.5px] dark:h-[1px]"
+        />
+        <div>
+          Categories i18n:
+          {{ $featured := string .Params.featured }}
+          {{ range $translationTaxonomy }}
+            {{ if eq .group $featured }}
+              {{ .translation }}
+            {{ end }}
+          {{ end }}
+        </div>
       </section>
     </div>
   </main>

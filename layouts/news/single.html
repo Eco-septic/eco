@@ -1,46 +1,142 @@
 {{ define "main" }}
-  <main class="container mx-auto bg-blue-400">
+  <main class="container  mx-auto  size-full mb-10">
     {{ partial "breadcrumbs.html" . }}
-
-
-    <div class="flex gap-4 size-full">
+    {{ $currentPage := . }}
+    {{ $currentLang := index .Site.Data.featured .Lang }}
+    {{ $translationTaxonomy := $currentLang.groups }}
+    <div class="size-full flex gap-4 flex-col lg:flex-row ">
       {{ $news := where .Site.RegularPages "Section" "news" }}
-      <aside class="bg-pink-400 size-full max-w-80">
-        <section aria-label="news categories">
-          <p>Categories i18n</p>
-          <ul>
-            {{ range $name, $taxonomy := .Site.Taxonomies.features }}
-              <li>
-                <a href="{{ $taxonomy.Page.RelPermalink }}">
-                  {{ $name }}
-                </a>
-              </li>
-            {{ end }}
-          </ul>
-        </section>
-        <section aria-label="recent news">
-          <p>recent news i18n</p>
-          <ul>
-            {{ range $news.ByPublishDate.Reverse.Limit 5 }}
-              <li>
-                <a href="{{ .RelPermalink }}">
-                  {{ .Params.Title }}
-                </a>
-                <p>
-                  {{ with .Params.date }}
-                    {{ . | time.Format ":date_long" }}
-                  {{ else }}
-                    <span>No date available</span>
+      <aside class="size-full lg:max-w-80 w-full mb-5 lg:mb-0 space-y-5 ">
+        <section aria-label="news categories" class="group ">
+          <div class="relative flex justify-between pb-2">
+            <p>{{ strings.ToUpper (printf "%s" "Categories i18n") }}</p>
+            <label
+              for="new-category-collapse"
+              class="cursor-pointer lg:hidden absolute inset-0"
+            >
+              <input
+                type="checkbox"
+                id="new-category-collapse"
+                class="appearance-none"
+              />
+              <span role="icon" class="absolute right-0">+</span>
+            </label>
+            <div
+              class="w-full absolute bottom-0 border-b-2 border-black dark:border-white"
+            ></div>
+          </div>
+
+          <div
+            class="grid grid-rows-[0fr] lg:grid-rows-[1fr] py-4 group-has-[:checked]:grid-rows-[1fr] transition-grid-row duration-300 ease-linear"
+          >
+            <ul class="overflow-hidden space-y-2">
+              {{ range $translationTaxonomy }}
+                {{ if eq .group "0" }}
+                  <li
+                    class="border-b-[1px] border-black/20 dark:border-white/20"
+                  >
+                    <a href="{{ $currentPage.RelPermalink }}" class="text-base">
+                      {{ .translation }}
+                    </a>
+                  </li>
+                {{ end }}
+              {{ end }}
+              {{ range $number, $taxonomy := .Site.Taxonomies.featured }}
+                {{ range $translationTaxonomy }}
+                  {{ if eq .group $number }}
+                    <li
+                      class="border-b-[1px] border-black/20 dark:border-white/20"
+                    >
+                      <a
+                        href="{{ $taxonomy.Page.RelPermalink }}"
+                        class="text-base"
+                      >
+                        {{ .translation }}
+                      </a>
+                    </li>
                   {{ end }}
-                </p>
-              </li>
-            {{ end }}
-          </ul>
+                {{ end }}
+              {{ end }}
+            </ul>
+          </div>
+        </section>
+        <section aria-label="recent news" class="group">
+          <div class="relative flex justify-between pb-2">
+            <p>{{ strings.ToUpper (printf "%s" "Recent news i18n") }}</p>
+            <label
+              for="news-recent-collapse"
+              class="cursor-pointer lg:hidden absolute inset-0"
+            >
+              <input
+                type="checkbox"
+                id="news-recent-collapse"
+                class="appearance-none"
+              />
+              <span role="icon" class="absolute right-0">+</span>
+            </label>
+            <div
+              class="w-full absolute bottom-0 border-b-2 border-black dark:border-white "
+            ></div>
+          </div>
+          <div
+            class="grid grid-rows-[0fr] lg:grid-rows-[1fr] py-4 group-has-[:checked]:grid-rows-[1fr] transition-all duration-300 ease-linear"
+          >
+            <ul class="space-y-2 overflow-hidden">
+              {{ range $news.ByPublishDate.Reverse.Limit 5 }}
+                <li
+                  class="border-b-[1px] border-black/20 space-y-1 dark:border-white/20"
+                >
+                  <a href="{{ .RelPermalink }}" class="text-base">
+                    {{ .Params.Title }}
+                  </a>
+                  <p class="text-sm">
+                    {{ with .Params.date }}
+                      {{ . | time.Format ":date_long" }}
+                    {{ else }}
+                      <span>No date available</span>
+                    {{ end }}
+                  </p>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
         </section>
       </aside>
-      <section class="markdown" aria-label="news Content">
-        <h2>{{ .Title }}</h2>
-        <div>{{ .Content }}</div>
+      <section class="" aria-label="news Content">
+        <div>
+          <img
+            src="{{ .Params.titleImage }}"
+            alt="{{ .Title }}"
+            class="w-full"
+          />
+        </div>
+
+        <p class="text-sm mt-4 text-right">
+          {{ with .Params.date }}
+            {{ . | time.Format ":date_long" }}
+          {{ else }}
+            <span>No date available</span>
+          {{ end }}
+        </p>
+
+        <!-- markdown -->
+        <section class="my-10 markdown">
+          <h1 class="text-center">{{ .Title }}</h1>
+          {{ .Content }}
+        </section>
+        <!-- markdown -->
+        <hr
+          class="bg-black container m-auto dark:bg-white dark:opacity-50 mx-auto h-[1.5px] dark:h-[1px]"
+        />
+        <div>
+          Categories i18n:
+          {{ $featured := string .Params.featured }}
+          {{ range $translationTaxonomy }}
+            {{ if eq .group $featured }}
+              {{ .translation }}
+            {{ end }}
+          {{ end }}
+        </div>
       </section>
     </div>
   </main>

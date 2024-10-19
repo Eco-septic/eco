@@ -3,6 +3,8 @@
   aria-label="products categories featuring"
 >
   {{ $currentLang := .Lang }}
+  {{ $currentLangTranslation := index .Site.Data.featured .Lang }}
+  {{ $translationTaxonomy := $currentLangTranslation.groups }}
   <!-- Product Section Title & Description -->
   <h2
     id="productTitle"
@@ -20,7 +22,7 @@
   <!-- Category Filter Buttons -->
   <div
     aria-label="filter product categories"
-    class="flex justify-center gap-2 mt-4"
+    class="flex justify-center gap-2 mt-4 flex-wrap"
   >
     <button
       data-filter="all"
@@ -33,7 +35,11 @@
         data-filter="{{ lower $name }}"
         class="filter-button text-base px-4 py-2 inactive rounded-lg opacity-0 translate-y-10 transition-all duration-500 ease-out"
       >
-        {{ $name }}
+        {{ range $translationTaxonomy }}
+          {{ if eq .group $name }}
+            {{ .translation }}
+          {{ end }}
+        {{ end }}
       </button>
     {{ end }}
   </div>

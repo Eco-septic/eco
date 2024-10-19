@@ -4,7 +4,7 @@
     {{ if $.IsMenuCurrent .Menu . }}
       <button
         disabled
-        class="text-black/50  relative  w-fit curlyBracesHeader dark:text-slate-300/70"
+        class="text-black/50 text-nowrap  relative  w-fit curlyBracesHeader dark:text-slate-300/70"
         aria-current="page"
         href="{{ .URL }}"
       >
@@ -13,7 +13,7 @@
     {{ else }}
       <a
         href="{{ .URL }}"
-        class="md:text-black *:text-lightMode dark:text-white/90 dark:hover:text-slate-300/70 hover:text-black/50"
+        class="md:text-black *:text-lightMode text-nowrap dark:text-white/90 dark:hover:text-slate-300/70 hover:text-black/50"
         >{{ strings.FirstUpper .Name }}</a
       >
     {{ end }}

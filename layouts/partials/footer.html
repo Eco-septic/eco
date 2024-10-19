@@ -55,16 +55,22 @@
       >
         <p class="text-center text-base mb-4">
           <!-- fixme i18n -->
-          Product category i18n
+          news category i18n
         </p>
         <ul role="navigation" aria-label="product categories">
-          {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+          {{ $currentLang := index .Site.Data.featured .Lang }}
+          {{ $groups := $currentLang.groups }}
+          {{ range $name, $taxonomy := .Site.Taxonomies.featured }}
             <li class=" w-fit">
               <a
                 href="{{ $taxonomy.Page.Permalink }}"
                 class="text-sm  hover:opacity-50"
               >
-                {{ strings.FirstUpper $name }}
+                {{ range $groups }}
+                  {{ if eq .group $name }}
+                    {{ .translation }}
+                  {{ end }}
+                {{ end }}
               </a>
             </li>
           {{ else }}
