@@ -15,9 +15,9 @@ hero:
   title: Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, neque.
   textAnimation: Дилерская компания ЭКО СЕПТИК
   pitchList:
-    - Lorem, ipsum.s
-    - Lorem, ipsum.
-    - Lorem, ipsum.
+    - "Надежная защита "
+    - "Обновленный корпус "
+    - Абсолютная герметичность
   images:
     - /media/uploads/bg-main.jpg
     - /media/uploads/slider2.jpg
