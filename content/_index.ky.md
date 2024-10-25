@@ -29,18 +29,18 @@ productSection:
 pitchSection:
   background: /media/uploads/bg-main.jpg
   list:
-    - icon: /media/uploads/refresh-ccw_1_.png
-      title: Lorem ipsupa
-      description: Lorem ipsupLorem ipsup Lorem ipsup
-    - icon: /media/uploads/check-check_1_.png
-      title: Lorem ipsup
-      description: Lorem ipsupLorem ipsup Lorem ipsup
-    - icon: /media/uploads/infinity_1_.png
-      title: Lorem ipsup
-      description: Lorem ipsupLorem ipsup Lorem ipsup
-    - icon: /media/uploads/flower-2_1_.png
-      title: Lorem ipsup
-      description: Lorem ipsupLorem ipsup Lorem ipsup
+    - icon: /media/uploads/free-icon-eco-friendly-5742080.png
+      title: "Экологичность "
+      description: Экономия электричества и экологически очищенные стоки
+    - icon: /media/uploads/free-icon-product-chain-8728054.png
+      title: Полный цикл
+      description: Доставка, установка и техническое обслуживание
+    - icon: /media/uploads/free-icon-certified-8044426.png
+      title: Высокое качество
+      description: Эффективная очистка бытовых стоков до 98%
+    - icon: /media/uploads/free-icon-shield-1341916.png
+      title: Долговечность
+      description: Корпус из полипропилена не подвержен коррозии
 newsSection:
   title: News
   description: Автономные канализационные системы и дополнительные оборудования,
