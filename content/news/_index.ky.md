@@ -1,6 +1,6 @@
 ---
 title: Добро пожаловать
-linkTitle: news
+linkTitle: Новости
 description: test
 sitemap:
   changefreq: monthly
