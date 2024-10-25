@@ -1,5 +1,5 @@
 ---
-title: title in russion
+title: Дилерская компания ЭКО СЕПТИК
 description: descirption in russionss
 linkTitle: Главная
 menu:
