@@ -16,7 +16,7 @@ hero:
     - Lorem, ipsum.
   images:
     - /media/uploads/bg-main.jpg
-    - /media/uploads/untitled_7_.jpg
+    - /media/uploads/untitled_1_.jpg
 productSection:
   title: Продукция Toplos
   description: Автономные канализационные системы и дополнительные оборудования,

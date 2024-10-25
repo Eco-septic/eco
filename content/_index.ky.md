@@ -21,7 +21,7 @@ hero:
     - Абсолютная герметичность
   images:
     - /media/uploads/bg-main.jpg
-    - /media/uploads/untitled_7_.jpg
+    - /media/uploads/untitled_1_.jpg
 productSection:
   title: Продукция ЭКО СЕПТИК
   description: Автономные канализационные системы и дополнительные оборудования,
