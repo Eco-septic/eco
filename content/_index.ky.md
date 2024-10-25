@@ -1,6 +1,10 @@
 ---
-title: Дилерская компания ЭКО СЕПТИК
-description: descirption in russionss
+title: " ЭКО СЕПТИК –  КОМПАНИЯ, СПЕЦИАЛИЗИРУЮЩАЯСЯ НА ПОСТАВКЕ, УСТАНОВКЕ И
+  ОБСЛУЖИВАНИИ СИСТЕМ ОЧИСТКИ СТОЧНЫХ ВОД."
+description: |-
+  Надежная защита
+  Обновленный корпус
+  Абсолютная герметичность
 linkTitle: Главная
 menu:
   mainmenu:
@@ -9,7 +13,7 @@ menu:
     weight: 1
 hero:
   title: Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, neque.
-  textAnimation: title Animationaasd
+  textAnimation: Дилерская компания ЭКО СЕПТИК
   pitchList:
     - Lorem, ipsum.s
     - Lorem, ipsum.
