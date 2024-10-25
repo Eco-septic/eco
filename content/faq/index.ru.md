@@ -11,31 +11,41 @@ menu:
 title: FAQ
 description: Hello
 list:
-  - question: What is lorem ipsum?
-    answer: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua.
-  - question: Why do we use lorem ipsum?
-    answer: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-      ut aliquip ex ea commodo consequat.
-  - question: Where does lorem ipsum come from?
-    answer: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-      dolore eu fugiat nulla pariatur.
-  - question: How can I generate lorem ipsum text?
-    answer: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt Excepteur sint occaecat cupidatat non proident, sunt in
-      culpa qui officia deserunt Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt Excepteur sint occaecat cupidatat non proident, sunt in
-      culpa qui officia deserunt Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt mollit anim id est laborum.
+  - question: "КАК РАБОТАЕТ АВТОНОМНАЯ КАНАЛИЗАЦИЯ? "
+    answer: >
+      Сточные воды направляются в приемную камеру, где происходит уравнивание их
+      поступления, а также начинается биологическое окисление.
+
+
+      После этого стоки равномерно перекачиваются в аэротенк, где происходит окончательное разложение органических соединений путем окисления активным илом. Активный ил представляет собой взвешенную в воде активную биомассу, осуществляющую очистку сточных вод в биоокислителях с аэрацией.
+
+
+      Затем смесь чистой воды и активного ила направляется во вторичный отстойник, где происходит разделение активного ила от чистой воды.
+  - question: КАКИЕ ТЕХНИЧЕСКИЕ ОБСЛУЖИВАНИЯ СЛЕДУЕТ ПРОВОДИТЬ В СИСТЕМАХ АВТОНОМНОЙ
+      КАНАЛИЗАЦИИ?
+    answer: >
+      Регулярно, каждые 3 месяца, проводятся следующие процедуры:
+
+      • Удаление осадка из стабилизатора активного ила с использованием встроенного эрлифт-насоса или фекального насоса.
+
+      • Очистка насосов эрлифтов и фильтра крупных фракций в приемной камере.
+
+      • Очистка и промывка всей внутренней емкости септика Топас.
+
+      • Прочистка форсунок в 1 и 2 циклах.
+
+      • Удаление неперерабатываемого мусора с помощью нержавеющего сита.
+
+
+      Раз в год выполняется процедура прочистки воздушного фильтра компрессора.
+
+
+      А каждые 5 лет осуществляется очистка донной части приемного резервуара и аэротенка от минерализованного осадка.
+  - question: КАК ЧАСТО СТОИТ ВЫЗЫВАТЬ АСЕНИЗАЦИОННУЮ МАШИНУ?
+    answer: Ассенизационная машина не потребуется. В станции остается небольшое
+      количество ила, который можно откачать в ручную насосом, уже установленным
+      в станции.
+  - question: МОЖНО ЛИ ОТКЛЮЧАТЬ СТАНЦИЮ ОТ СЕТИ ?
+    answer: Не рекомендуется отключать аэрационные станции и биосептики от
+      электросети, поскольку в этом случае процессы очистки останавливаются.
 ---
