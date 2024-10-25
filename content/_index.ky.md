@@ -36,7 +36,7 @@ pitchSection:
     - icon: /media/uploads/free-icon-product-chain-8728054.png
       title: Полный цикл
       description: Доставка, установка и техническое обслуживание
-    - icon: /media/uploads/free-icon-certified-8044426.png
+    - icon: /media/uploads/free-icon-premium-quality-5769911.png
       title: Высокое качество
       description: Эффективная очистка бытовых стоков до 98%
     - icon: /media/uploads/free-icon-shield-1341916.png
