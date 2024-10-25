@@ -4,29 +4,28 @@ ky:
   darkColor: rgba(31, 207, 33, 0.82)
   lightColor: rgba(115, 191, 43, 0.82)
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/feather.png
+  main_logo: /media/uploads/5_.png
   whatsapp: "+000000"
   address: 123 Street Name, City, Country
-  whatsapp_logo: /media/uploads/whatsapp.svg
-  email: contact@example.com
-  description:
-    KY Компания «ТОПЛОС» — Cпециализирующаяся на поставке, установке и
-    обслуживании систем очистки сточных вод
   more:
     product: more abot product
     news: more abot news
+  whatsapp_logo: /media/uploads/whatsapp.svg
+  email: contact@example.com
+  description: KY Компания «ТОПЛОС» — Cпециализирующаяся на поставке, установке и
+    обслуживании систем очистки сточных вод
 ru:
   telegram: "+000000"
   telegram_logo: /media/uploads/telegram.svg
   darkColor: rgba(31, 207, 33, 0.82)
   lightColor: rgba(115, 191, 43, 0.82)
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/feather.png
+  main_logo: /media/uploads/5_.png
   whatsapp: "+000000"
   address: 123 Street Name, City, Country
-  whatsapp_logo: /media/uploads/whatsapp.svg
-  email: contact@example.com
-  description: Компания «ТОПЛОС» — CпециалиZзирующаяся на поставке, установке и
   more:
     product: more abot product
     news: more abot news
+  whatsapp_logo: /media/uploads/whatsapp.svg
+  email: contact@example.com
+  description: Компания «ТОПЛОС» — CпециалиZзирующаяся на поставке, установке и
