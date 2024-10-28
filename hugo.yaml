@@ -16,7 +16,7 @@ defaultContentLanguageInSubdir: false
 
 languages:
   ru:
-    disabled: false
+    disabled: true
     languageCode: ru-RU
     languageDirection: ltr
     languageName: RU

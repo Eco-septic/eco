@@ -4,15 +4,18 @@
 >
   <!-- Hero Text -->
   <div class="z-10 container flex flex-col items-start space-y-4 m-auto">
-    <div id="textAnimation" class="text-2xl font-bold overflow-visible">
+    <div
+      id="textAnimation"
+      class="text-base sm:text-lg md:text-2xl font-bold overflow-visible"
+    >
       {{ .Params.hero.textAnimation }}
     </div>
-    <h1 class="text-2xl " id="hero-title">
-      {{ .Params.title }}
+    <h1 class="text-sm sm:text-base md:text-lg" id="hero-title">
+      {{ .Params.hero.title }}
     </h1>
     <ul class="list-disc pl-4 " id="hero-pitch">
       {{ range .Params.hero.pitchList }}
-        <li class="text-sm">{{ . }}</li>
+        <li class="text-xsm md:text-base">{{ . }}</li>
       {{ end }}
     </ul>
     {{ with site.Menus.mainmenu }}

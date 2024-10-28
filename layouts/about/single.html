@@ -2,22 +2,19 @@
   <!-- Main Content Container -->
   <main class=" container mx-auto mb-14 flex flex-col gap-10 items-center">
     {{ partial "breadcrumbs.html" . }}
-    <section aria-label="about us" class="text-start w-full">
-      <h2 class="text-lg">
-        {{ .Params.aboutUsSection.title }}
-      </h2>
-      <p class="text-base text-balance mt-10">
-        {{ .Params.aboutUsSection.description }}
-      </p>
-    </section>
-    {{ if .Params.aboutHistorySection.description }}
-      <section aria-label="our history" class="w-full">
+    {{ range .Params.sections }}
+
+      <section aria-label="{{ .title }}" class="text-start w-full">
         <h2 class="text-lg">
-          {{ .Params.aboutHistorySection.title }}
+          {{ .title }}
         </h2>
-        <p class="text-base text-balance mt-10">
-          {{ .Params.aboutHistorySection.description }}
-        </p>
+        <ul class="list-inside list-[space] text-base mt-4">
+          {{ range .listDescription }}
+            <li class="mt-2 text-base">
+              {{ .description }}
+            </li>
+          {{ end }}
+        </ul>
       </section>
     {{ end }}
 
@@ -51,9 +48,9 @@
       {{ $title := .Params.certificatesSection.title }}
 
 
-      <h2>{{ $title }}</h2>
+      <h2 class="text-lg">{{ $title }}</h2>
       <div
-        class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        class="grid grid-flow-row gap-8 mt-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4"
       >
         {{ range .Params.certificatesSection.certificates }}
           <div class=" shadow-md ">

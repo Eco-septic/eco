@@ -225,15 +225,16 @@ p {
   z-index: 1;
   opacity: 1;
 }
-
-.inactive {
-  @apply bg-inactiveDark dark:bg-inactive;
-}
-.PaginationDotsInActive {
-  @apply hover:bg-blue-500 hover:text-white;
-}
-.PaginationDotsActive {
-  @apply bg-blue-500 text-white;
+@layer components {
+  .inactive {
+    @apply bg-inactiveDark dark:bg-inactive;
+  }
+  .PaginationDotsInActive {
+    @apply hover:bg-blue-500 hover:text-white;
+  }
+  .PaginationDotsActive {
+    @apply bg-blue-500 text-white;
+  }
 }
 
 .heroWrapperDiv {
@@ -445,4 +446,10 @@ summary {
   code {
     @apply bg-gray-200 px-1 rounded-md text-green-800;
   }
+}
+
+@counter-style space {
+  system: cyclic;
+  symbols: "\00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0"; /* Non-breaking space */
+  suffix: "     ";
 }

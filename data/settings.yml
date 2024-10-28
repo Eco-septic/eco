@@ -1,10 +1,8 @@
 ky:
   telegram: "+000000"
   telegram_logo: /media/uploads/telegram.svg
-  darkColor: rgba(31, 207, 33, 0.82)
-  lightColor: rgba(115, 191, 43, 0.82)
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/5_-round_1_.png
+  main_logo: /media/uploads/logo.png
   whatsapp: "+000000"
   address: 123 Street Name, City, Country
   more:
@@ -17,10 +15,8 @@ ky:
 ru:
   telegram: "+000000"
   telegram_logo: /media/uploads/telegram.svg
-  darkColor: rgba(31, 207, 33, 0.82)
-  lightColor: rgba(115, 191, 43, 0.82)
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/5_-round_1_.png
+  main_logo: /media/uploads/logo.png
   whatsapp: "+000000"
   address: Бишкек, Кыргызстан
   more:

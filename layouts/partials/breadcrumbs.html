@@ -12,7 +12,7 @@
         <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
           <a
             href="{{ (site.GetPage "section" "news").RelPermalink }}"
-            class="hover:text-logoLightColor dark:hover:text-logoDarkColor"
+            class="hover:text-main"
           >
             {{ (site.GetPage "section" "news").LinkTitle }}</a
           >
@@ -28,10 +28,7 @@
         </li>
       {{ else }}
         <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
-          <a
-            href="{{ $element.Permalink }}"
-            class="hover:text-logoLightColor dark:hover:text-logoDarkColor"
-            dark:hover:text-logoDarkColor
+          <a href="{{ $element.Permalink }}" class="hover:text-main"
             >{{ $element.LinkTitle }}</a
           >
           <span aria-hidden="true">/</span>
@@ -42,7 +39,7 @@
 
     <!-- Current Page -->
     <li
-      class="breadcrumb-item font-semibold text-logoLightColor dark:text-logoDarkColor overflow-hidden text-ellipsis whitespace-nowrap"
+      class="breadcrumb-item font-semibold text-main overflow-hidden text-ellipsis whitespace-nowrap"
     >
       <span aria-current="page" href="{{ .RelPermalink }}">
         {{ $currentLang := index .Site.Data.featured .Lang }}

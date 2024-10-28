@@ -1,89 +1,32 @@
 ky:
   groups:
-    - group: 0
-      translation: all
-    - group: 1
-      translation: one
-    - group: 2
-      translation: two
-    - group: 3
-      translation: three
-    - group: 4
+    - group: "0"
+      translation: reserved
+    - group: "1"
+      translation: Автономная канализация
+    - group: "2"
+      translation: Дополнительное оборудование
+    - group: "3"
+      translation: Комплексные очистные
+    - group: "4"
       translation: four
-    - group: 5
+    - group: "5"
       translation: five
-    - group: 6
-      translation: six
-    - group: 7
-      translation: seven
-    - group: 8
-      translation: eight
-    - group: 9
-      translation: nine
-    - group: 10
-      translation: ten
-    - group: 11
-      translation: eleven
-    - group: 12
-      translation: twelve
-    - group: 13
-      translation: thirteen
-    - group: 14
-      translation: fourteen
-    - group: 15
-      translation: fifteen
-    - group: 16
-      translation: sixteen
-    - group: 17
-      translation: seventeen
-    - group: 18
-      translation: eighteen
-    - group: 19
-      translation: nineteen
-    - group: 20
-      translation: twenty
-
+    - group: "6"
+      translation: Все категории
 ru:
   groups:
-    - group: 0
+    - group: "0"
       translation: all
-    - group: 1
+    - group: "1"
       translation: oneru
-    - group: 2
+    - group: "2"
       translation: tworu
-    - group: 3
+    - group: "3"
       translation: threeru
-    - group: 4
+    - group: "4"
       translation: fourru
-    - group: 5
+    - group: "5"
       translation: fiveru
-    - group: 6
+    - group: "6"
       translation: sixru
-    - group: 7
-      translation: sevenru
-    - group: 8
-      translation: eightru
-    - group: 9
-      translation: nineru
-    - group: 10
-      translation: tenru
-    - group: 11
-      translation: elevenru
-    - group: 12
-      translation: twelveru
-    - group: 13
-      translation: thirteenru
-    - group: 14
-      translation: fourteenru
-    - group: 15
-      translation: fifteenru
-    - group: 16
-      translation: sixteenru
-    - group: 17
-      translation: seventeenru
-    - group: 18
-      translation: eighteenru
-    - group: 19
-      translation: nineteenru
-    - group: 20
-      translation: twentyru

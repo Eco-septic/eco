@@ -3,34 +3,48 @@
     {{ partial "breadcrumbs.html" . }}
     <h1 class="text-2xl font-bold my-14">{{ .Title }}</h1>
 
-    <div class="flex justify-between items-center mb-4">
+    <fieldset
+      class="flex justify-center items-center mb-4 p-4 flex-wrap gap-4 border drop-shadow-lg rounded-md"
+    >
       <!-- Category Filter Dropdown -->
-      <div>
-        <label for="categoryFilter" class="mr-2">Category i18n:</label>
-        <select id="categoryFilter" class="border rounded p-2">
-          {{ $currentLang := index .Site.Data.categories .Lang }}
-          {{ $groups := $currentLang.groups }}
-
-          {{ range $groups }}
-            {{ if eq .group 0 }}
-              <option value="all">
-                {{ .translation }}
-              </option>
-            {{ end }}
+      <legend class="ml-6">choose categories i18n</legend>
+      {{ $currentLang := index .Site.Data.categories .Lang }}
+      {{ $groups := $currentLang.groups }}
+      {{ range $groups }}
+        {{ if eq .group "6" }}
+          <label
+            class="inactive hover:cursor-pointer hover:PaginationDotsActive has-[:checked]:PaginationDotsActive text-center border text-sm md:text-base px-4 py-2  rounded-lg  "
+          >
+            <input
+              value="all"
+              checked
+              type="radio"
+              name="filter_category"
+              class="appearance-none"
+            />
+            {{ .translation }}
+          </label>
+        {{ end }}
+      {{ end }}
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        {{ range $groups }}
+          {{ if eq .group $name }}
+            <label
+              class="inactive hover:cursor-pointer hover:PaginationDotsActive has-[:checked]:PaginationDotsActive inactive  border  text-center text-sm md:text-base px-4 py-2  rounded-lg  "
+            >
+              <input
+                data-filter="{{ lower $name }}"
+                value="{{ .group }}"
+                name="filter_category"
+                type="radio"
+                class="appearance-none"
+              />
+              {{ .translation }}
+            </label>
           {{ end }}
-          {{ range $number, $taxonomy := .Site.Taxonomies.categories }}
-            {{ $number := int $number }}
-            {{ range $groups }}
-              {{ if eq .group $number }}
-                <option value="{{ .group }}">
-                  {{ .translation }}
-                </option>
-              {{ end }}
-            {{ end }}
-          {{ end }}
-        </select>
-      </div>
-    </div>
+        {{ end }}
+      {{ end }}
+    </fieldset>
 
     <!-- Products Container -->
     <div id="empty_product" class="flex text-center m-52">
@@ -174,7 +188,9 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const productsContainer = document.getElementById("productsContainer");
-        const categoryFilter = document.getElementById("categoryFilter");
+        const categoryFilter = document.querySelectorAll(
+          'input[name="filter_category"]',
+        );
         const paginationDots = document.getElementById("productPaginationDots");
         const paginationContainer = document.getElementById(
           "paginationContainer",
@@ -188,7 +204,8 @@
         // Default variables
         let allProducts = []; // Array to hold all product items
         let filteredProducts = []; // Array to hold filtered product items
-        const itemsPerPage = 12; // Number of items per page
+        const itemsPerPage =
+          window.innerWidth > 1023 ? 9 : window.innerWidth < 768 ? 3 : 6; // Number of items per page
         let currentPage = 0; // 0-based index
         let prevPage = 0;
         let maxRange = 0;
@@ -249,7 +266,13 @@
 
         // Filter products based on selected category and price range
         function filterProducts() {
-          const selectedCategory = categoryFilter.value;
+          let selectedCategory = "";
+          categoryFilter.forEach((radio) => {
+            if (radio.checked) {
+              selectedCategory = radio.value; // Logs the selected radio button's value
+            }
+            radio.addEventListener("change", () => {});
+          });
 
           // Check if we're resetting filters to show all products
           const isCategoryAll = selectedCategory === "all";
@@ -327,8 +350,9 @@
         }
 
         // Event listeners for category and price filters
-        categoryFilter.addEventListener("change", filterProducts);
-
+        categoryFilter.forEach((radio) => {
+          radio.addEventListener("change", filterProducts);
+        });
         // Event listeners for pagination buttons
         prevPageBtn.addEventListener("click", () => {
           if (currentPage > 0) {

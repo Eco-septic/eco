@@ -51,8 +51,7 @@ module.exports = {
         inactive: "rgb(84, 84, 84)",
         inactiveDark: "rgb(225, 225, 225)",
         active: "rgb(220, 220, 220)",
-        logoLightColor: "var(--light-color)",
-        logoDarkColor: "var(--dark-color)",
+        main: "#49a51b",
       },
 
       typography: {

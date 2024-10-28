@@ -40,13 +40,17 @@
       >
         {{ with index .Site.Data.settings .Lang }}
           <a
-            class="size-[75px] block mx-auto mb-2"
+            class="w-full block mx-auto mb-2"
             href="{{ $mainURL }}"
             alt="to main"
           >
-            <img src="{{ .main_logo }}" alt="logo" class="size-full" />
+            <img
+              src="{{ .main_logo }}"
+              alt="logo"
+              class="size-full object-contain"
+            />
           </a>
-          <p class="text-base">{{ .description }}</p>
+          <p class="text-sm ">{{ .description }}</p>
         {{ end }}
       </section>
 
