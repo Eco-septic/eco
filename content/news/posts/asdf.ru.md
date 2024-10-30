@@ -1,5 +1,5 @@
 ---
-title: asdf
+title: г.Баткен, воинская часть 2053, КОС, 112 м3
 description: asdfasd
 featured: 2
 titleImage: /media/uploads/wallpaperflare.com_wallpaper.jpg
