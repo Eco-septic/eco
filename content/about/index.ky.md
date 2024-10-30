@@ -41,8 +41,6 @@ certificatesSection:
       image: /media/uploads/img_7199_1_.jpg
     - registrNumber: Achievement Award
       image: /media/uploads/img_7201.jpg
-    - registrNumber: Excellence in Project Management
-      image: /media/uploads/wallpaperflare.com_wallpaper.jpg
 licensesSection:
   title: licenses
   licenses:
