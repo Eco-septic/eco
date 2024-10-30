@@ -1,6 +1,6 @@
 ---
 title: г.Баткен, воинская часть 2022, КОС (канализационные очистные сооружения
-  ), 112 м3, дата проекта 20.12.2023
+  ), 112 м3
 description: "news  "
 featured: 3
 titleImage: /media/uploads/example-2.jpg
