@@ -3,9 +3,9 @@ certificatesSection:
   title: title
   certificates:
     - registrNumber: Completion Certificate
-      image: /media/uploads/bg-main.jpg
+      image: /media/uploads/img_7199_1_.jpg
     - registrNumber: Achievement Award
-      image: /media/uploads/slider2.jpg
+      image: /media/uploads/img_7201.jpg
     - registrNumber: Excellence in Project Management
       image: /media/uploads/wallpaperflare.com_wallpaper.jpg
 licenses:
@@ -23,12 +23,6 @@ licenses:
       image: https://via.placeholder.com/200x150.png/28a745/ffffff?text=Medical+Practice+License
     - registrNumber: Trade License
       image: https://via.placeholder.com/200x150.png/6f42c1/ffffff?text=Trade+License
-linkTitle: О нас
-sitemap:
-  changefreq: monthly
-  priority: 1
-  disable: false
-title: О нас
 licensesSection:
   title: titleasasd
   licenses:
@@ -38,6 +32,11 @@ licensesSection:
       image: /media/uploads/topas-s-4.jpg
     - registrNumber: Medical Practice License
       image: /media/uploads/pogreb-pp-1-1024x791.jpg
+sitemap:
+  changefreq: monthly
+  priority: 1
+  disable: false
+title: О нас
 aboutUsSection:
   title: О нас
   description: alsknd lakjsnd jkasn akjsf akjsn akjsn тест
@@ -63,6 +62,7 @@ description: >-
 aboutHistorySection:
   title: About our history
   description: "alsknd lakjsnd jkasn akjsf akjsn akjsn "
+linkTitle: О нас
 linktitle: about me
 menu:
   mainmenu:
