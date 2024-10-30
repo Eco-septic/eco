@@ -2,12 +2,13 @@ ky:
   telegram: "+000000"
   telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/logo.png
+  main_logo: /media/uploads/8_-removebg-preview.png
   whatsapp: "+000000"
   address: 123 Street Name, City, Country
   more:
     product: more abot product
     news: more abot news
+  address_logo: /media/uploads/8_-removebg-preview.png
   whatsapp_logo: /media/uploads/whatsapp.svg
   email: ecoseptic.kg@gmail.com
   description: « ЭКО СЕПТИК » -  компания, специализирующаяся на поставке,
@@ -16,12 +17,13 @@ ru:
   telegram: "+000000"
   telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/logo.png
+  main_logo: /media/uploads/8_-removebg-preview.png
   whatsapp: "+000000"
   address: Бишкек, Кыргызстан
   more:
     product: more abot product
     news: more abot news
+  address_logo: /media/uploads/8_-removebg-preview.png
   whatsapp_logo: /media/uploads/whatsapp.svg
   email: ecoseptic.kg@gmail.com
   description: « ЭКО СЕПТИК » -  компания, специализирующаяся на поставке,
