@@ -1,9 +1,10 @@
 ---
-title: news 🦖 five
+title: г.Баткен, воинская часть 2022, КОС (канализационные очистные сооружения
+  ), 112 м3, дата проекта 20.12.2023
 description: "news  "
 featured: 3
-titleImage: /media/uploads/wallpaperflare.com_wallpaper.jpg
-date: 2024-10-10T01:04:00+03:00
+titleImage: /media/uploads/example-2.jpg
+date: 2023-12-20T10:00:00+06:00
 sitemap:
   changefreq: monthly
   priority: 1
@@ -11,27 +12,39 @@ sitemap:
 ---
 ## One Piece
 
-
-
-
-
 One Piece is a hugely popular Japanese manga and anime series created by Eiichiro Oda. First published in Weekly Shōnen Jump in 1997, it has become one of the longest-running and best-selling series in history. The story follows Monkey D. Luffy, a young pirate with the dream of becoming the Pirate King by finding the legendary treasure known as the “One Piece.”
 
 Luffy, after gaining rubber-like powers from eating the Gomu Gomu no Mi Devil Fruit, assembles a diverse crew called the Straw Hat Pirates. Together, they journey across the dangerous Grand Line, seeking adventure, battling enemies, and each pursuing their own dreams. Key crew members include:
 
 * \    Zoro, a swordsman aiming to be the world’s greatest.
-* 	Nami, a navigator mapping the entire world.
-* 	Sanji, a chef searching for the All Blue.
-* 	Usopp, a sniper dreaming of bravery.
-* 	Chopper, a talking reindeer doctor.
-* 	Robin, an archaeologist uncovering lost history.
-* 	Franky, a shipwright.
-* 	Brook, a musician.
-* 	Jinbei, a fish-man helmsman.
+* ```
+  Nami, a navigator mapping the entire world.
+  ```
+* ```
+  Sanji, a chef searching for the All Blue.
+  ```
+* ```
+  Usopp, a sniper dreaming of bravery.
+  ```
+* ```
+  Chopper, a talking reindeer doctor.
+  ```
+* ```
+  Robin, an archaeologist uncovering lost history.
+  ```
+* ```
+  Franky, a shipwright.
+  ```
+* ```
+  Brook, a musician.
+  ```
+* ```
+  Jinbei, a fish-man helmsman.
+  ```
 
 Themes and World-Building
 
-![test](/media/uploads/untitled_7_.jpg "title")
+![test](/media/uploads/example-2.jpg "title")
 
 The series is set in a vibrant world full of islands, Devil Fruit powers, and dangerous seas. Themes of freedom, friendship, and the pursuit of dreams are central, with social commentary on issues like corruption and oppression. The Grand Line is controlled by the World Government, and the series delves into mysteries like the ancient Void Century and the Poneglyphs, which hold the world’s hidden history.
 
