@@ -3,7 +3,7 @@ title: г.Баткен, воинская часть 2022, КОС (канализ
   ), 112 м3
 description: "news  "
 featured: 3
-titleImage: /media/uploads/example-2.jpg
+titleImage: /media/uploads/exmaple-1.png
 date: 2023-12-20T10:00:00+06:00
 sitemap:
   changefreq: monthly
