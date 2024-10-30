@@ -3,7 +3,7 @@ title: "г.Раззаков ( Лейлек ), жилой многоэтажны�
 description: "news  asdasd dsasd sad aasd asdadsd sadsdasd sasdasd sasdasd "
 featured: 1
 titleImage: /media/uploads/wallpaperflare.com_wallpaper.jpg
-date: 2024-10-25T04:04:00+06:00
+date: 2024-10-15T04:04:00+06:00
 sitemap:
   changefreq: monthly
   priority: 1
