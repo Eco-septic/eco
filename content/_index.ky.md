@@ -15,8 +15,8 @@ hero:
     - "Обновленный корпус "
     - Абсолютная герметичность
   images:
-    - /media/uploads/bg-main.jpg
-    - /media/uploads/untitled_1_.jpg
+    - /media/uploads/pexels-tomas-malik-793526-2581922.jpg
+    - /media/uploads/slider2.jpg
 productSection:
   title: Продукция ЭКО СЕПТИК
   description: Автономные канализационные системы и дополнительные оборудования,
