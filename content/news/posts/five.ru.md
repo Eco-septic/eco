@@ -1,5 +1,5 @@
 ---
-title: news 🦖 five
+title: г.Баткен, воинская часть 2022, КОС, 112 м3
 description: "news  "
 featured: 3
 titleImage: /media/uploads/exmaple-1.png
