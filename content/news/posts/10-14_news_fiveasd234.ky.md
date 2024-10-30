@@ -1,5 +1,5 @@
 ---
-title: "г.Раззаков ( Лейлек ), жилой многоэтажный дом МВД, ТОПАЭРО16 м3 "
+title: "г.Раззаков ( Лейлек ), жилой многоэтажный дом МВД, ТОПАЭРО 16 м3 "
 description: "news  asdasd dsasd sad aasd asdadsd sadsdasd sasdasd sasdasd "
 featured: 1
 titleImage: /media/uploads/wallpaperflare.com_wallpaper.jpg
