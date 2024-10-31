@@ -2669,6 +2669,26 @@ summary {
   background-color: rgb(36 36 36 / var(--tw-bg-opacity));
 }
 
+.group:has(:checked) .group-has-\[\:checked\]\:block {
+  display: block;
+}
+
+.group:has(:checked) .group-has-\[\:checked\]\:hidden {
+  display: none;
+}
+
+.group:has(:checked) .group-has-\[\:checked\]\:h-0 {
+  height: 0px;
+}
+
+.group:has(:checked) .group-has-\[\:checked\]\:h-full {
+  height: 100%;
+}
+
+.group:has(:checked) .group-has-\[\:checked\]\:min-h-full {
+  min-height: 100%;
+}
+
 .group:has(:checked) .group-has-\[\:checked\]\:-translate-x-full {
   --tw-translate-x: -100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
