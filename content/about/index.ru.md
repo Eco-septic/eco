@@ -3,9 +3,9 @@ certificatesSection:
   title: title
   certificates:
     - registrNumber: Completion Certificate
-      image: /media/uploads/bg-main.jpg
+      image: /media/uploads/img_7199_1_.jpg
     - registrNumber: Achievement Award
-      image: /media/uploads/slider2.jpg
+      image: /media/uploads/img_7201.jpg
     - registrNumber: Excellence in Project Management
       image: /media/uploads/wallpaperflare.com_wallpaper.jpg
 licenses:
@@ -27,11 +27,9 @@ licensesSection:
   title: titleasasd
   licenses:
     - registrNumber: asd
-      image: /media/uploads/bg-main.jpg
+      image: /media/uploads/img_7198_1_.jpg
     - registrNumber: Business License
-      image: /media/uploads/topas-s-4.jpg
-    - registrNumber: Medical Practice License
-      image: /media/uploads/pogreb-pp-1-1024x791.jpg
+      image: /media/uploads/img_7200.jpg
 sitemap:
   changefreq: monthly
   priority: 1

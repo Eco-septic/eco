@@ -4,7 +4,7 @@ sitemap:
   priority: 1
   disable: false
 title: Продукция
-description: testфыв фыдлвыдвлатфвав
+description: "-"
 linktitle: products
 linkTitle: Продукция
 menu:
