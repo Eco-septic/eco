@@ -8,31 +8,52 @@
       {{ partial "products/images.html" . }}
       <section aria-label="product details" class="">
         <h2 class="text-xl font-bold mb-3">{{ .Title}}</h2>
-        <p>categories i18n: {{ .Params.categories }}</p>
-        {{ if .Params.parameters.show }}
-        <aside>
-          <p>
-            Parameters i18N: 
+        {{ $settings := index .Site.Data.settings .Lang }}
+        {{ $currentLang := index .Site.Data.categories .Lang }}
+        {{ $groups := $currentLang.groups }}
+        {{ $match := string .Params.categories}}
+        <p>{{ $settings.products.taxonomy }}: 
+
+              {{ range $groups }}
+                  {{ if eq .group $match }}
+                      {{ .translation }}
+                  {{ end }}
+              {{ end }}
           </p>
-          {{ range .Params.parameters.list }}
-            <div class="product-parameters space-y-2">
-              <div class="parameter">
-                <strong>{{ .attribute }}:</strong> {{ .value }}
-              </div>
+        {{ if .Params.parameters.show }}
+        <div class="group max-w-lg border-collapse">
+
+          <label class="hover:cursor-pointer">
+            <input class="appearance-none" type="checkbox" name="hidden" value="hidden" aria-hidden="true">
+            <div class="flex">
+              <p class="product-detail-left">{{ $settings.products.parameters }}</p>
+              <p class="product-detail-right" >{{ $settings.products.benefits }}</p>
             </div>
-          {{ end }}
-        </aside>
-        {{ end }}
-        {{ if .Params.benefits.show }}
-        <p class="">Product Benefits i18n</p>
-        <aside aria-label="Product Benefits" class="">
-          <ul class="list-disc list-inside space-y-2">
-            {{ range .Params.benefits.list }}
-              <li class="mb-2">{{ . }}</li>
+          </label>
+
+
+        <div class="drop-shadow-lg border-x-2 border-b-2 rounded-bl-lg flex overflow-hidden p-4">
+          <div class="group-has-[:checked]:h-0; min-w-full group-has-[:checked]:-translate-x-full transition-transform duration-300 ease-linear">
+            {{ range .Params.parameters.list }}
+              <div class="product-parameters space-y-2">
+                <div class="parameter">
+                  <strong>{{ .attribute }}:</strong> {{ .value }}
+                </div>
+              </div>
             {{ end }}
-          </ul>
-        </aside>
-        {{ end }}
+          </div>
+          {{ end }}
+          {{ if .Params.benefits.show }}
+          <div aria-label="Product Benefits" class=" min-w-full translate-x-full group-has-[:checked]:-translate-x-full transition-transform duration-300 ease-linear">
+            <ul class="list-disc list-inside space-y-2 group-has-[:checked]:h-full; h-0">
+              {{ range .Params.benefits.list }}
+                <li class="mb-2">{{ . }}</li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+
+        </div>
       </section>
     </div>
     <div class="markdown mb-9"></div>
@@ -40,10 +61,19 @@
     </div>
     <section aria-label="similar products" class="my-10">
         <div class="flex justify-between">
-          <p>i18n Similar products in category: {{ .Params.categories }}</p>
+          {{ $settings := index .Site.Data.settings .Lang }}
+          <p>{{ $settings.products.similar }}:  {{ range $groups }}
+                  {{ if eq .group $match }}
+                      {{ .translation }}
+                  {{ end }}
+              {{ end }}</p>
           <div>
-            <button data-control-similar="left" class="scroll-button">Left</button>
-            <button data-control-similar="right" class="scroll-button">Right</button>
+            <button data-control-similar="left" class="scroll-button inactive PaginationDotsInActive size-9">
+             &laquo;
+            </button>
+            <button data-control-similar="right" class="scroll-button inactive PaginationDotsInActive size-9">
+              &raquo;
+            </button>
           </div>
         </div>
         <div class="overflow-x-scroll grid-flow-col grid gap-4 py-4 remove-scroll-style" id="product-container">
@@ -69,7 +99,7 @@
                   class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
                 >
               {{ $settings := index .Site.Data.settings .Lang }}
-              {{ $settings.more.product }}
+              {{ $settings.product.more }}
               </a>
               </div>
               <div class="flex-grow flex flex-col justify-between text-center my-6">
@@ -113,7 +143,7 @@
                   href="{{ .RelPermalink }}"
                   class="text-blue-500 underline mt-2 block"
                   >{{ $settings := index .Site.Data.settings .Lang }}
-                  {{ $settings.more.product }}</a
+                  {{ $settings.product.more }}</a
                 >
               </div>
             </div>
@@ -128,9 +158,9 @@
         buttons.forEach(button => {
           button.addEventListener('click', () => {
             const direction = button.getAttribute('data-control-similar');
-            const scrollAmount = 220; // The width of each product item
+            const scrollAmount = productContainer.clientWidth - 200; // The width of each product item
             const scrollOptions = { behavior: 'smooth', block: 'nearest' };
-
+            
             if (direction === 'left') {
               productContainer.scrollBy({ left: -scrollAmount, ...scrollOptions });
             } else if (direction === 'right') {

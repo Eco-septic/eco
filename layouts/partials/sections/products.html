@@ -81,7 +81,7 @@
             class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
           >
             {{ $settings := index .Site.Data.settings .Lang }}
-            {{ $settings.more.product }}
+            {{ $settings.product.more }}
           </a>
         </div>
         <p
@@ -130,7 +130,7 @@
             class="rounded-3xl p-2 bg-lime-600 hover:bg-lime-600/50 hover:text-black text-white w-full"
           >
             {{ $settings := index .Site.Data.settings .Lang }}
-            {{ $settings.more.product }}
+            {{ $settings.product.more }}
           </button>
         </a>
       </div>
@@ -147,7 +147,7 @@
       class="px-4 py-2 inactive rounded-lg mr-2"
       aria-label="Skip Previous Pages"
     >
-      <<
+      &laquo;&laquo;
     </button>
 
     <!-- Previous Page Button -->
@@ -156,7 +156,7 @@
       class="px-4 py-2 inactive rounded-lg"
       aria-label="Previous Page"
     >
-      <
+      &laquo;
     </button>
 
     <!-- Pagination Dots Container -->
@@ -168,7 +168,7 @@
       class="px-4 py-2 inactive rounded-lg"
       aria-label="Next Page"
     >
-      >
+      &raquo;
     </button>
 
     <!-- Next Skip Button -->
@@ -177,7 +177,7 @@
       class="px-4 py-2 inactive rounded-lg ml-2"
       aria-label="Skip Next Pages"
     >
-      >>
+      &raquo;&raquo;
     </button>
   </div>
   <script>

@@ -9,7 +9,8 @@
       <aside class="size-full lg:max-w-80 w-full mb-5 lg:mb-0 space-y-5 ">
         <section aria-label="news categories" class="group ">
           <div class="relative flex justify-between pb-2">
-            <p>{{ strings.ToUpper (printf "%s" "Categories i18n") }}</p>
+            {{ $settings := index .Site.Data.settings .Lang }}
+            <p>{{ strings.ToUpper (printf "%s" $settings.news.taxonomy) }}</p>
             <label
               for="new-category-collapse"
               class="cursor-pointer lg:hidden absolute inset-0"
@@ -62,7 +63,7 @@
         </section>
         <section aria-label="recent news" class="group">
           <div class="relative flex justify-between pb-2">
-            <p>{{ strings.ToUpper (printf "%s" "Recent news i18n") }}</p>
+            <p>{{ strings.ToUpper (printf "%s" $settings.news.rescent) }}</p>
             <label
               for="news-recent-collapse"
               class="cursor-pointer lg:hidden absolute inset-0"
@@ -129,7 +130,8 @@
           class="bg-black container m-auto dark:bg-white dark:opacity-50 mx-auto h-[1.5px] dark:h-[1px]"
         />
         <div>
-          Categories i18n:
+          {{ $settings := index .Site.Data.settings .Lang }}
+          {{ $settings.news.taxonomy }}
           {{ $featured := string .Params.featured }}
           {{ range $translationTaxonomy }}
             {{ if eq .group $featured }}

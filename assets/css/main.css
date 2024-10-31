@@ -235,6 +235,25 @@ p {
   .PaginationDotsActive {
     @apply bg-blue-500 text-white;
   }
+
+  .product-detail-left {
+    @apply w-1/2 h-full drop-shadow-lg p-2;
+    @apply group-has-[:checked]:border-l-0 group-has-[:checked]:border-t-0;
+    @apply group-has-[:checked]:border-b-2 group-has-[:checked]:border-r-2;
+    @apply group-has-[:checked]:rounded-br-lg;
+    @apply border-l-2 border-t-2 rounded-tl-lg;
+    /* @apply group-has-[:checked]:h-full; */
+    /* @apply group-has-[:checked]:h-0; */
+    @apply text-center;
+  }
+  .product-detail-right {
+    @apply w-1/2 h-full drop-shadow-lg p-2;
+    @apply border-l-2 border-b-2 rounded-bl-lg;
+    @apply group-has-[:checked]:border-l-0 group-has-[:checked]:border-b-0;
+    @apply group-has-[:checked]:border-t-2 group-has-[:checked]:border-r-2;
+    /* @apply group-has-[:checked]:p-[6px]; */
+    @apply text-center;
+  }
 }
 
 .heroWrapperDiv {

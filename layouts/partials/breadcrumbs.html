@@ -22,7 +22,8 @@
           class="breadcrumb-item   overflow-hidden text-ellipsis whitespace-nowrap "
         >
           <span aria-current="categories" href="{{ .RelPermalink }}" class="">
-            category i18n
+            {{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.news.taxonomy }}
           </span>
           <span aria-hidden="true">/</span>
         </li>

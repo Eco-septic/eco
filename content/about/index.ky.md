@@ -1,11 +1,10 @@
 ---
 linkTitle: О нас
-sitemap:
-  changefreq: monthly
-  priority: 1
-  disable: false
-title: "О КОМПАНИИ      "
-description: "ЭКО-СЕПТИК» "
+menu:
+  mainmenu:
+    name: О нас
+    pageRef: /about
+    weight: 2
 sections:
   - title: О КОМПАНИИ
     description: >-
@@ -35,6 +34,10 @@ sections:
       - description: В основе деятельности компании неизменно лежат такие ценности, как
           индивидуальный подход к каждому клиенту, качество, профессионализм и
           ответственность.
+  - title: тест
+    listDescription:
+      - description: первый
+      - description: второй
 certificatesSection:
   title: certificates
   certificates:
@@ -53,6 +56,12 @@ licensesSection:
       image: /media/uploads/topas-s-4.jpg
     - registrNumber: Medical Practice License
       image: /media/uploads/pogreb-pp-1-1024x791.jpg
+type: about
+sitemap:
+  changefreq: monthly
+  priority: 1
+  disable: false
+title: "О КОМПАНИИ      "
 language: ky
 aboutUsSection:
   title: О КОМПАНИИ
@@ -66,12 +75,7 @@ aboutUsSection:
              Важнейшим аспектом деятельности компании является снижение негативного влияния на экологию и сохранение природного богатства для будущих поколений, поэтому мы занимаем ведущие позиции на  рынках Кыргызстана, продолжая радовать своих клиентов высококачественными автономными очистными канализационными сооружениями и погребами!      
                                                                                                 
              В основе деятельности компании неизменно лежат такие ценности, как индивидуальный подход к каждому клиенту, качество, профессионализм и ответственность.
-menu:
-  mainmenu:
-    name: О нас
-    pageRef: /about
-    weight: 2
-type: about
+description: "ЭКО-СЕПТИК» "
 aboutHistorySection:
   title: "-"
   description: "-"

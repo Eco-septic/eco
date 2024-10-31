@@ -50,8 +50,10 @@
           <a
             href="{{ .RelPermalink }}"
             class="text-sm text-nowrap font-semibold"
-            >read more i18n >></a
           >
+            {{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.news.more }}
+          </a>
         </p>
       </div>
     {{ end }}
@@ -67,7 +69,7 @@
       class="px-4 py-2 inactive rounded-lg mr-2 PaginationDotsInActive"
       aria-label="Skip Previous Pages"
     >
-      &lt;&lt;
+      &laquo;&laquo;
     </button>
 
     <!-- Previous Page Button -->
@@ -97,7 +99,7 @@
       class="px-4 py-2 inactive rounded-lg ml-2 PaginationDotsInActive"
       aria-label="Skip Next Pages"
     >
-      &gt;&gt;
+      &raquo;&raquo;
     </button>
   </div>
 

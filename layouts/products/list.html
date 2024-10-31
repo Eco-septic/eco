@@ -7,7 +7,10 @@
       class="flex justify-center items-center mb-4 p-4 flex-wrap gap-4 border drop-shadow-lg rounded-md"
     >
       <!-- Category Filter Dropdown -->
-      <legend class="ml-6">choose categories i18n</legend>
+      <legend class="ml-6">
+        {{ $settings := index .Site.Data.settings .Lang }}
+        {{ $settings.news.taxonomy }}
+      </legend>
       {{ $currentLang := index .Site.Data.categories .Lang }}
       {{ $groups := $currentLang.groups }}
       {{ range $groups }}
@@ -94,7 +97,7 @@
               class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
             >
               {{ $settings := index .Site.Data.settings .Lang }}
-              {{ $settings.more.product }}
+              {{ $settings.product.more }}
             </a>
           </div>
 
@@ -152,7 +155,7 @@
             href="{{ .RelPermalink }}"
             class="text-blue-500 underline mt-2 block"
             >{{ $settings := index .Site.Data.settings .Lang }}
-            {{ $settings.more.product }}</a
+            {{ $settings.product.more }}</a
           >
         </div>
       {{ end }}

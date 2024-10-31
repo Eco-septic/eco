@@ -39,6 +39,7 @@
         class="lg:border-r border-b lg:col-span-1 pb-10 lg:pb-0 lg:border-b-0 md:col-span-2 border-lightMode dark:border-darkMode p-4"
       >
         {{ with index .Site.Data.settings .Lang }}
+          <p class="text-sm ">{{ .description }}</p>
           <a
             class="w-full block mx-auto mb-2"
             href="{{ $mainURL }}"
@@ -50,7 +51,6 @@
               class="size-full object-contain"
             />
           </a>
-          <p class="text-sm ">{{ .description }}</p>
         {{ end }}
       </section>
 
@@ -58,8 +58,8 @@
         class="md:border-r border-b md:border-b-0 border-lightMode dark:border-darkMode p-4 "
       >
         <p class="text-center text-base mb-4">
-          <!-- fixme i18n -->
-          news category i18n
+          {{ $settings := index .Site.Data.settings .Lang }}
+          {{ $settings.news.taxonomy }}
         </p>
         <ul role="navigation" aria-label="product categories">
           {{ $currentLang := index .Site.Data.featured .Lang }}
@@ -85,8 +85,8 @@
       {{ with index .Site.Data.settings .Lang }}
         <section class="p-4 ">
           <p class="text-center text-base mb-4">
-            <!-- fixme i18n -->
-            Contact i18n
+            {{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.contactUs }}
           </p>
           <ul class="">
             <li role="contentinfo" class="flex items-center gap-2">

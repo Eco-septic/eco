@@ -1,7 +1,7 @@
 ky:
   groups:
     - group: "0"
-      translation: all
+      translation: Наши работы
     - group: "1"
       translation: one
     - group: "2"

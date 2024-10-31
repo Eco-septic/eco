@@ -682,7 +682,7 @@ collections:
           widget: "number",
           i18n: duplicate,
           value_type: "int",
-          min: 1,
+          min: 0,
           max: 6,
           step: 1,
         }
