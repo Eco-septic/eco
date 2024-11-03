@@ -18,12 +18,57 @@
         <li class="text-xsm md:text-base">{{ . }}</li>
       {{ end }}
     </ul>
-    {{ with site.Menus.mainmenu }}
-      {{ range where . "PageRef" "/products" }}
-        <a href="{{ .URL }}" class="block " id="hero-button">
-          <button class="rounded-3xl py-2 px-4 bg-lime-600">{{ .Name }}</button>
-        </a>
-      {{ end }}
+
+    {{ $settings := index .Site.Data.settings .Lang }}
+    {{ $button := .Params.hero.button }}
+
+    {{ if eq $button "phone" }}
+      <a href="tel:{{ $settings.phone }}" class="block" id="hero-button">
+        <button
+          class="rounded-3xl py-2 px-4 bg-lime-600 flex items-center justify-center gap-2"
+        >
+          {{ $settings.contactUs }}
+          <img
+            src="{{ $settings.phone_logo }}"
+            alt="Phone Icon"
+            class="size-7"
+          />
+        </button>
+      </a>
+    {{ else if eq $button "telegram" }}
+      <a
+        href="tg://resolve?domain={{ $settings.telegram }}"
+        class="block"
+        id="hero-button"
+      >
+        <button
+          class="rounded-3xl py-2 px-4 bg-lime-600 flex items-center justify-center gap-2"
+        >
+          {{ $settings.contactUs }}
+          <img
+            src="{{ $settings.telegram_logo }}"
+            alt="Telegram Icon"
+            class="size-7"
+          />
+        </button>
+      </a>
+    {{ else if eq $button "whatsapp" }}
+      <a
+        href="https://wa.me/{{ $settings.whatsapp }}"
+        class="block"
+        id="hero-button"
+      >
+        <button
+          class="rounded-3xl py-2 px-4 bg-lime-600 flex items-center justify-center gap-2"
+        >
+          {{ $settings.contactUs }}
+          <img
+            src="{{ $settings.whatsapp_logo }}"
+            alt="WhatsApp Icon"
+            class="size-7"
+          />
+        </button>
+      </a>
     {{ end }}
   </div>
 
@@ -44,13 +89,13 @@
     id="prevBtn"
     class="absolute left-5 top-1/2 transform -translate-y-1/ shadow-2xl bg-white/50 size-9 md:size-12 lg:size-14 p-1 rounded-full z-20 hover:bg-black/50 transition-all active:-translate-x-3 duration-150"
   >
-    <img src="static/left.svg" alt="" class="size-full" />
+    <img src="{{ absURL "static/left.svg" }}" alt="" class="size-full" />
   </button>
   <button
     id="nextBtn"
     class="absolute right-5 top-1/2 transform -translate-y-1/2 size-9 md:size-12 lg:size-14 bg-white/50 p-1 hover:bg-black/50 transition-all active:translate-x-3 duration-150 rounded-full z-20"
   >
-    <img src="static/right.svg" alt="" class="size-full" />
+    <img src="{{ absURL "static/right.svg" }}" alt="" class="size-full" />
   </button>
 
   <!-- Pagination Dots -->

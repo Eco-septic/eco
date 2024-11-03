@@ -1336,10 +1336,6 @@ video {
   border-radius: 0.375rem;
 }
 
-.rounded-sm {
-  border-radius: 0.125rem;
-}
-
 .rounded-bl-lg {
   border-bottom-left-radius: 0.5rem;
 }
@@ -1431,11 +1427,6 @@ video {
 
 .bg-green-600\/60 {
   background-color: rgb(22 163 74 / 0.6);
-}
-
-.bg-inactiveDark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(225 225 225 / var(--tw-bg-opacity));
 }
 
 .bg-lightMode {
@@ -1654,11 +1645,6 @@ video {
 .text-green-600 {
   --tw-text-opacity: 1;
   color: rgb(22 163 74 / var(--tw-text-opacity));
-}
-
-.text-inactive {
-  --tw-text-opacity: 1;
-  color: rgb(84 84 84 / var(--tw-text-opacity));
 }
 
 .text-main {
@@ -2912,11 +2898,6 @@ summary {
     background-color: rgb(36 36 36 / var(--tw-bg-opacity));
   }
 
-  .dark\:bg-inactive:not(.light *) {
-    --tw-bg-opacity: 1;
-    background-color: rgb(84 84 84 / var(--tw-bg-opacity));
-  }
-
   .dark\:bg-lightMode:not(.light *) {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -2984,11 +2965,6 @@ summary {
 .dark\:bg-darkMode:is(.dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(36 36 36 / var(--tw-bg-opacity));
-}
-
-.dark\:bg-inactive:is(.dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(84 84 84 / var(--tw-bg-opacity));
 }
 
 .dark\:bg-lightMode:is(.dark *) {

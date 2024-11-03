@@ -7,7 +7,7 @@ menu:
     weight: 5
 sitemap:
   changefreq: daily
-  priority: 1
+  priority: 0.6
   disable: false
 title: Добро пожаловать
 description: test

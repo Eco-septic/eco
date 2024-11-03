@@ -6,30 +6,27 @@ titleImage: /media/uploads/wallpaperflare.com_wallpaper.jpg
 date: 2024-10-15T04:04:00+06:00
 sitemap:
   changefreq: monthly
-  priority: 1
+  priority: 0.6
   disable: false
 title: test
 description: "news  asdasd dsasd sad aasd asdadsd sadsdasd sasdasd sasdasd "
 ---
+
 ## One Piece
-
-
-
-
 
 One Piece is a hugely popular Japanese manga and anime series created by Eiichiro Oda. First published in Weekly Shōnen Jump in 1997, it has become one of the longest-running and best-selling series in history. The story follows Monkey D. Luffy, a young pirate with the dream of becoming the Pirate King by finding the legendary treasure known as the “One Piece.”
 
 Luffy, after gaining rubber-like powers from eating the Gomu Gomu no Mi Devil Fruit, assembles a diverse crew called the Straw Hat Pirates. Together, they journey across the dangerous Grand Line, seeking adventure, battling enemies, and each pursuing their own dreams. Key crew members include:
 
-* \    Zoro, a swordsman aiming to be the world’s greatest.
-* 	Nami, a navigator mapping the entire world.
-* 	Sanji, a chef searching for the All Blue.
-* 	Usopp, a sniper dreaming of bravery.
-* 	Chopper, a talking reindeer doctor.
-* 	Robin, an archaeologist uncovering lost history.
-* 	Franky, a shipwright.
-* 	Brook, a musician.
-* 	Jinbei, a fish-man helmsman.
+- \ Zoro, a swordsman aiming to be the world’s greatest.
+-     Nami, a navigator mapping the entire world.
+-     Sanji, a chef searching for the All Blue.
+-     Usopp, a sniper dreaming of bravery.
+-     Chopper, a talking reindeer doctor.
+-     Robin, an archaeologist uncovering lost history.
+-     Franky, a shipwright.
+-     Brook, a musician.
+-     Jinbei, a fish-man helmsman.
 
 Themes and World-Building
 

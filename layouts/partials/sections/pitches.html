@@ -17,7 +17,12 @@
         <div
           class="icon size-20 rounded-full shadow-circle  flex items-center justify-center"
         >
-          <img src="{{ $item.icon }}" alt="" role="icon" class="size-9" />
+          <img
+            src="{{ absURL $item.icon }}"
+            alt=""
+            role="icon"
+            class="size-9"
+          />
         </div>
         <p class="pitch-title text-sm sm:text-base">{{ $item.title }}</p>
         <p

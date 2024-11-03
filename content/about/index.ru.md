@@ -72,7 +72,7 @@ licensesSection:
       image: /media/uploads/img_7200.jpg
 sitemap:
   changefreq: monthly
-  priority: 1
+  priority: 0.8
   disable: false
 title: "О КОМПАНИИ      "
 aboutUsSection:

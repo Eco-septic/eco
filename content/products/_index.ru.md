@@ -1,7 +1,7 @@
 ---
 sitemap:
   changefreq: monthly
-  priority: 1
+  priority: 0.8
   disable: false
 title: Продукция
 description: "-"

@@ -67,7 +67,7 @@ list:
           происходят биологические процессы, генерирующие тепловую энергию.
 sitemap:
   changefreq: yearly
-  priority: 1
+  priority: 0.6
   disable: false
 title: FAQ
 type: faq

@@ -1,6 +1,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>{{ .Params.title }}</title>
 <meta
   name="description"
   content="{{ if .Params.summary }}
@@ -12,108 +13,81 @@
   {{ end }}"
 />
 
-<title>{{ .Title }}</title>
-
 {{ template "_internal/google_analytics.html" . }}
+<meta http-equiv="content-language" content="{{ .Lang }}" />
+<meta name="rating" content="general" />
 <meta name="generator" content="hugo" />
 <meta name="google-site-verification" content="" />
 <!-- google verification here is duplicated hence the html option is avaiable at static folder -->
 <meta name="publisher" content="Netlify" />
 <meta name="author" content="ECO SEPTIC KG" />
 <meta name="application-name" content="ECO SEPTIC KG web-site" />
-<meta name="creator" content="ECO SEPTIC KG" />
+<meta name="creator" content="www.linkedin.com/in/babdikaarov" />
 
-<meta name="theme-color" content="#FFFFFF" />
+<meta name="theme-color" content="#a2c693" />
 <link rel="manifest" href="/manifest.json" />
-<!-- 
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="57x57"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-57x57.png` }}"
-/>
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="114x114"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-114x114.png` }}"
-/>
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="72x72"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-72x72.png` }}"
-/>
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="144x144"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-144x144.png` }}"
-/>
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="60x60"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-60x60.png` }}"
-/>
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="120x120"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-120x120.png` }}"
-/>
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="76x76"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-76x76.png` }}"
-/>
-<link
-  rel="apple-touch-icon-precomposed"
-  sizes="152x152"
-  href="{{ absURL `/media/defaults/icons/apple-icon/apple-touch-icon-152x152.png` }}"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  href="{{ absURL `/media/defaults/icons/favicon/favicon-196x196.png` }}"
-  sizes="196x196"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  href="{{ absURL `/media/defaults/icons/favicon/favicon-96x96.png` }}"
-  sizes="96x96"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  href="{{ absURL `/media/defaults/icons/favicon/favicon-32x32.png` }}"
-  sizes="32x32"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  href="{{ absURL `/media/defaults/icons/favicon/favicon-16x16.png` }}"
-  sizes="16x16"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  href="{{ absURL `/media/defaults/icons/favicon/favicon-128x128.png` }}"
-  sizes="128x128"
-/>
-<meta name="msapplication-TileColor" content="#FFFFFF" />
-<meta
-  name="msapplication-TileImage"
-  content="{{ absURL `/media/defaults/icons/mstile/mstile-144x144.png` }}"
-/>
-<meta
-  name="msapplication-square70x70logo"
-  content="{{ absURL `/media/defaults/icons/mstile/mstile-70x70.png` }}"
-/>
-<meta
-  name="msapplication-square150x150logo"
-  content="{{ absURL `/media/defaults/icons/mstile/mstile-150x150.png` }}"
-/>
-<meta
-  name="msapplication-wide310x150logo"
-  content="{{ absURL `/media/defaults/icons/mstile/mstile-310x150.png` }}"
-/>
-<meta
-  name="msapplication-square310x310logo"
-  content="{{ absURL `/media/defaults/icons/mstile/mstile-310x310.png` }}"
-/> -->
+{{ $settings := index .Site.Data.settings .Lang }}
+{{ $image := $settings.mini_logo }}
+{{ $baseImage := resources.Get $image }}
+{{ if $baseImage }}
+  {{ $apple57 := $baseImage.Fit "57x57" }}
+  <link
+    rel="apple-touch-icon-precomposed"
+    sizes="57x57"
+    href="{{ $apple57.RelPermalink }}"
+  />
+
+  {{ $apple114 := $baseImage.Fit "114x114" }}
+  <link
+    rel="apple-touch-icon-precomposed"
+    sizes="114x114"
+    href="{{ $apple114.RelPermalink }}"
+  />
+
+  {{ $apple72 := $baseImage.Fit "72x72" }}
+  {{ $apple72 = resources.Copy "images/icon72.png" $apple72 }}
+
+
+  <link
+    rel="apple-touch-icon-precomposed"
+    sizes="72x72"
+    href="{{ $apple72.RelPermalink }}"
+  />
+
+  {{ $apple144 := $baseImage.Fit "144x144" }}
+  <link
+    rel="apple-touch-icon-precomposed"
+    sizes="144x144"
+    href="{{ $apple144.RelPermalink }}"
+  />
+  {{ $favicon32 := $baseImage.Fit "32x32" }}
+  {{ $favicon32 = resources.Copy "images/icon32.png" $favicon32 }}
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="{{ $favicon32.RelPermalink }}"
+  />
+
+  {{ $favicon16 := $baseImage.Fit "16x16" }}
+  {{ $favicon16 = resources.Copy "images/icon16.png" $favicon16 }}
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="{{ $favicon16.RelPermalink }}"
+  />
+  {{ $mstile144 := $baseImage.Fit "144x144" }}
+  {{ $mstile144 = resources.Copy "images/icon144.png" $mstile144 }}
+  <meta
+    name="msapplication-TileImage"
+    content="{{ $mstile144.RelPermalink }}"
+  />
+
+  {{ $mstile150 := $baseImage.Fit "150x150" }}
+  {{ $mstile150 = resources.Copy "images/icon150.png" $mstile150 }}
+  <meta
+    name="msapplication-square150x150logo"
+    content="{{ $mstile150.RelPermalink }}"
+  />
+{{ end }}

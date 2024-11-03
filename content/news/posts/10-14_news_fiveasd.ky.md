@@ -6,7 +6,7 @@ titleImage: /media/uploads/untitled_1_.jpg
 date: 2024-10-25T04:04:00+06:00
 sitemap:
   changefreq: monthly
-  priority: 1
+  priority: 0.6
   disable: false
 title: еуые
 description: ываы

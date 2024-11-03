@@ -87,6 +87,22 @@ collections:
               i18n: duplicate,
             }
           - {
+              label: "Mini Лого Сайта",
+              name: "mini_logo",
+              widget: "image",
+              i18n: duplicate,
+              media_folder: "../assets/images", # Specify the assets folder here
+              public_folder: "/images",
+            }
+          - {
+              label: "OpenGraph base",
+              name: "og_base",
+              widget: "image",
+              i18n: duplicate,
+              media_folder: "../assets/images", # Specify the assets folder here
+              public_folder: "/images",
+            }
+          - {
               label: "Описание к лого (footer)",
               name: "description",
               widget: "string",
@@ -120,6 +136,13 @@ collections:
           - {
               label: "telegram лого",
               name: "telegram_logo",
+              widget: "image",
+              i18n: duplicate,
+            }
+          - { label: "phone", name: "phone", widget: "string", i18n: duplicate }
+          - {
+              label: "phone лого",
+              name: "phone_logo",
               widget: "image",
               i18n: duplicate,
             }
@@ -214,6 +237,12 @@ collections:
             name: "textAnimation"
             widget: "string"
             i18n: true # Enable i18n for the text animation field
+          - label: "Кнопка"
+            name: "button"
+            i18n: duplicate
+            widget: "select"
+            options: ["phone", "telegram", "whatsapp"]
+            default: ["phone"]
           - label: "Краткий лист"
             name: "pitchList"
             widget: "list"
@@ -222,6 +251,7 @@ collections:
             i18n: true # Enable i18n for the list items
             field:
               { label: "текст", name: "item", widget: "string", i18n: true }
+          
           - label: "Картинки слайда"
             name: "images"
             widget: "image"

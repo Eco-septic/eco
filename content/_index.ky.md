@@ -17,6 +17,7 @@ hero:
   images:
     - /media/uploads/pexels-tomas-malik-793526-2581922.jpg
     - /media/uploads/slider2.jpg
+  button: telegram
 productSection:
   title: Продукция ЭКО СЕПТИК
   description: Автономные канализационные системы и дополнительные оборудования,

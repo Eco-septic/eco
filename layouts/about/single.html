@@ -32,7 +32,7 @@
               class="w-full relative aspect-[1/1.414] overflow-hidden  mb-4 bg-white"
             >
               <img
-                src="{{ .image }}"
+                src="{{ absURL .image }}"
                 alt="{{ $title }} {{ .registrNumber }}"
                 class="w-full h-full object-contain"
               />
@@ -41,8 +41,9 @@
                 class="absolute size-7 bottom-0 right-0 "
                 data-download="{{ .image }}"
                 download="{{ .image }}"
+                title="download"
               >
-                <img src="{{ relURL "static/download.svg" }}" alt="" />
+                <img src="{{ absURL "static/download.svg" }}" alt="icon" />
               </a>
             </div>
             <!-- Title & Description -->
@@ -69,7 +70,7 @@
               class="w-full aspect-[1/1.414] overflow-hidden  mb-4 relative bg-white"
             >
               <img
-                src="{{ .image }}"
+                src="{{ .image | absURL }}"
                 alt="{{ $title }} {{ .registrNumber }}"
                 class="w-full h-full object-contain"
               />
@@ -79,7 +80,7 @@
                 data-download="{{ .image }}"
                 download="{{ .image }}"
               >
-                <img src="{{ relURL "static/download.svg" }}" alt="" />
+                <img src="{{ absURL "static/download.svg" }}" alt="" />
               </a>
             </div>
             <!-- Title & Description -->

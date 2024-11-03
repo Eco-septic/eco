@@ -6,11 +6,12 @@ titleImage: /media/uploads/untitled_1_.jpg
 date: 2024-10-25T04:04:00+06:00
 sitemap:
   changefreq: monthly
-  priority: 1
+  priority: 0.6
   disable: false
 title: еуые
 description: ываы
 ---
+
 ## One Piece
 
 One Piece is a hugely popular Japanese manga and anime series created by Eiichiro Oda. First published in Weekly Shōnen Jump in 1997, it has become one of the longest-running and best-selling series in history. The story follows Monkey D. Luffy, a young pirate with the dream of becoming the Pirate King by finding the legendary treasure known as the “One Piece.”
