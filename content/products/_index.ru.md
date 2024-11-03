@@ -3,13 +3,13 @@ sitemap:
   changefreq: monthly
   priority: 1
   disable: false
-title: Product listing
-description: ""
+title: Продукция
+description: "-"
 linktitle: products
-linkTitle: products
+linkTitle: Продукция
 menu:
   mainmenu:
-    name: ProductsRU
+    name: Продукция
     pageRef: /products
     weight: 3
 ---

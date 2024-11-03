@@ -85,8 +85,7 @@
       {{ with index .Site.Data.settings .Lang }}
         <section class="p-4 ">
           <p class="text-center text-base mb-4">
-            {{ $settings := index .Site.Data.settings .Lang }}
-            {{ $settings.contactUs }}
+            {{ .contactUs }}
           </p>
           <ul class="">
             <li role="contentinfo" class="flex items-center gap-2">

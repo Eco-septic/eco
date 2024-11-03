@@ -36,7 +36,7 @@
                   <li
                     class="border-b-[1px] border-black/20 dark:border-white/20"
                   >
-                    <a href="{{ $currentPage.RelPermalink }}" class="text-base">
+                    <a href="{{ $currentPage.RelPermalink }}" class="text-sm">
                       {{ .translation }}
                     </a>
                   </li>
@@ -50,7 +50,7 @@
                     >
                       <a
                         href="{{ $taxonomy.Page.RelPermalink }}"
-                        class="text-base"
+                        class="text-sm"
                       >
                         {{ .translation }}
                       </a>
@@ -83,19 +83,21 @@
             class="grid grid-rows-[0fr] lg:grid-rows-[1fr] py-4 group-has-[:checked]:grid-rows-[1fr] transition-all duration-300 ease-linear"
           >
             <ul class="space-y-2 overflow-hidden">
-              {{ range $news.ByPublishDate.Reverse.Limit 5 }}
+              {{ range $news.ByPublishDate.Reverse.Limit 4 }}
                 <li
-                  class="border-b-[1px] border-black/20 space-y-1 dark:border-white/20"
+                  class="border-b-[1px] border-black/20 space-y-1 py-2 dark:border-white/20"
                 >
-                  <a href="{{ .RelPermalink }}" class="text-base">
-                    {{ .Params.Title }}
+                  <a href="{{ .RelPermalink }}" class="text-sm">
+                    {{ .Params.ContentTitle }}
                   </a>
-                  <p class="text-sm">
-                    {{ with .Params.date }}
-                      {{ . | time.Format ":date_long" }}
-                    {{ else }}
-                      <span>No date available</span>
-                    {{ end }}
+                  <p>
+                    <em class="text-sm opacity-50">
+                      {{ with .Params.date }}
+                        {{ . | time.Format ":date_long" }}
+                      {{ else }}
+                        <span>No date available</span>
+                      {{ end }}
+                    </em>
                   </p>
                 </li>
               {{ end }}
@@ -107,7 +109,7 @@
         <div>
           <img
             src="{{ .Params.titleImage }}"
-            alt="{{ .Title }}"
+            alt="{{ .Params.ContentTitle }}"
             class="w-full"
           />
         </div>
@@ -122,7 +124,7 @@
 
         <!-- markdown -->
         <section class="my-10 markdown">
-          <h1 class="text-center">{{ .Title }}</h1>
+          <h1 class="text-center">{{ .Params.ContentTitle }}</h1>
           {{ .Content }}
         </section>
         <!-- markdown -->

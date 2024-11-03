@@ -329,18 +329,6 @@ dialog img {
   display: none;
 }
 
-button[data-control] {
-  background: transparent;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  border: none;
-}
-
-button[data-control]:hover {
-  color: #4a90e2;
-}
-
 .remove-scroll-style {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;

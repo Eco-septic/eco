@@ -7,12 +7,12 @@
     >
       {{ partial "products/images.html" . }}
       <section aria-label="product details" class="">
-        <h2 class="text-xl font-bold mb-3">{{ .Title}}</h2>
+        <h2 class="text-xl font-bold mb-3">{{ .Params.title}}</h2>
         {{ $settings := index .Site.Data.settings .Lang }}
         {{ $currentLang := index .Site.Data.categories .Lang }}
         {{ $groups := $currentLang.groups }}
         {{ $match := string .Params.categories}}
-        <p>{{ $settings.products.taxonomy }}: 
+        <p class="text-sm">{{ $settings.products.taxonomy }}: 
 
               {{ range $groups }}
                   {{ if eq .group $match }}
@@ -20,6 +20,46 @@
                   {{ end }}
               {{ end }}
           </p>
+          {{ $settings := index .Site.Data.settings .Lang }}
+          {{ $key := .Params.availability | default "av"  }}
+          {{ with index $settings.products $key }}
+            <p class="text-sm">{{ $settings.products.availability }}: {{ . }}</p>
+          {{ end }}
+          <div class="*:text-sm mt-1">
+              {{ $price := float (default "0" .Params.price) }}
+              {{ $promo := float (default "0" .Params.promo) }}
+              {{ $newPrice := float (default "0" .Params.newPrice) }}
+
+                  {{ if and $promo (gt $promo 0) }}
+                    {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+                    <i>
+                      <span class="line-through text-gray-500"
+                        >{{ printf "%.0f" $price }} KGS</span
+                      >
+                      <span class="text-green-600 font-bold ml-2"
+                        >{{ printf "%.0f" $discountedPrice }} KGS</span
+                      >
+                      <span class="text-green-600 "
+                        >({{ printf "%.2f" $promo }}% off)</span
+                      >
+                    </i>
+                  {{ else if and (not $promo) (gt $newPrice 0) }}
+                    {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+                    <i>
+                      <span class="line-through text-gray-500"
+                        >{{ printf "%.0f" $price }} KGS</span
+                      >
+                      <span class="text-green-600 font-bold ml-2"
+                        >{{ printf "%.0f" $newPrice }} KGS</span
+                      >
+                      <span class="text-green-600 "
+                        >({{ printf "%.2f" $discount }}% off)</span
+                      >
+                    </i>
+                  {{ else }}
+                    <i class="">{{ printf "%.0f" $price }} KGS</i>
+                  {{ end }}
+          </div>
         {{ if .Params.parameters.show }}
         <div class="group max-w-lg border-collapse">
 
@@ -76,13 +116,15 @@
             </button>
           </div>
         </div>
-        <div class="overflow-x-scroll grid-flow-col grid gap-4 py-4 remove-scroll-style" id="product-container">
+        <div class="overflow-x-scroll flex gap-4 py-4 remove-scroll-style" id="product-container">
           {{ $products := (where .Site.RegularPages "Type" "products") }}
           {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
+          {{ $currentPage := . }}
           {{ range $index, $pages :=  $category.ByPublishDate.Reverse }}
+            {{ if ne $pages $currentPage }}
             <div class="border overflow-hidden rounded border-gray-600 w-[220px] inline-flex flex-col">
               <div class="group overflow-hidden relative w-full" style="padding-top: 100%;">
-                 {{ if or .Params.promo .Params.newPrice }}
+                 {{ if or $pages.Params.promo $pages.Params.newPrice }}
                     <img
                       src="{{ "static/promo.svg" | relURL }}"
                       alt="Promo"
@@ -143,10 +185,11 @@
                   href="{{ .RelPermalink }}"
                   class="text-blue-500 underline mt-2 block"
                   >{{ $settings := index .Site.Data.settings .Lang }}
-                  {{ $settings.product.more }}</a
+                  {{ $settings.products.more }}</a
                 >
               </div>
             </div>
+            {{end}}
           {{ end }}
         </div>
       </section>

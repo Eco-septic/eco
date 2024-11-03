@@ -37,7 +37,7 @@
                   <li
                     class="border-b-[1px] border-black/20 dark:border-white/20"
                   >
-                    <a href="{{ absLangURL "/news" }}" class="text-base">
+                    <a href="{{ absLangURL "/news" }}" class="text-sm">
                       {{ .translation }}
                     </a>
                   </li>
@@ -51,7 +51,7 @@
                     >
                       <a
                         href="{{ $taxonomy.Page.RelPermalink }}"
-                        class="text-base"
+                        class="text-sm"
                       >
                         {{ .translation }}
                       </a>
@@ -85,19 +85,21 @@
           >
             <ul class="space-y-2 overflow-hidden">
               {{ $news := where .Site.RegularPages "Section" "news" }}
-              {{ range $news.ByPublishDate.Reverse.Limit 5 }}
+              {{ range $news.ByPublishDate.Reverse.Limit 4 }}
                 <li
-                  class="border-b-[1px] border-black/20 space-y-1 dark:border-white/20"
+                  class="border-b-[1px] border-black/20 space-y-1 py-2 dark:border-white/20"
                 >
-                  <a href="{{ .RelPermalink }}" class="text-base">
+                  <a href="{{ .RelPermalink }}" class="text-sm">
                     {{ .Params.Title }}
                   </a>
-                  <p class="text-sm">
-                    {{ with .Params.date }}
-                      {{ . | time.Format ":date_long" }}
-                    {{ else }}
-                      <span>No date available</span>
-                    {{ end }}
+                  <p>
+                    <em class="text-sm opacity-50">
+                      {{ with .Params.date }}
+                        {{ . | time.Format ":date_long" }}
+                      {{ else }}
+                        <span>No date available</span>
+                      {{ end }}
+                    </em>
                   </p>
                 </li>
               {{ end }}

@@ -1,6 +1,6 @@
 ---
-title: "Баткенская область, г.Раззаков, жилой многоэтажный дом МВД, ТОПАЭРО 16 м3 "
-description: "news  asdasd dsasd sad aasd asdadsd sadsdasd sasdasd sasdasd "
+ContentTitle: "Баткенская область, г.Раззаков, жилой многоэтажный дом МВД, ТОПАЭРО 16 м3 "
+ContentDescription: news
 featured: 1
 titleImage: /media/uploads/wallpaperflare.com_wallpaper.jpg
 date: 2024-10-15T04:04:00+06:00
@@ -8,6 +8,8 @@ sitemap:
   changefreq: monthly
   priority: 1
   disable: false
+title: test
+description: "news  asdasd dsasd sad aasd asdadsd sadsdasd sasdasd sasdasd "
 ---
 ## One Piece
 

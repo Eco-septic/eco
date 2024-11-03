@@ -17,16 +17,16 @@ ky:
 ru:
   groups:
     - group: "0"
-      translation: all
+      translation: reserved
     - group: "1"
-      translation: oneru
+      translation: Автономная канализация
     - group: "2"
-      translation: tworu
+      translation: Дополнительное оборудование
     - group: "3"
-      translation: threeru
+      translation: Комплексные очистные
     - group: "4"
-      translation: fourru
+      translation: four
     - group: "5"
-      translation: fiveru
+      translation: five
     - group: "6"
-      translation: sixru
+      translation: Все категории

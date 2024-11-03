@@ -20,11 +20,11 @@ i18n:
   structure: multiple_files
 
   # Required - a list of locales to show in the editor UI
-  locales: [ky, ru]
+  locales: [ru, ky]
 
   # Optional, defaults to the first item in locales.
   # The locale to be used for fields validation and as a baseline for the entry.
-  default_locale: ky
+  default_locale: ru
 
 collections:
   # Main Page
@@ -33,7 +33,7 @@ collections:
     label: "Настройки сайта"
     i18n:
       structure: single_file
-      locales: [ky, ru]
+      locales: [ru, ky]
     files:
       - file: data/categories.yml
         label: "Категории продукции (перевод)"
@@ -130,6 +130,45 @@ collections:
               widget: "image",
               i18n: duplicate,
             }
+          - {
+              label: "Перевод связаться с нами",
+              name: "contactUs",
+              widget: "string",
+              i18n: true,
+            }
+          - label: "Перевод products"
+            name: "products"
+            widget: object
+            i18n: true
+            fields:
+              - { label: taxonomy, name: taxonomy, widget: string, i18n: true }
+              - { label: more, name: more, widget: string, i18n: true }
+              - {
+                  label: parameters,
+                  name: parameters,
+                  widget: string,
+                  i18n: true,
+                }
+              - { label: benefits, name: benefits, widget: string, i18n: true }
+              - { label: similar, name: similar, widget: string, i18n: true }
+              - {
+                  label: availability,
+                  name: availability,
+                  widget: string,
+                  i18n: true,
+                }
+              - { label: not available, name: na, widget: string, i18n: true }
+              - { label: available, name: av, widget: string, i18n: true }
+              - { label: order, name: or, widget: string, i18n: true }
+          - label: "Перевод news"
+            name: "news"
+            widget: object
+            i18n: true
+            fields:
+              - { label: taxonomy, name: taxonomy, widget: string, i18n: true }
+              - { label: more, name: more, widget: string, i18n: true }
+              - { label: rescent, name: rescent, widget: string, i18n: true }
+
   - name: "home"
     label: "Главная"
     identifier_field: linkTitle
@@ -263,13 +302,6 @@ collections:
               i18n: duplicate,
             }
           - {
-              label: "Приоритет",
-              name: "priority",
-              widget: "number",
-              required: true,
-              i18n: duplicate,
-            }
-          - {
               label: "Отключить",
               name: "disable",
               widget: "boolean",
@@ -399,7 +431,13 @@ collections:
                   widget: "image",
                   i18n: duplicate,
                 }
-      - { label: "Type", name: "type", widget: "hidden", default: "about" }
+      - {
+          label: "Type",
+          name: "type",
+          widget: "hidden",
+          default: "about",
+          i18n: duplicate,
+        }
       - name: "sitemap" # Name of the collection for sitemap settings
         label: "Настройки поисковика" # Label for the collection in the CMS
         widget: "object"
@@ -411,13 +449,6 @@ collections:
               name: "changefreq",
               widget: "select",
               options: ["daily", "weekly", "monthly", "yearly", "never"],
-              i18n: duplicate,
-            }
-          - {
-              label: "Приоритет",
-              name: "priority",
-              widget: "number",
-              required: true,
               i18n: duplicate,
             }
           - {
@@ -485,13 +516,6 @@ collections:
               i18n: duplicate,
             }
           - {
-              label: "Приоритет",
-              name: "priority",
-              widget: "number",
-              required: true,
-              i18n: duplicate,
-            }
-          - {
               label: "Отключить",
               name: "disable",
               widget: "boolean",
@@ -548,7 +572,20 @@ collections:
         i18n: true
         fields:
           - { label: "Вопрос", name: "question", widget: "string", i18n: true }
-          - { label: "Ответ", name: "answer", widget: "text", i18n: true }
+          - {
+              label: "Изображение",
+              name: "image",
+              widget: "image",
+              i18n: duplicate,
+              required: false,
+            }
+          - label: "Ответ"
+            name: "answer"
+            i18n: true
+            widget: "list"
+            collapsed: true
+            fields:
+              - { label: "Абзац", name: "p", widget: "text", i18n: true }
       - { label: "Type", name: "type", widget: "hidden", default: "faq" }
       - name: "sitemap" # Name of the collection for sitemap settings
         label: "Настройки поисковика" # Label for the collection in the CMS
@@ -561,13 +598,6 @@ collections:
               name: "changefreq",
               widget: "select",
               options: ["daily", "weekly", "monthly", "yearly", "never"],
-              i18n: duplicate,
-            }
-          - {
-              label: "Приоритет",
-              name: "priority",
-              widget: "number",
-              required: true,
               i18n: duplicate,
             }
           - {
@@ -635,10 +665,87 @@ collections:
               i18n: duplicate,
             }
           - {
-              label: "Приоритет",
-              name: "priority",
-              widget: "number",
-              required: true,
+              label: "Отключить",
+              name: "disable",
+              widget: "boolean",
+              i18n: duplicate,
+            }
+      - {
+          label: "Титул поисковика",
+          name: "title",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+      - {
+          label: "Описание поисковика",
+          name: "description",
+          widget: "string",
+          required: true,
+          i18n: true,
+        }
+  - name: "posts" # Collection name
+    label: "Список новостей" # Label for the CMS
+    folder: "content/news/posts" # Path to the folder containing content files for different languages
+    create: true # Allow creating new entries
+    sortable_fields: [date]
+    identifier_field: ContentTitle
+    slug: "{{month}}{{day}}{{hour}}{{minute}}_{{slug}}" # Slug for new entries
+    i18n: true # Enable multilingual support
+    fields:
+      - {
+          label: "Заголовок",
+          name: "ContentTitle",
+          widget: "string",
+          i18n: true,
+        }
+      - {
+          label: "Краткое Описание",
+          name: "ContentDescription",
+          widget: "string",
+          i18n: true,
+        }
+      - {
+          label: "Рубрика",
+          name: "featured",
+          widget: "number",
+          i18n: duplicate,
+          value_type: "int",
+          min: 0,
+          max: 6,
+          step: 1,
+        }
+      - {
+          label: "Картинка Заголовоки",
+          name: "titleImage",
+          widget: "image",
+          i18n: duplicate,
+        }
+      - {
+          label: "Дата",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DDTHH:mm:ssZ", # Match Hugo format
+          default: "now",
+          i18n: duplicate,
+        }
+      - {
+          label: "Основной контент",
+          name: "body",
+          widget: "markdown",
+          i18n: true,
+        }
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Настройки поисковика" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Частота изменений",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly", "never"],
               i18n: duplicate,
             }
           - {
@@ -661,119 +768,28 @@ collections:
           required: true,
           i18n: true,
         }
-  - name: "posts" # Collection name
-    label: "новостные рубрики" # Label for the CMS
-    folder: "content/news/posts" # Path to the folder containing content files for different languages
-    create: true # Allow creating new entries
-    sortable_fields: [date]
-    slug: "{{month}}{{day}}{{hour}}{{minute}}_{{slug}}" # Slug for new entries
-    i18n: true # Enable multilingual support
-    fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - {
-          label: "Description",
-          name: "description",
-          widget: "string",
-          i18n: true,
-        }
-      - {
-          label: "Featured",
-          name: "featured",
-          widget: "number",
-          i18n: duplicate,
-          value_type: "int",
-          min: 0,
-          max: 6,
-          step: 1,
-        }
-      - {
-          label: "Title Image",
-          name: "titleImage",
-          widget: "image",
-          i18n: duplicate,
-        }
-      - {
-          label: "Date",
-          name: "date",
-          widget: "datetime",
-          format: "YYYY-MM-DDTHH:mm:ssZ", # Match Hugo format
-          default: "now",
-          i18n: duplicate,
-        }
-      - name: "sitemap" # Name of the collection for sitemap settings
-        label: "Sitemap Settings" # Label for the collection in the CMS
-        widget: "object"
-        collapsed: true
-        i18n: true
-        fields:
-          - {
-              label: "Change Frequency",
-              name: "changefreq",
-              widget: "select",
-              options: ["daily", "weekly", "monthly", "yearly", "never"],
-              i18n: duplicate,
-            }
-          - {
-              label: "Priority",
-              name: "priority",
-              widget: "number",
-              required: true,
-              i18n: duplicate,
-            }
-          - {
-              label: "Disable",
-              name: "disable",
-              widget: "boolean",
-              default: true,
-              i18n: duplicate,
-            }
-      - {
-          label: "News post content",
-          name: "body",
-          widget: "markdown",
-          i18n: true,
-        }
   - name: "products"
-    label: "List of products" # Label for the CMS
+    label: "Список продукций" # Label for the CMS
     folder: "content/products/product" # Path to the folder containing content files for different languages
     create: true # Allow creating new entries
     slug: "{{month}}{{day}}{{hour}}{{minute}}_{{slug}}" # Slug for new entries
     i18n: true # Enable multilingual support
     fields:
-      - name: "sitemap" # Name of the collection for sitemap settings
-        label: "Sitemap Settings" # Label for the collection in the CMS
-        widget: "object"
-        collapsed: true
-        i18n: true
-        fields:
-          - {
-              label: "Change Frequency",
-              name: "changefreq",
-              widget: "select",
-              options: ["daily", "weekly", "monthly", "yearly", "never"],
-              i18n: duplicate,
-            }
-          - {
-              label: "Priority",
-              name: "priority",
-              widget: "number",
-              required: true,
-              i18n: duplicate,
-            }
-          - {
-              label: "Disable",
-              name: "disable",
-              widget: "boolean",
-              default: true,
-              i18n: duplicate,
-            }
-      - { label: "Title", name: "title", widget: "string", i18n: true }
       - {
-          label: "Description",
-          name: "description",
-          widget: "text",
+          label: "Название продукции",
+          name: "title",
+          widget: "string",
           i18n: true,
         }
+      - label: "Доступность"
+        name: "availability"
+        i18n: duplicate
+        widget: "select"
+        options:
+          - { label: "Not available", value: "na" }
+          - { label: "Available", value: "av" }
+          - { label: "Per order", value: "or" }
+        default: ["av"]
       - {
           label: "Category",
           name: "categories",
@@ -784,33 +800,38 @@ collections:
           max: 6,
           step: 1,
         }
-      - { label: "Price", name: "price", widget: "number", i18n: duplicate }
       - {
-          label: "Percentage",
+          label: "Оригинальная Цена",
+          name: "price",
+          widget: "number",
+          i18n: duplicate,
+        }
+      - {
+          label: "Процентная скидка",
           name: "promo",
           widget: "number",
           i18n: duplicate,
           required: false,
         }
       - {
-          label: "New Price",
+          label: "Новая цена",
           name: "newPrice",
           widget: "number",
           i18n: duplicate,
           required: false,
         }
-      - label: "Image"
+      - label: "Изображение"
         name: "image"
         widget: "image"
         i18n: duplicate
-      - label: "add on Images"
+      - label: "Изображения дополнительные"
         name: "images"
         widget: "image"
         i18n: duplicate
         media_library:
           config:
             multiple: true
-      - label: "Parameters"
+      - label: "Характеристики"
         name: "parameters"
         widget: "object"
         collapsed: true
@@ -834,7 +855,7 @@ collections:
                   i18n: true,
                 }
               - { label: "Value", name: "value", widget: "string", i18n: true }
-      - label: "Benefits"
+      - label: "Преимущества"
         name: "benefits"
         widget: "object"
         collapsed: true
@@ -858,8 +879,34 @@ collections:
                 i18n: true,
               }
       - {
-          label: "News post content",
+          label: "Основной контент продукции",
           name: "body",
           widget: "markdown",
+          i18n: true,
+        }
+      - name: "sitemap" # Name of the collection for sitemap settings
+        label: "Настройки поисковика" # Label for the collection in the CMS
+        widget: "object"
+        collapsed: true
+        i18n: true
+        fields:
+          - {
+              label: "Частота изменений",
+              name: "changefreq",
+              widget: "select",
+              options: ["daily", "weekly", "monthly", "yearly", "never"],
+              i18n: duplicate,
+            }
+          - {
+              label: "Отключить",
+              name: "disable",
+              widget: "boolean",
+              i18n: duplicate,
+            }
+      - {
+          label: "Описание поисковика",
+          name: "description",
+          widget: "string",
+          required: true,
           i18n: true,
         }

@@ -62,7 +62,7 @@
       >
         <div class="group overflow-hidden relative w-full pt-[100%]">
           <!-- Aspect ratio container -->
-          {{ if or .Params.promo .Params.newPrice }}
+          {{ if or $pages.Params.promo $pages.Params.newPrice }}
             <img
               src="{{ "static/promo.svg" | relURL }}"
               alt="Promo"
@@ -72,7 +72,7 @@
           {{ end }}
           <img
             src="{{ .Params.image }}"
-            alt="{{ .Title }}"
+            alt="{{ .Params.title }}"
             class="size-full absolute inset-0 group-hover:scale-110 group-hover:brightness-75 object-cover transition duration-300 ease-in-out transform"
             loading="lazy"
           />
@@ -81,7 +81,7 @@
             class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
           >
             {{ $settings := index .Site.Data.settings .Lang }}
-            {{ $settings.product.more }}
+            {{ $settings.products.more }}
           </a>
         </div>
         <p
@@ -91,9 +91,9 @@
         </p>
 
         <div class="*:text-sm *:text-center">
-          {{ $price := float .Params.price }}
-          {{ $promo := float .Params.promo }}
-          {{ $newPrice := float .Params.newPrice }}
+          {{ $price := float (default "0" .Params.price) }}
+          {{ $promo := float (default "0" .Params.promo) }}
+          {{ $newPrice := float (default "0" .Params.newPrice) }}
 
           {{ if and $promo (gt $promo 0) }}
             {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
@@ -130,7 +130,7 @@
             class="rounded-3xl p-2 bg-lime-600 hover:bg-lime-600/50 hover:text-black text-white w-full"
           >
             {{ $settings := index .Site.Data.settings .Lang }}
-            {{ $settings.product.more }}
+            {{ $settings.products.more }}
           </button>
         </a>
       </div>

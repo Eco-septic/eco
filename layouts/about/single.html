@@ -28,12 +28,22 @@
         {{ range .Params.licensesSection.licenses }}
           <div class=" shadow-md ">
             <!-- Image Container with A4 Aspect Ratio -->
-            <div class="w-full aspect-[1/1.414] overflow-hidden  mb-4">
+            <div
+              class="w-full relative aspect-[1/1.414] overflow-hidden  mb-4 bg-white"
+            >
               <img
                 src="{{ .image }}"
                 alt="{{ $title }} {{ .registrNumber }}"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-contain"
               />
+              <a
+                href="{{ .image | absURL }}"
+                class="absolute size-7 bottom-0 right-0 "
+                data-download="{{ .image }}"
+                download="{{ .image }}"
+              >
+                <img src="{{ relURL "static/download.svg" }}" alt="" />
+              </a>
             </div>
             <!-- Title & Description -->
             <p class="text-sm text-center font-semibold mb-2">
@@ -55,12 +65,22 @@
         {{ range .Params.certificatesSection.certificates }}
           <div class=" shadow-md ">
             <!-- Image Container with A4 Aspect Ratio -->
-            <div class="w-full aspect-[1/1.414] overflow-hidden  mb-4">
+            <div
+              class="w-full aspect-[1/1.414] overflow-hidden  mb-4 relative bg-white"
+            >
               <img
                 src="{{ .image }}"
                 alt="{{ $title }} {{ .registrNumber }}"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-contain"
               />
+              <a
+                href="{{ .image | absURL }}"
+                class="absolute size-7 bottom-0 right-0"
+                data-download="{{ .image }}"
+                download="{{ .image }}"
+              >
+                <img src="{{ relURL "static/download.svg" }}" alt="" />
+              </a>
             </div>
             <!-- Title & Description -->
             <p class="text-sm  text-center font-semibold mb-2">

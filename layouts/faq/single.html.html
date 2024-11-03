@@ -18,9 +18,16 @@
               aria-label="dropdown answer"
               class="grid grid-rows-[0fr] peer-open:px-4 peer-open:grid-rows-[1fr] transition-all duration-500 ease-in-out "
             >
-              <p class="overflow-hidden">
-                {{ $item.answer }}
-              </p>
+              <div class="overflow-hidden">
+                <img src="{{ $item.image }}" alt="" />
+                <ul class="list-inside list-[space] text-base mt-4">
+                  {{ range  $item.answer }}
+                    <li class="mt-2 text-base">
+                      {{ .p }}
+                    </li>
+                  {{ end }}
+                </ul>
+              </div>
             </div>
           </li>
         {{ end }}

@@ -31,12 +31,17 @@
             class="grid grid-rows-[0fr] lg:grid-rows-[1fr] py-4 group-has-[:checked]:grid-rows-[1fr] transition-grid-row duration-300 ease-linear"
           >
             <ul class="overflow-hidden space-y-2">
+              {{ with .Site.GetPage "news/posts" }}
+                {{ range .Pages }}
+                  {{ .ContentTitle }}
+                {{ end }}
+              {{ end }}
               {{ range $translationTaxonomy }}
                 {{ if eq .group "6" }}
                   <li
                     class="border-b-[1px] border-black/20 dark:border-white/20"
                   >
-                    <a href="{{ absLangURL "/news" }}" class="text-base">
+                    <a href="{{ absLangURL "/news" }}" class="text-sm">
                       {{ .translation }}
                     </a>
                   </li>
@@ -51,7 +56,7 @@
                     >
                       <a
                         href="{{ $taxonomy.Page.RelPermalink }}"
-                        class="text-base"
+                        class="text-sm"
                       >
                         {{ .translation }}
                       </a>
@@ -84,19 +89,21 @@
             class="grid grid-rows-[0fr] lg:grid-rows-[1fr] py-4 group-has-[:checked]:grid-rows-[1fr] transition-all duration-300 ease-linear"
           >
             <ul class="space-y-2 overflow-hidden">
-              {{ range $news.ByPublishDate.Reverse.Limit 5 }}
+              {{ range $news.ByPublishDate.Reverse.Limit 4 }}
                 <li
-                  class="border-b-[1px] border-black/20 space-y-1 dark:border-white/20"
+                  class="border-b-[1px] border-black/20 space-y-1 py-2 dark:border-white/20"
                 >
-                  <a href="{{ .RelPermalink }}" class="text-base">
-                    {{ .Params.Title }}
+                  <a href="{{ .RelPermalink }}" class="text-sm">
+                    {{ .Params.ContentTitle }}
                   </a>
-                  <p class="text-sm">
-                    {{ with .Params.date }}
-                      {{ . | time.Format ":date_long" }}
-                    {{ else }}
-                      <span>No date available</span>
-                    {{ end }}
+                  <p>
+                    <em class="text-sm opacity-50">
+                      {{ with .Params.date }}
+                        {{ . | time.Format ":date_long" }}
+                      {{ else }}
+                        <span>No date available</span>
+                      {{ end }}
+                    </em>
                   </p>
                 </li>
               {{ end }}
@@ -113,7 +120,7 @@
               <div class="group relative overflow-hidden mb-4">
                 <img
                   src="{{ .Params.titleImage }}"
-                  alt="{{ .Params.Title }}"
+                  alt="{{ .Params.ContentTitle }}"
                   class="size-full group-hover:scale-125 group-hover:brightness-50 transition-all duration-300"
                 />
                 <a
@@ -126,7 +133,7 @@
               </div>
               <h3 class="mb-2 text-lg">
                 <a href="{{ .RelPermalink }}">
-                  {{ .Params.Title }}
+                  {{ .Params.ContentTitle }}
                 </a>
               </h3>
               <p class="mb-1 text-sm">
@@ -149,7 +156,7 @@
                 </strong>
               </p>
               <p class="mb-2 text-sm">
-                {{ .Params.description | truncate 80 }}
+                {{ .Params.ContentDescription | truncate 80 }}
               </p>
               <p>
                 <a href="{{ .RelPermalink }}">

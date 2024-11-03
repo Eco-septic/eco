@@ -9,7 +9,7 @@
       <!-- Category Filter Dropdown -->
       <legend class="ml-6">
         {{ $settings := index .Site.Data.settings .Lang }}
-        {{ $settings.news.taxonomy }}
+        {{ $settings.products.taxonomy }}
       </legend>
       {{ $currentLang := index .Site.Data.categories .Lang }}
       {{ $groups := $currentLang.groups }}
@@ -70,7 +70,7 @@
 
 
         <div
-          class="product-item group relative p-4 border rounded shadow-lg"
+          class="product-item group relative p-4 border rounded shadow-lg flex flex-col justify-between"
           data-product-category="{{ .Params.categories }}"
           data-product-price="{{ $dataPrice }}"
         >
@@ -88,7 +88,7 @@
           >
             <img
               src="{{ .Params.image }}"
-              alt="{{ .Title }}"
+              alt="{{ .Params.title }}"
               class="w-full h-auto group-hover:scale-150 group-hover:brightness-75 object-cover transition duration-300 ease-in-out transform"
               loading="lazy"
             />
@@ -116,9 +116,9 @@
           </p>
 
           <div class="text-lg">
-            {{ $price := float .Params.price }}
-            {{ $promo := float .Params.promo }}
-            {{ $newPrice := float .Params.newPrice }}
+            {{ $price := float (default "0" .Params.price) }}
+            {{ $promo := float (default "0" .Params.promo) }}
+            {{ $newPrice := float (default "0" .Params.newPrice) }}
 
             {{ if and $promo (gt $promo 0) }}
               {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
@@ -155,7 +155,7 @@
             href="{{ .RelPermalink }}"
             class="text-blue-500 underline mt-2 block"
             >{{ $settings := index .Site.Data.settings .Lang }}
-            {{ $settings.product.more }}</a
+            {{ $settings.products.more }}</a
           >
         </div>
       {{ end }}

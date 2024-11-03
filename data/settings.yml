@@ -1,41 +1,54 @@
 ky:
   telegram: "+000000"
+  products:
+    or: по заказу
+    parameters: Характеристики
+    similar: Похожие продукции из категории
+    taxonomy: Категории продукции
+    na: Не доступен
+    av: В наличии
+    more: узнать больше..
+    availability: Доступность
+    benefits: Преимущества
   telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
   main_logo: /media/uploads/testlogo.png
   whatsapp: "+000000"
-  address: 123 Street Name, City, Country
-  contactUs: contact us
-  products:
-    taxonomy: categories
-    more: more abot product
-    parameters: parameters
-    benefits: benefits
-    similar: similar
   news:
-    taxonomy: Rubriki
-    more: more abot news
-    rescent: rescent news
+    taxonomy: Новостные рубрики
+    more: Подробнее...
+    rescent: Недавние новости
+  address: 123 Street Name, City, Country
   address_logo: /media/uploads/email-outline.svg
   whatsapp_logo: /media/uploads/whatsapp.svg
   email: ecoseptic.kg@gmail.com
   description: « ЭКО СЕПТИК » -  компания, специализирующаяся на поставке,
     установке и обслуживании систем очистки сточных вод
+  contactUs: Cвязаться с нами
 ru:
   telegram: "+000000"
+  products:
+    or: по заказу
+    parameters: Характеристики
+    similar: Похожие продукции из категории
+    taxonomy: Категории продукции
+    na: Не доступен
+    av: В наличии
+    more: узнать больше..
+    availability: Доступность
+    benefits: Преимущества
   telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
   main_logo: /media/uploads/testlogo.png
   whatsapp: "+000000"
-  address: Бишкек, Кыргызстан
-  more:
-    product: more abot product
-    news: more abot news
-  taxonomy:
-    product: categories
-    news: Rubriki
+  news:
+    taxonomy: Новостные рубрики
+    more: Подробнее...
+    rescent: Недавние новости
+  address: 123 Street Name, City, Country
   address_logo: /media/uploads/email-outline.svg
   whatsapp_logo: /media/uploads/whatsapp.svg
   email: ecoseptic.kg@gmail.com
   description: « ЭКО СЕПТИК » -  компания, специализирующаяся на поставке,
     установке и обслуживании систем очистки сточных вод
+  contactUs: Cвязаться с нами

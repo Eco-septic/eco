@@ -24,23 +24,23 @@
     id="newsCardContainer"
     class="grid min-h-[400px] grid-cols-1 md:grid-cols-2 justify-items-center gap-6 lg:grid-cols-3 opacity-0 translate-y-5 transition-all duration-500 ease-out"
   >
-    {{ range $index, $pages := $news }}
+    {{ range $news }}
       <div
-        class="news-card space-y-2 opacity-0 max-w-80 translate-y-5 transform transition-all duration-500 ease-out"
+        class="news-card space-y-2 opacity-0 max-w-80 translate-y-5 transform transition-all duration-500 ease-out "
         data-item="news"
       >
         <div class="overflow-hidden w-full h-48 rounded-lg ">
           <img
-            src="{{ $pages.Params.titleImage }}"
-            alt="{{ $pages.Params.title }}"
+            src="{{ .Page.Params.titleImage }}"
+            alt="{{ .Page.Params.title }}"
             class="object-cover size-full mb-4  transition-all duration-500 ease-out hover:brightness-50 hover:cursor-pointer hover:scale-125 "
           />
         </div>
-        <h3 class="text-base ">
-          {{ $pages.Params.title | truncate 100 }}
+        <h3 class="text-base">
+          {{ .Page.Params.title | truncate 100 }}
         </h3>
         <p class="text-sm">
-          {{ with .Params.date }}
+          {{ with .Page.Params.date }}
             {{ . | time.Format ":date_long" }}
           {{ else }}
             <span>No date available</span>

@@ -1,8 +1,8 @@
 ---
-linkTitle: news
+linkTitle: Новости
 menu:
   mainmenu:
-    name: News
+    name: Новости
     pageRef: /news
     weight: 5
 sitemap:
@@ -10,5 +10,5 @@ sitemap:
   priority: 1
   disable: false
 title: Добро пожаловать
-description: ""
+description: test
 ---
