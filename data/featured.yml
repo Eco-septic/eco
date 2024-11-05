@@ -1,9 +1,9 @@
-ky:
+ru:
   groups:
     - group: "0"
       translation: Наши работы
     - group: "1"
-      translation: one
+      translation: Область применения
     - group: "2"
       translation: two
     - group: "3"
@@ -14,7 +14,7 @@ ky:
       translation: five
     - group: "6"
       translation: Все рубрики
-ru:
+ky:
   groups:
     - group: "0"
       translation: Наши работы
