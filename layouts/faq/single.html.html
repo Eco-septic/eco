@@ -20,9 +20,9 @@
             >
               <div class="overflow-hidden">
                 <img src="{{ relURL $item.image }}" alt="" />
-                <ul class="list-inside list-[space] text-base mt-4">
+                <ul class="list-inside  text-base mt-4">
                   {{ range  $item.answer }}
-                    <li class="mt-2 text-base">
+                    <li class="mt-2 mb-4 text-justify text-base">
                       {{ .p }}
                     </li>
                   {{ end }}
