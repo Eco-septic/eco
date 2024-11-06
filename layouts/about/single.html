@@ -5,12 +5,12 @@
     {{ range .Params.sections }}
 
       <section aria-label="{{ .title }}" class="text-start w-full">
-        <h2 class="text-lg">
+        <h2 class="text-lg mb-10">
           {{ .title }}
         </h2>
-        <ul class="list-inside list-[space] text-base mt-4">
+        <ul class="list-inside text-base">
           {{ range .listDescription }}
-            <li class="mt-2 text-base">
+            <li class="mb-6 text-base text-justify">
               {{ .description }}
             </li>
           {{ end }}
@@ -18,7 +18,29 @@
       </section>
     {{ end }}
 
-
+    {{ $news := (where .Site.RegularPages "Type" "news") }}
+    {{ $currentLang := index .Site.Data.featured .Lang }}
+    {{ $translationTaxonomy := $currentLang.groups }}
+    <section class="text-start w-full">
+      <h2 class="text-lg mb-10">
+        {{ range $translationTaxonomy }}
+          {{ if eq .group "0" }}
+            {{ .translation }}
+          {{ end }}
+        {{ end }}
+      </h2>
+      {{ range $news }}
+        {{ if eq .Params.featured 0 }}
+          <ul class="list-disc">
+            <li class="text-base">
+              <a href="{{ .RelPermalink }}">
+                {{ .Params.ContentTitle }}
+              </a>
+            </li>
+          </ul>
+        {{ end }}
+      {{ end }}
+    </section>
     <section aria-label="licenses">
       {{ $title := .Params.licensesSection.title }}
       <h2 class="text-lg">{{ $title }}</h2>

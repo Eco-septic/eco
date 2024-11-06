@@ -907,6 +907,10 @@ video {
   margin-top: 2rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1034,10 +1038,6 @@ video {
   width: 0.75rem;
 }
 
-.w-\[220px\] {
-  width: 220px;
-}
-
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1049,6 +1049,10 @@ video {
 
 .min-w-24 {
   min-width: 6rem;
+}
+
+.min-w-\[220px\] {
+  min-width: 220px;
 }
 
 .min-w-full {
@@ -1585,6 +1589,10 @@ video {
 
 .text-right {
   text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .text-start {
@@ -2479,16 +2487,6 @@ summary {
     --tw-text-opacity: 1;
     color: rgb(22 101 52 / var(--tw-text-opacity));
   }
-}
-
-@counter-style space {
-  system: cyclic;
-
-  symbols: "\00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0 \00a0";
-
-  /* Non-breaking space */
-
-  suffix: "     ";
 }
 
 .hover\:PaginationDotsActive:hover {

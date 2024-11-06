@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <main class="container mx-auto ">
+  <main class="container mx-auto mb-10">
     {{ partial "breadcrumbs.html" . }}
     <div
       class="flex flex-col lg:flex-row gap-4 justify-between"
@@ -99,6 +99,9 @@
     <div class="markdown mb-9"></div>
       <div>{{ .Content }}</div>
     </div>
+    {{ $products := (where .Site.RegularPages "Type" "products") }}
+    {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
+    {{ if gt (len $category) 1}}
     <section aria-label="similar products" class="my-10">
         <div class="flex justify-between">
           {{ $settings := index .Site.Data.settings .Lang }}
@@ -117,12 +120,11 @@
           </div>
         </div>
         <div class="overflow-x-scroll flex gap-4 py-4 remove-scroll-style" id="product-container">
-          {{ $products := (where .Site.RegularPages "Type" "products") }}
-          {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
+         
           {{ $currentPage := . }}
           {{ range $index, $pages :=  $category.ByPublishDate.Reverse }}
             {{ if ne $pages $currentPage }}
-            <div class="border overflow-hidden rounded border-gray-600 w-[220px] inline-flex flex-col">
+            <div class="border overflow-hidden rounded border-gray-600 min-w-[220px] inline-flex flex-col">
               <div class="group overflow-hidden relative w-full" style="padding-top: 100%;">
                  {{ if or $pages.Params.promo $pages.Params.newPrice }}
                     <img
@@ -190,9 +192,10 @@
               </div>
             </div>
             {{end}}
-          {{ end }}
-        </div>
-      </section>
+            {{ end }}
+          </div>
+        </section>
+        {{ end }}
 
       <script>
         const productContainer = document.getElementById('product-container');

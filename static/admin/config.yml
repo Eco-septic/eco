@@ -251,7 +251,7 @@ collections:
             i18n: true # Enable i18n for the list items
             field:
               { label: "текст", name: "item", widget: "string", i18n: true }
-          
+
           - label: "Картинки слайда"
             name: "images"
             widget: "image"
@@ -842,6 +842,7 @@ collections:
           widget: "number",
           i18n: duplicate,
           required: false,
+          default: "0",
         }
       - {
           label: "Новая цена",
@@ -849,6 +850,7 @@ collections:
           widget: "number",
           i18n: duplicate,
           required: false,
+          default: "0",
         }
       - label: "Изображение"
         name: "image"
