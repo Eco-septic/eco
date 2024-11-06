@@ -1,10 +1,5 @@
 ru:
   telegram: "+000000"
-  telegram_logo: /media/uploads/telegram.svg
-  phone: test
-  whatsapp: "+000000"
-  whatsapp_logo: /media/uploads/whatsapp.svg
-  phone_logo: /media/uploads/free-icon-shield-1341916.png
   products:
     or: по заказу
     parameters: Характеристики
@@ -15,8 +10,11 @@ ru:
     more: узнать больше..
     availability: Доступность
     benefits: Преимущества
+  telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/testlogo.png
+  phone: test
+  main_logo: /media/uploads/test2logo.png
+  whatsapp: "+000000"
   mini_logo: /images/mini_logo.png
   news:
     taxonomy: Новостные рубрики
@@ -24,7 +22,9 @@ ru:
     rescent: Недавние новости
   address: 123 Street Name, City, Country
   address_logo: /media/uploads/email-outline.svg
+  whatsapp_logo: /media/uploads/whatsapp.svg
   og_base: /images/base.png
+  phone_logo: /media/uploads/free-icon-shield-1341916.png
   email: ecoseptic.kg@gmail.com
   description: « ЭКО СЕПТИК » -  компания, специализирующаяся на поставке,
     установке и обслуживании систем очистки сточных вод
@@ -44,7 +44,7 @@ ky:
   telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
   phone: test
-  main_logo: /media/uploads/testlogo.png
+  main_logo: /media/uploads/test2logo.png
   whatsapp: "+000000"
   mini_logo: /images/mini_logo.png
   news:
