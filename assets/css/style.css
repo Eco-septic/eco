@@ -2655,6 +2655,10 @@ summary {
   grid-template-rows: 1fr;
 }
 
+.peer[open] ~ .peer-open\:p-4 {
+  padding: 1rem;
+}
+
 .peer[open] ~ .peer-open\:px-4 {
   padding-left: 1rem;
   padding-right: 1rem;

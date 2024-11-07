@@ -328,6 +328,7 @@
       "peer",
       "peer-checked:bg-darkMode",
       "peer-open:grid-rows-[1fr]",
+      "peer-open:p-4",
       "peer-open:px-4",
       "pitch-description",
       "pitch-item",
