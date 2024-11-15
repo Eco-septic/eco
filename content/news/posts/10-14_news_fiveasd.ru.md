@@ -1,5 +1,6 @@
 ---
-ContentTitle: Чуйская область, граница Кыргызстан - Казахстан, ТОПАЭРО 16 м3
+ContentTitle: В Чуйской области на границе Кыргызстана и Казахстана установили
+  септик ТОПАЭРО 16 м³
 ContentDescription: Desctiprion
 featured: 0
 titleImage: /media/uploads/example-2.jpg
