@@ -43,7 +43,7 @@ newsSection:
   description: Мы также рады Вам предложить надежное и профессиональное
     обслуживание автономной канализации.
 sitemap:
-  changefreq: monthly
+  changefreq: daily
   priority: 1
   disable: false
 title: " дилерская компания,"
