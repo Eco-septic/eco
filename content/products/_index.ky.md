@@ -1,6 +1,6 @@
 ---
 sitemap:
-  changefreq: monthly
+  changefreq: daily
   priority: 0.8
   disable: false
 title: Продукция
