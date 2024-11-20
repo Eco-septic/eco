@@ -1,7 +1,7 @@
 ---
-ContentTitle: "В Баткенской области Лейлекского района  г. Раззаков установили
-  септик ТОПАЭРО 16 м³ в жилом доме МВД "
-ContentDescription: "news  "
+ContentTitle: " Установили септик ТОПАЭРО 16 м³ в жилом доме МВД в Баткенской
+  области Лейлекского района  г. Раззаков"
+ContentDescription: " новости"
 featured: 0
 titleImage: /media/uploads/example-2.jpg
 date: 2024-10-15T04:04:00+06:00
