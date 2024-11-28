@@ -2,7 +2,7 @@
 ContentTitle: "Баткенская область, г.Раззаков, жилой многоэтажный дом МВД, ТОПАЭРО 16 м3 "
 ContentDescription: news
 featured: 0
-titleImage: /media/uploads/example-2.jpg
+titleImage: /media/uploads/whatsapp_image_2024-11-28_at_13.49.54_1_.jpeg
 date: 2024-10-15T04:04:00+06:00
 sitemap:
   changefreq: monthly
