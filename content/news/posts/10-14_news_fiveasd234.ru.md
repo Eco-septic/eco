@@ -3,7 +3,7 @@ ContentTitle: " Установили септик ТОПАЭРО 16 м³ в жи
   области Лейлекского района  г. Раззаков"
 ContentDescription: " новости"
 featured: 0
-titleImage: /media/uploads/whatsapp_image_2024-11-28_at_13.49.54_1_.jpeg
+titleImage: /media/uploads/whatsapp_image_2024-11-28_at_13.49.54_2_.jpeg
 date: 2024-10-15T04:04:00+06:00
 sitemap:
   changefreq: monthly
