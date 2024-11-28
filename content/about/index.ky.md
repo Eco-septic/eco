@@ -1,5 +1,5 @@
 ---
-linkTitle: О нас
+linkTitle: Биз жонундо
 menu:
   mainmenu:
     name: О нас
