@@ -3,7 +3,7 @@ ContentTitle: В Чуйской области на границе Кыргыз�
   септик ТОПАЭРО 16 м³
 ContentDescription: Desctiprion
 featured: 0
-titleImage: /media/uploads/example-2.jpg
+titleImage: /media/uploads/logoza.ru_5_.png
 date: 2024-10-25T04:04:00+06:00
 sitemap:
   changefreq: monthly
