@@ -19,7 +19,7 @@ ky:
     - group: "0"
       translation: Наши работы
     - group: "1"
-      translation: one
+      translation: Область применения
     - group: "2"
       translation: two
     - group: "3"
