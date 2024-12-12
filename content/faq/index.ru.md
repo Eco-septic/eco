@@ -63,5 +63,5 @@ sitemap:
   priority: 0.6
   disable: false
 title: FAQ
-description: Hello
+description: принцип работы септика
 ---
