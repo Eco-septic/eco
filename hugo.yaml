@@ -23,7 +23,7 @@ languages:
     weight: 2
 
   ky:
-    disabled: true
+    disabled: false
     languageCode: ru_KG
     languageDirection: ltr
     languageName: KY

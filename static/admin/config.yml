@@ -1,4 +1,4 @@
-local_backend: true
+local_backend: false
 backend:
   name: git-gateway
   branch: deploy # Branch to update (optional; defaults to master)
@@ -85,12 +85,14 @@ collections:
               name: "main_logo",
               widget: "image",
               i18n: duplicate,
+              choose_url: false,
             }
           - {
               label: "Mini Лого Сайта",
               name: "mini_logo",
               widget: "image",
               i18n: duplicate,
+              choose_url: false,
               media_folder: "../assets/images", # Specify the assets folder here
               public_folder: "/images",
             }
@@ -98,6 +100,7 @@ collections:
               label: "OpenGraph base",
               name: "og_base",
               widget: "image",
+              choose_url: false,
               i18n: duplicate,
               media_folder: "../assets/images", # Specify the assets folder here
               public_folder: "/images",
@@ -113,6 +116,7 @@ collections:
               label: "email лого",
               name: "email_logo",
               widget: "image",
+              choose_url: false,
               i18n: duplicate,
             }
           - {
@@ -125,6 +129,7 @@ collections:
               label: "whatsapp лого",
               name: "whatsapp_logo",
               widget: "image",
+              choose_url: false,
               i18n: duplicate,
             }
           - {
@@ -137,6 +142,7 @@ collections:
               label: "telegram лого",
               name: "telegram_logo",
               widget: "image",
+              choose_url: false,
               i18n: duplicate,
             }
           - { label: "phone", name: "phone", widget: "string", i18n: duplicate }
@@ -144,6 +150,7 @@ collections:
               label: "phone лого",
               name: "phone_logo",
               widget: "image",
+              choose_url: false,
               i18n: duplicate,
             }
           - { label: "адресс", name: "address", widget: "string", i18n: true }
@@ -151,6 +158,7 @@ collections:
               label: "адресс лого",
               name: "address_logo",
               widget: "image",
+              choose_url: false,
               i18n: duplicate,
             }
           - {
@@ -283,6 +291,7 @@ collections:
               label: "Задницй фон",
               name: "background",
               widget: "image",
+              choose_url: false,
               i18n: duplicate,
             }
           - label: "Лист Питчей"
@@ -297,6 +306,7 @@ collections:
                   name: "icon",
                   widget: "image",
                   i18n: duplicate,
+                  choose_url: false,
                 }
               - { label: "Титул", name: "title", widget: "string", i18n: true }
               - {
@@ -431,6 +441,7 @@ collections:
                   name: "image",
                   widget: "image",
                   i18n: duplicate,
+                  choose_url: false,
                 }
       - name: "licensesSection"
         label: "Секция Лиценций"
@@ -459,6 +470,7 @@ collections:
                   label: "Картинка лицензии",
                   name: "image",
                   widget: "image",
+                  choose_url: false,
                   i18n: duplicate,
                 }
       - {
@@ -607,6 +619,7 @@ collections:
               name: "image",
               widget: "image",
               i18n: duplicate,
+              choose_url: false,
               required: false,
             }
           - label: "Ответ"
@@ -750,13 +763,14 @@ collections:
           name: "titleImage",
           widget: "image",
           i18n: duplicate,
+          choose_url: false,
         }
       - {
           label: "Дата",
           name: "date",
           widget: "datetime",
           format: "YYYY-MM-DDTHH:mm:ssZ", # Match Hugo format
-          default: "now",
+          default: "{{now}}",
           i18n: duplicate,
         }
       - {

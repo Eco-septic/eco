@@ -129,7 +129,7 @@
         />
         <div>
           {{ $settings := index .Site.Data.settings .Lang }}
-          {{ $settings.news.taxonomy }}
+          {{ $settings.news.taxonomy }}:
           {{ $featured := string .Params.featured }}
           {{ range $translationTaxonomy }}
             {{ if eq .group $featured }}
