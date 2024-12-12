@@ -29,8 +29,12 @@ sections:
           индивидуальный подход к каждому клиенту, качество, профессионализм и
           ответственность.
 certificatesSection:
-  title: certificates
+  title: Лицензии и сертификаты
   certificates:
+    - image: /media/uploads/img_7200.jpg
+      registrNumber: asd
+    - image: /media/uploads/img_7198_1_.jpg
+      registrNumber: asd
     - registrNumber: Completion Certificate
       image: /media/uploads/img_7199_1_.jpg
     - registrNumber: Achievement Award
@@ -50,12 +54,6 @@ licenses:
       image: https://via.placeholder.com/200x150.png/28a745/ffffff?text=Medical+Practice+License
     - registrNumber: Trade License
       image: https://via.placeholder.com/200x150.png/6f42c1/ffffff?text=Trade+License
-linkTitle: О нас
-menu:
-  mainmenu:
-    name: О нас
-    pageRef: /about
-    weight: 2
 licensesSection:
   title: licenses
   licenses:
@@ -63,6 +61,12 @@ licensesSection:
       image: /media/uploads/img_7198_1_.jpg
     - registrNumber: Business License
       image: /media/uploads/img_7200.jpg
+linkTitle: О нас
+menu:
+  mainmenu:
+    name: О нас
+    pageRef: /about
+    weight: 2
 type: about
 sitemap:
   changefreq: monthly

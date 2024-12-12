@@ -1,10 +1,4 @@
 ---
-linkTitle: Биз жонундо
-menu:
-  mainmenu:
-    name: О нас
-    pageRef: /about
-    weight: 2
 sections:
   - title: О КОМПАНИИ
     description: >-
@@ -52,6 +46,12 @@ licensesSection:
       image: /media/uploads/img_7198_1_.jpg
     - registrNumber: Business License
       image: /media/uploads/img_7200.jpg
+linkTitle: Биз жонундо
+menu:
+  mainmenu:
+    name: О нас
+    pageRef: /about
+    weight: 2
 type: about
 sitemap:
   changefreq: monthly

@@ -1,4 +1,4 @@
-local_backend: false
+local_backend: true
 backend:
   name: git-gateway
   branch: deploy # Branch to update (optional; defaults to master)
@@ -412,7 +412,7 @@ collections:
                   i18n: true,
                 }
       - name: "certificatesSection"
-        label: "Секция Сертификаты"
+        label: "Секция Сертификаты и лицензии"
         widget: "object"
         collapsed: true
         i18n: true
@@ -423,7 +423,7 @@ collections:
               widget: "string",
               i18n: true,
             }
-          - label: "Лист Сертификатоф"
+          - label: "Лист Документов"
             name: "certificates"
             widget: "list"
             i18n: true
@@ -432,46 +432,16 @@ collections:
             fields:
               - {
                   name: "registrNumber",
-                  label: "Номер сертификата",
+                  label: "Номер документа",
                   widget: "string",
                   i18n: duplicate,
                 }
               - {
-                  label: "Картинка сертификата",
+                  label: "Картинка документа",
                   name: "image",
                   widget: "image",
                   i18n: duplicate,
                   choose_url: false,
-                }
-      - name: "licensesSection"
-        label: "Секция Лиценций"
-        i18n: true
-        collapsed: true
-        widget: "object"
-        fields:
-          - label: "Титул секции"
-            name: "title"
-            widget: "string"
-            i18n: true
-          - label: "Лист лицензий"
-            name: "licenses"
-            widget: "list"
-            minimize_collapsed: true
-            add_to_top: true
-            i18n: true
-            fields:
-              - {
-                  name: "registrNumber",
-                  label: "Номер лицензии",
-                  widget: "string",
-                  i18n: duplicate,
-                }
-              - {
-                  label: "Картинка лицензии",
-                  name: "image",
-                  widget: "image",
-                  choose_url: false,
-                  i18n: duplicate,
                 }
       - {
           label: "Type",

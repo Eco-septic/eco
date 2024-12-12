@@ -41,41 +41,6 @@
         {{ end }}
       {{ end }}
     </section>
-    <section aria-label="licenses">
-      {{ $title := .Params.licensesSection.title }}
-      <h2 class="text-lg">{{ $title }}</h2>
-      <div
-        class="grid grid-flow-row gap-8 mt-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4"
-      >
-        {{ range .Params.licensesSection.licenses }}
-          <div class=" shadow-md ">
-            <!-- Image Container with A4 Aspect Ratio -->
-            <div
-              class="w-full relative aspect-[1/1.414] overflow-hidden  mb-4 bg-white"
-            >
-              <img
-                src="{{ relURL .image }}"
-                alt="{{ $title }} {{ .registrNumber }}"
-                class="w-full h-full object-contain"
-              />
-              <a
-                href="{{ relURL .image }}"
-                class="absolute size-7 bottom-0 right-0 "
-                data-download="{{ .image }}"
-                download="{{ .image }}"
-                title="download"
-              >
-                <img src="{{ relURL "static/download.svg" }}" alt="icon" />
-              </a>
-            </div>
-            <!-- Title & Description -->
-            <p class="text-sm text-center font-semibold mb-2">
-              {{ .registrNumber }}
-            </p>
-          </div>
-        {{ end }}
-      </div>
-    </section>
 
     <section aria-label="certificates">
       {{ $title := .Params.certificatesSection.title }}
