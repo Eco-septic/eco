@@ -68,7 +68,7 @@
           {{ range $name, $taxonomy := .Site.Taxonomies.featured }}
             <li class=" w-fit">
               <a
-                href="{{ $taxonomy.Page.Permalink }}"
+                href="{{ $taxonomy.Page.RelPermalink }}"
                 class="text-sm  hover:opacity-50"
               >
                 {{ range $groups }}
