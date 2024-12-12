@@ -32,15 +32,15 @@ ru:
 ky:
   telegram: "+996555973973"
   products:
-    or: по заказу
-    parameters: Характеристики
-    similar: Похожие продукции из категории
-    taxonomy: Категории продукции
-    na: Не доступен
-    av: В наличии
-    more: узнать больше..
-    availability: Доступность
-    benefits: Преимущества
+    or: Буйрутма боюнча
+    parameters: Мүнөздөмөлөр
+    similar: Ушул эле категориядагы окшош продукциялар
+    taxonomy: Продукциянын категориялары
+    na: Жок
+    av: Бар
+    more: Көбүрөөк билүү...
+    availability: Бар-жогу
+    benefits: Артыкчылыктары
   telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
   phone: test
@@ -48,15 +48,15 @@ ky:
   whatsapp: "+996555973973"
   mini_logo: /images/mini_logo.png
   news:
-    taxonomy: Новостные рубрики
-    more: Подробнее...
-    rescent: Недавние новости
+    taxonomy: Жаңылыктар бөлүмдөрү
+    more: Толугураак...
+    rescent: Акыркы жаңылыктар
   address: 123 Street Name, City, Country
   address_logo: /media/uploads/email-outline.svg
   whatsapp_logo: /media/uploads/whatsapp.svg
   og_base: /images/base.png
   phone_logo: /media/uploads/free-icon-shield-1341916.png
   email: ecoseptic.kg@gmail.com
-  description: « ЭКО СЕПТИК » -  компания, специализирующаяся на поставке,
-    установке и обслуживании систем очистки сточных вод
-  contactUs: Cвязаться с нами
+  description: ЭКО СЕПТИК –  САРКЫНДЫ СУУЛАРДЫ ТАЗАЛОО ТУТУМДАРЫН ЖЕТКИРҮҮГӨ,
+    ОРНОТУУГА ЖАНА ТЕЙЛӨӨГӨ АДИСТЕШКЕН КОМПАНИЯ.
+  contactUs: Биз менен байланышуу
