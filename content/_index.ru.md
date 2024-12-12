@@ -15,6 +15,7 @@ hero:
     - "Обновленный корпус "
     - Абсолютная герметичность
   images:
+    - /media/uploads/dall_e_2024-11-22_22.52.55_-_an_eco-friendly_house_situated_in_a_green_lush_environment._the_house_is_modern_with_sustainable_architectural_design_featuring_solar_panels_on_the_.webp
     - /media/uploads/pexels-tomas-malik-793526-2581922.jpg
     - /media/uploads/slider2.jpg
   button: whatsapp
@@ -40,10 +41,10 @@ pitchSection:
       description: Корпус из полипропилена не подвержен коррозии
 newsSection:
   title: Установленные объекты
-  description: Мы также рады Вам предложить надежное и профессиональное
-    обслуживание автономной канализации.
+  description: Мы рады Вам предложить надежное и профессиональное обслуживание
+    автономной канализации.
 sitemap:
-  changefreq: monthly
+  changefreq: daily
   priority: 1
   disable: false
 title: ЭКО СЕПТИК КЫРГЫЗСТАН ЭКО СЕПТИК КЫРГЫЗСТАН
