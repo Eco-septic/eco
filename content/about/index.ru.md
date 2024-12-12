@@ -31,10 +31,10 @@ sections:
 certificatesSection:
   title: Лицензии и сертификаты
   certificates:
-    - image: /media/uploads/img_7200.jpg
-      registrNumber: asd
-    - image: /media/uploads/img_7198_1_.jpg
-      registrNumber: asd
+    - image: /media/uploads/img_7199_1_.jpg
+      registrNumber: фыв2
+    - image: /media/uploads/img_7201.jpg
+      registrNumber: еуые1
     - registrNumber: Completion Certificate
       image: /media/uploads/img_7199_1_.jpg
     - registrNumber: Achievement Award

@@ -17,9 +17,9 @@ ru:
 ky:
   groups:
     - group: "0"
-      translation: Наши работы
+      translation: Биздин аткарылган иштер
     - group: "1"
-      translation: Область применения
+      translation: Колдонуу чөйрөсү
     - group: "2"
       translation: two
     - group: "3"

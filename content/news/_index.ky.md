@@ -1,8 +1,8 @@
 ---
-linkTitle: Новости
+linkTitle: Жанылыктар
 menu:
   mainmenu:
-    name: Новости
+    name: Жанылыктар
     pageRef: /news
     weight: 5
 sitemap:
