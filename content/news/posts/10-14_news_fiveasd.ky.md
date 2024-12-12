@@ -38,4 +38,4 @@ description: Чүй облусунда Кыргызстан менен Каза�
 
 
 
-![test](/media/uploads/untitled_7_.jpg "title")
+![test](/media/uploads/topas-75-600x464.jpg "title")
