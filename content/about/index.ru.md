@@ -29,7 +29,7 @@ sections:
           индивидуальный подход к каждому клиенту, качество, профессионализм и
           ответственность.
 certificatesSection:
-  title: certificates
+  title: Лицензии и сертификаты
   certificates:
     - registrNumber: Completion Certificate
       image: /media/uploads/img_7199_1_.jpg
