@@ -29,15 +29,15 @@ sections:
           индивидуальный подход к каждому клиенту, качество, профессионализм и
           ответственность.
 certificatesSection:
-  title: Лицензии и сертификаты
+  title: Лицензии, сертификаты и благодарственные письма
   certificates:
     - image: /media/uploads/img_7198_1_.jpg
-      registrNumber: фыв2
+      registrNumber: "-"
     - image: /media/uploads/img_7200.jpg
-      registrNumber: еуые1
-    - registrNumber: Completion Certificate
+      registrNumber: "-"
+    - registrNumber: "-"
       image: /media/uploads/img_7199_1_.jpg
-    - registrNumber: Achievement Award
+    - registrNumber: "-"
       image: /media/uploads/img_7201.jpg
 licenses:
   title: titleasasd
