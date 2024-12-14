@@ -31,6 +31,12 @@ sections:
 certificatesSection:
   title: Лицензии, сертификаты и благодарственные письма
   certificates:
+    - image: /media/uploads/n_3_page-0003.jpg
+      registrNumber: "-"
+    - image: /media/uploads/n_3_page-0002.jpg
+      registrNumber: "-"
+    - image: /media/uploads/n_3_page-0001.jpg
+      registrNumber: "-"
     - image: /media/uploads/img_7198_1_.jpg
       registrNumber: "-"
     - image: /media/uploads/img_7200.jpg
