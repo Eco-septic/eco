@@ -1,41 +1,67 @@
 ---
-sitemap:
-  changefreq: yearly
-  priority: 1
-  disable: false
+linkTitle: FAQ
 menu:
   mainmenu:
     name: FAQ
     pageRef: /faq
     weight: 4
-title: FAQ
-description: Hello
 list:
-  - question: What is lorem ipsum?
-    answer: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua.
-  - question: Why do we use lorem ipsum?
-    answer: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-      ut aliquip ex ea commodo consequat.
-  - question: Where does lorem ipsum come from?
-    answer: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-      dolore eu fugiat nulla pariatur.
-  - question: How can I generate lorem ipsum text?
-    answer: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt Excepteur sint occaecat cupidatat non proident, sunt in
-      culpa qui officia deserunt Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-      officia deserunt Excepteur sint occaecat cupidatat non proident, sunt in
-      culpa qui officia deserunt Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt mollit anim id est laborum.
+  - question: "КАК РАБОТАЕТ АВТОНОМНАЯ КАНАЛИЗАЦИЯ? "
+    answer:
+      - p: "Сточные воды направляются в приемную камеру, где происходит уравнивание их
+          поступления, а также начинается биологическое окисление.  "
+      - p: После этого стоки равномерно перекачиваются в аэротенк, где происходит
+          окончательное разложение органических соединений путем окисления
+          активным илом.
+      - p: Активный ил представляет собой взвешенную в воде активную биомассу,
+          осуществляющую очистку сточных вод в биоокислителях с аэрацией.
+      - p: Затем смесь чистой воды и активного ила направляется во вторичный отстойник,
+          где происходит разделение активного ила от чистой воды.
+    image: /media/uploads/topas-_1_-min.jpg
+  - question: КАКИЕ ТЕХНИЧЕСКИЕ ОБСЛУЖИВАНИЯ СЛЕДУЕТ ПРОВОДИТЬ В СИСТЕМАХ АВТОНОМНОЙ
+      КАНАЛИЗАЦИИ?
+    answer:
+      - p: "Регулярно, каждые 3 месяца, проводятся следующие процедуры: "
+      - p: • Удаление осадка из стабилизатора активного ила с использованием встроенного
+          эрлифт-насоса или фекального насоса.
+      - p: • Очистка насосов эрлифтов и фильтра крупных фракций в приемной камере.
+      - p: • Очистка и промывка всей внутренней емкости септика Топас.
+      - p: "• Прочистка форсунок в 1 и 2 циклах. "
+      - p: • Удаление неперерабатываемого мусора с помощью нержавеющего сита.
+      - p: Раз в год выполняется процедура прочистки воздушного фильтра компрессора. А
+          каждые 5 лет осуществляется очистка донной части приемного резервуара
+          и аэротенка от минерализованного осадка.
+  - question: КАК ЧАСТО СТОИТ ВЫЗЫВАТЬ АСЕНИЗАЦИОННУЮ МАШИНУ?
+    answer:
+      - p: Ассенизационная машина не потребуется. В станции остается небольшое
+          количество ила, который можно откачать в ручную насосом, уже
+          установленным в станции.
+  - question: МОЖНО ЛИ ОТКЛЮЧАТЬ СТАНЦИЮ ОТ СЕТИ ?
+    answer:
+      - p: Не рекомендуется отключать аэрационные станции и биосептики от электросети,
+          поскольку в этом случае процессы очистки останавливаются.
+  - question: ГРОМКО ЛИ РАБОТАЕТ СТАНЦИЯ?
+    answer:
+      - p: Если стоять в 5 метрах от станции, ее не будет слышно. Если ближе, то можно
+          услышать легкий гул компрессора или насоса.
+  - question: КАКОЙ СРОК СЛУЖБЫ СТАНЦИИ?
+    answer:
+      - p: Производители гарантируют 50 лет. В зависимости от условий эксплуатации
+          минимальный срок — 30 лет. При правильном монтаже проблем с корпусом
+          быть не должно. А вот все электрооборудование со временем
+          изнашивается. Срок службы компрессора — около 12 лет при регулярной
+          замене мембран, насоса — 5–7 лет. Главное, вовремя проводить сервисное
+          обслуживание.
+  - question: ЗАМЕРЗАЕТ ЛИ РАБОТАЮЩАЯ АВТОНОМНАЯ КАНАЛИЗАЦИЯ ЗИМОЙ?
+    answer:
+      - p: Не замерзает, так как корпус современных септиков выполнен из полипропилена.
+          Материал не выпускает тепло наружу, а внутри станции постоянно
+          происходят биологические процессы, генерирующие тепловую энергию.
+type: faq
+sitemap:
+  changefreq: yearly
+  priority: 0.6
+  disable: false
+title: FAQ
+description: принцип работы септика
 ---

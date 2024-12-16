@@ -1,0 +1,32 @@
+ru:
+  groups:
+    - group: "0"
+      translation: reserved
+    - group: "1"
+      translation: Автономная канализация
+    - group: "2"
+      translation: Дополнительное оборудование
+    - group: "3"
+      translation: Комплексные очистные
+    - group: "4"
+      translation: four
+    - group: "5"
+      translation: five
+    - group: "6"
+      translation: Все категории
+ky:
+  groups:
+    - group: "0"
+      translation: reserved
+    - group: "1"
+      translation: Автономдук канализация
+    - group: "2"
+      translation: Кошумча жабдуулар
+    - group: "3"
+      translation: Комплекстүү тазалоочу жабдуулар
+    - group: "4"
+      translation: four
+    - group: "5"
+      translation: five
+    - group: "6"
+      translation: Все категории

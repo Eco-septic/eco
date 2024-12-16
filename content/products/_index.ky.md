@@ -1,15 +1,15 @@
 ---
 sitemap:
-  changefreq: monthly
-  priority: 1
+  changefreq: daily
+  priority: 0.8
   disable: false
-title: index
-description: test
+title: Продукция
+description: "-"
 linktitle: products
-linkTitle: products
+linkTitle: Продукция
 menu:
   mainmenu:
-    name: ProductsKG
+    name: Продукция
     pageRef: /products
     weight: 3
 ---

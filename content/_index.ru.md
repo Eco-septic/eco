@@ -1,47 +1,54 @@
 ---
-title: title in russion
-description: descirption in russionss
-linkTitle: home
+linkTitle: Главная
 menu:
   mainmenu:
-    name: MainKY
+    name: Главная
     pageRef: /
     weight: 1
 hero:
-  title: Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, neque.
-  textAnimation: title Animationaasd
+  title: " дилерская компания, специализирующаяся  на поставке и  реконструкции
+    современных автономных канализационных систем и погребов, отвечающие всем
+    мировым экологическим требованиям и стандартам"
+  textAnimation: " ЭКО СЕПТИК КЫРГЫЗСТАН"
   pitchList:
-    - Lorem, ipsum.s
-    - Lorem, ipsum.
-    - Lorem, ipsum.
+    - "Надежная защита "
+    - "Обновленный корпус "
+    - Абсолютная герметичность
   images:
-    - /media/uploads/bg-main.jpg
+    - /media/uploads/pexels-tomas-malik-793526-2581922.jpg
     - /media/uploads/slider2.jpg
+    - /media/uploads/dall_e_2024-11-22_22.52.55_-_an_eco-friendly_house_situated_in_a_green_lush_environment._the_house_is_modern_with_sustainable_architectural_design_featuring_solar_panels_on_the_.webp
+  button: whatsapp
 productSection:
-  title: Продукция Toplos
+  title: Продукция ЭКО СЕПТИК
   description: Автономные канализационные системы и дополнительные оборудования,
     производимые крупной Российской компанией специализирующейся на производстве
     очистных сооружений.
 pitchSection:
   background: /media/uploads/bg-main.jpg
   list:
-    - icon: /media/uploads/refresh-ccw_1_.png
-      title: Lorem ipsupa
-      description: Lorem ipsupLorem ipsup Lorem ipsup
-    - icon: /media/uploads/check-check_1_.png
-      title: Lorem ipsup
-      description: Lorem ipsupLorem ipsup Lorem ipsup
-    - icon: /media/uploads/infinity_1_.png
-      title: Lorem ipsup
-      description: Lorem ipsupLorem ipsup Lorem ipsup
-    - icon: /media/uploads/flower-2_1_.png
-      title: Lorem ipsup
-      description: Lorem ipsupLorem ipsup Lorem ipsup
+    - icon: /media/uploads/free-icon-eco-friendly-5742080.png
+      title: "Экологичность "
+      description: Экономия электричества и экологически очищенные стоки
+    - icon: /media/uploads/free-icon-product-chain-8728054.png
+      title: Полный цикл
+      description: Доставка, установка и техническое обслуживание
+    - icon: /media/uploads/free-icon-premium-quality-5769911.png
+      title: Высокое качество
+      description: Эффективная очистка бытовых стоков до 98%
+    - icon: /media/uploads/free-icon-shield-1341916.png
+      title: Долговечность
+      description: Корпус из полипропилена не подвержен коррозии
 newsSection:
-  title: Lorem Upsim
-  description: nnews desciption
+  title: Установленные объекты
+  description: Мы рады Вам предложить надежное и профессиональное обслуживание
+    автономной канализации.
 sitemap:
-  changefreq: monthly
+  changefreq: daily
   priority: 1
   disable: false
+title: "ЭКО СЕПТИК КЫРГЫЗСТАН "
+description: " Дилерская компания, специализирующаяся  на поставке
+  и  реконструкции современных автономных канализационных систем и погребов,
+  отвечающие всем мировым экологическим требованиям и стандартам."
 ---

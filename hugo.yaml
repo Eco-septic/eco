@@ -2,16 +2,16 @@ baseURL: "https://topol-eco.netlify.app"
 
 taxonomies:
   category: categories #type of product
-  feature: features #news
+  feature: featured #news
   tag: tags # for any any above usage
 
 build:
   buildStats:
     enable: true
 
-enableRobotsTXT: false
+enableRobotsTXT: true
 
-defaultContentLanguage: ky
+defaultContentLanguage: ru
 defaultContentLanguageInSubdir: false
 
 languages:
@@ -45,3 +45,14 @@ sitemap:
   disable: true
   filename: sitemap.xml
   priority: 0.5
+
+markup:
+  goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
+      wrapStandAloneImageWithinParagraph: true
+    renderer:
+      hardWraps: false
+      unsafe: false

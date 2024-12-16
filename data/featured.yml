@@ -1,0 +1,32 @@
+ru:
+  groups:
+    - group: "0"
+      translation: Наши работы
+    - group: "1"
+      translation: Область применения
+    - group: "2"
+      translation: two
+    - group: "3"
+      translation: three
+    - group: "4"
+      translation: four
+    - group: "5"
+      translation: five
+    - group: "6"
+      translation: Все рубрики
+ky:
+  groups:
+    - group: "0"
+      translation: Биздин аткарылган иштер
+    - group: "1"
+      translation: Колдонуу чөйрөсү
+    - group: "2"
+      translation: two
+    - group: "3"
+      translation: three
+    - group: "4"
+      translation: four
+    - group: "5"
+      translation: five
+    - group: "6"
+      translation: Все рубрики

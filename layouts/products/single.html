@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <main class="container mx-auto ">
+  <main class="container mx-auto mb-10">
     {{ partial "breadcrumbs.html" . }}
     <div
       class="flex flex-col lg:flex-row gap-4 justify-between"
@@ -7,73 +7,195 @@
     >
       {{ partial "products/images.html" . }}
       <section aria-label="product details" class="">
-        <h2 class="text-xl font-bold mb-3">{{ .Title}}</h2>
-        <p>categories: {{ .Params.categories }}</p>
-        {{ if .Params.parameters.show }}
-        <aside>
-          <p>
-            Parameters: 
+        <h2 class="text-xl font-bold mb-3">{{ .Params.title}}</h2>
+        {{ $settings := index .Site.Data.settings .Lang }}
+        {{ $currentLang := index .Site.Data.categories .Lang }}
+        {{ $groups := $currentLang.groups }}
+        {{ $match := string .Params.categories}}
+        <p class="text-sm">{{ $settings.products.taxonomy }}: 
+
+              {{ range $groups }}
+                  {{ if eq .group $match }}
+                      {{ .translation }}
+                  {{ end }}
+              {{ end }}
           </p>
-          {{ range .Params.parameters.list }}
-            <div class="product-parameters space-y-2">
-              <div class="parameter">
-                <strong>{{ .attribute }}:</strong> {{ .value }}
-              </div>
-            </div>
+          {{ $settings := index .Site.Data.settings .Lang }}
+          {{ $key := .Params.availability | default "av"  }}
+          {{ with index $settings.products $key }}
+            <p class="text-sm">{{ $settings.products.availability }}: {{ . }}</p>
           {{ end }}
-        </aside>
-          {{ else }}
-          <p class="text-gray-600">Product details will be available soon.</p>
-        </aside>
-        {{ end }}
-        {{ if .Params.benefits.show }}
-        <aside aria-label="Product Benefits" class="p-4 bg-gray-100 rounded-lg">
-          <h2 class="text-xl font-bold mb-4">Product Benefits</h2>
-          <ul class="list-disc list-inside">
-            {{ range .Params.benefits.list }}
-              <li class="mb-2">{{ . }}</li>
+          <div class="*:text-sm mt-1">
+              {{ $price := float (default "0" .Params.price) }}
+              {{ $promo := float (default "0" .Params.promo) }}
+              {{ $newPrice := float (default "0" .Params.newPrice) }}
+
+                  {{ if and $promo (gt $promo 0) }}
+                    {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+                    <i>
+                      <span class="line-through text-gray-500"
+                        >{{ printf "%.0f" $price }} KGS</span
+                      >
+                      <span class="text-green-600 font-bold ml-2"
+                        >{{ printf "%.0f" $discountedPrice }} KGS</span
+                      >
+                      <span class="text-green-600 "
+                        >({{ printf "%.2f" $promo }}% off)</span
+                      >
+                    </i>
+                  {{ else if and (not $promo) (gt $newPrice 0) }}
+                    {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+                    <i>
+                      <span class="line-through text-gray-500"
+                        >{{ printf "%.0f" $price }} KGS</span
+                      >
+                      <span class="text-green-600 font-bold ml-2"
+                        >{{ printf "%.0f" $newPrice }} KGS</span
+                      >
+                      <span class="text-green-600 "
+                        >({{ printf "%.2f" $discount }}% off)</span
+                      >
+                    </i>
+                  {{ else }}
+                    <i class="">{{ printf "%.0f" $price }} KGS</i>
+                  {{ end }}
+          </div>
+        {{ if .Params.parameters.show }}
+        <div class="group max-w-lg border-collapse">
+
+          <label class="hover:cursor-pointer">
+            <input class="appearance-none" type="checkbox" name="hidden" value="hidden" aria-hidden="true">
+            <div class="flex">
+              <p class="product-detail-left">{{ $settings.products.parameters }}</p>
+              <p class="product-detail-right" >{{ $settings.products.benefits }}</p>
+            </div>
+          </label>
+
+
+        <div class="drop-shadow-lg border-x-2 border-b-2 rounded-bl-lg flex overflow-hidden p-4">
+          <div class="group-has-[:checked]:h-0 min-w-full group-has-[:checked]:-translate-x-full transition-transform duration-300 ease-linear">
+            {{ range .Params.parameters.list }}
+              <div class="product-parameters space-y-2">
+                <div class="parameter">
+                  <strong>{{ .attribute }}:</strong> {{ .value }}
+                </div>
+              </div>
             {{ end }}
-          </ul>
-        </aside>
-        {{ end }}
+          </div>
+          {{ end }}
+          {{ if .Params.benefits.show }}
+          <div aria-label="Product Benefits" class=" h-0 group-has-[:checked]:h-full min-w-full translate-x-full group-has-[:checked]:-translate-x-full transition-transform duration-300 ease-linear">
+            <ul class="list-disc list-inside space-y-2 ">
+              {{ range .Params.benefits.list }}
+                <li class="mb-2">{{ . }}</li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+
+        </div>
       </section>
     </div>
     <div class="markdown mb-9"></div>
       <div>{{ .Content }}</div>
     </div>
+    {{ $products := (where .Site.RegularPages "Type" "products") }}
+    {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
+    {{ if gt (len $category) 1}}
     <section aria-label="similar products" class="my-10">
         <div class="flex justify-between">
-          <p>i18n Similar products in category: {{ .Params.categories }}</p>
+          {{ $settings := index .Site.Data.settings .Lang }}
+          <p>{{ $settings.products.similar }}:  {{ range $groups }}
+                  {{ if eq .group $match }}
+                      {{ .translation }}
+                  {{ end }}
+              {{ end }}</p>
           <div>
-            <button data-control-similar="left" class="scroll-button">Left</button>
-            <button data-control-similar="right" class="scroll-button">Right</button>
+            <button data-control-similar="left" class="scroll-button inactive PaginationDotsInActive size-9">
+             &laquo;
+            </button>
+            <button data-control-similar="right" class="scroll-button inactive PaginationDotsInActive size-9">
+              &raquo;
+            </button>
           </div>
         </div>
-        <div class="overflow-x-scroll grid-flow-col grid gap-4 py-4 remove-scroll-style" id="product-container">
-          {{ $products := (where .Site.RegularPages "Type" "products") }}
-          {{ $category := (where .Site.RegularPages "Params.categories" .Params.categories) }}
+        <div class="overflow-x-scroll flex gap-4 py-4 remove-scroll-style" id="product-container">
+         
+          {{ $currentPage := . }}
           {{ range $index, $pages :=  $category.ByPublishDate.Reverse }}
-            <div class="border rounded border-gray-600 w-[220px] inline-flex flex-col">
+            {{ if ne $pages $currentPage }}
+            <div class="border overflow-hidden rounded border-gray-600 min-w-[220px] inline-flex flex-col">
               <div class="group overflow-hidden relative w-full" style="padding-top: 100%;">
+                 {{ if or $pages.Params.promo $pages.Params.newPrice }}
+                    <img
+                      src="{{ "static/promo.svg" | relURL }}"
+                      alt="Promo"
+                      class="absolute top-2 left-2 size-8 z-20 rounded-full"
+                    />
+                  {{ end }}
                 <img
-                  class="absolute inset-0 size-full object-cover"
-                  src="https://via.placeholder.com/100x100/FF5733/ffffff?text=product"
+                  class="absolute inset-0 size-full object-cover group-hover:scale-110 group-hover:brightness-75 transition duration-300 ease-in-out transform"
+                  src="{{ $pages.Params.image }}"
                   alt="{{ $pages.Params.title }}"
                 />
-                <p
-                class="absolute inset-0 flex items-center justify-center p-4 text-black transition-all duration-500 ease-in-out transform -translate-y-full group-hover:translate-y-0 group-hover:text-white group-hover:bg-black/50 overflow-hidden"
-              >
-                {{ .Params.description }}
-              </p>
+               <a
+                  href="{{ .RelPermalink }}"
+                  class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
+                >
+              {{ $settings := index .Site.Data.settings .Lang }}
+              {{ $settings.product.more }}
+              </a>
               </div>
               <div class="flex-grow flex flex-col justify-between text-center my-6">
                 <p class="text-sm">{{ $pages.Params.title }}</p>
-                <p class="text-xsm">price</p>
+                <div class="*:text-sm">
+                  {{ $price := float $pages.Params.price }}
+                  {{ $promo := float $pages.Params.promo }}
+                  {{ $newPrice := float $pages.Params.newPrice }}
+
+                  {{ if and $promo (gt $promo 0) }}
+                    {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+                    <p>
+                      <span class="line-through text-gray-500"
+                        >{{ printf "%.0f" $price }} KGS</span
+                      >
+                      <span class="text-green-600 font-bold ml-2"
+                        >{{ printf "%.0f" $discountedPrice }} KGS</span
+                      >
+                      <span class="text-green-600 "
+                        >({{ printf "%.2f" $promo }}% off)</span
+                      >
+                    </p>
+                  {{ else if and (not $promo) (gt $newPrice 0) }}
+                    {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+                    <p>
+                      <span class="line-through text-gray-500"
+                        >{{ printf "%.0f" $price }} KGS</span
+                      >
+                      <span class="text-green-600 font-bold ml-2"
+                        >{{ printf "%.0f" $newPrice }} KGS</span
+                      >
+                      <span class="text-green-600 "
+                        >({{ printf "%.2f" $discount }}% off)</span
+                      >
+                    </p>
+                  {{ else }}
+                    <p class="">{{ printf "%.0f" $price }} KGS</p>
+                  {{ end }}
+                </div>
+                 <a
+                  href="{{ .RelPermalink }}"
+                  class="text-blue-500 underline mt-2 block"
+                  >{{ $settings := index .Site.Data.settings .Lang }}
+                  {{ $settings.products.more }}</a
+                >
               </div>
             </div>
-          {{ end }}
-        </div>
-      </section>
+            {{end}}
+            {{ end }}
+          </div>
+        </section>
+        {{ end }}
 
       <script>
         const productContainer = document.getElementById('product-container');
@@ -82,9 +204,9 @@
         buttons.forEach(button => {
           button.addEventListener('click', () => {
             const direction = button.getAttribute('data-control-similar');
-            const scrollAmount = 220; // The width of each product item
+            const scrollAmount = productContainer.clientWidth - 200; // The width of each product item
             const scrollOptions = { behavior: 'smooth', block: 'nearest' };
-
+            
             if (direction === 'left') {
               productContainer.scrollBy({ left: -scrollAmount, ...scrollOptions });
             } else if (direction === 'right') {

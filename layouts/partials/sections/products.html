@@ -1,17 +1,20 @@
 <section
-  class="relative container  overflow-hidden  pt-20 pb-28 space-y-8"
+  class="relative container  overflow-hidden  pt-20 pb-10 space-y-8 "
   aria-label="products categories featuring"
 >
+  {{ $currentLang := .Lang }}
+  {{ $currentLangTranslation := index .Site.Data.categories .Lang }}
+  {{ $translationTaxonomy := $currentLangTranslation.groups }}
   <!-- Product Section Title & Description -->
   <h2
     id="productTitle"
-    class="text-xl font-bold text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+    class="text-lg font-bold text-center opacity-0 -translate-y-full transition-all duration-700 ease-out"
   >
     {{ .Params.productSection.title }}
   </h2>
   <p
     id="productDescription"
-    class="text-lg text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+    class="text-base text-center opacity-0 -translate-y-full transition-all duration-700 ease-out"
   >
     {{ .Params.productSection.description }}
   </p>
@@ -19,20 +22,28 @@
   <!-- Category Filter Buttons -->
   <div
     aria-label="filter product categories"
-    class="flex justify-center gap-2 mt-4"
+    class="flex justify-center gap-2 mt-4 flex-wrap"
   >
-    <button
-      data-filter="all"
-      class="filter-button text-base px-4 py-2 PaginationDotsActive rounded-lg opacity-0 translate-y-10 transition-all duration-500 ease-out"
-    >
-      all
-    </button>
+    {{ range $translationTaxonomy }}
+      {{ if eq .group "6" }}
+        <button
+          data-filter="all"
+          class="filter-button text-base px-4 py-2 PaginationDotsActive rounded-lg opacity-0 translate-y-10 transition-all duration-500 ease-out"
+        >
+          {{ .translation }}
+        </button>
+      {{ end }}
+    {{ end }}
     {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
       <button
         data-filter="{{ lower $name }}"
         class="filter-button text-base px-4 py-2 inactive rounded-lg opacity-0 translate-y-10 transition-all duration-500 ease-out"
       >
-        {{ $name }}
+        {{ range $translationTaxonomy }}
+          {{ if eq .group $name }}
+            {{ .translation }}
+          {{ end }}
+        {{ end }}
       </button>
     {{ end }}
   </div>
@@ -40,30 +51,88 @@
   <!-- Product List Container -->
   <div
     id="productSectionList"
-    class="relative container mx-auto my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    class="relative mx-auto my-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-8 gap-x-4"
   >
     <!-- Group products by categories -->
     {{ $products := (where .Site.RegularPages "Type" "products") }}
     {{ range $index, $pages :=  $products.ByPublishDate.Reverse }}
       <div
-        class="product-item"
+        class="product-item flex flex-col space-y-2 justify-between"
         data-item="{{ $pages.Params.categories | lower }}"
       >
-        <div class="relative w-full" style="padding-top: 100%;">
+        <div class="group overflow-hidden relative w-full pt-[100%]">
           <!-- Aspect ratio container -->
+          {{ if or $pages.Params.promo $pages.Params.newPrice }}
+            <img
+              src="{{ "static/promo.svg" | relURL }}"
+              alt="Promo"
+              role="icon"
+              class="absolute top-0 left-0 size-8 z-10 rounded-full"
+            />
+          {{ end }}
           <img
-            class="absolute inset-0 size-full object-cover"
-            src="https://via.placeholder.com/100x100/FF5733/ffffff?text=product"
-            alt=""
+            src="{{ .Params.image }}"
+            alt="{{ .Params.title }}"
+            class="size-full absolute inset-0 group-hover:scale-110 group-hover:brightness-75 object-cover transition duration-300 ease-in-out transform"
+            loading="lazy"
           />
+          <a
+            href="{{ .RelPermalink }}"
+            class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
+          >
+            {{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.products.more }}
+          </a>
         </div>
         <p
-          class="product-title text-base font-semibold opacity-0 translate-y-5 transition-all duration-500 ease-out"
+          class="product-title text-center text-base  opacity-0 translate-y-5 transition-all duration-500 ease-out"
         >
           {{ $pages.Params.title }}
         </p>
-        
-        <p class="text-xsm">price</p>
+
+        <div class="*:text-sm *:text-center">
+          {{ $price := float (default "0" .Params.price) }}
+          {{ $promo := float (default "0" .Params.promo) }}
+          {{ $newPrice := float (default "0" .Params.newPrice) }}
+
+          {{ if and $promo (gt $promo 0) }}
+            {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+            <p>
+              <span class="line-through text-gray-500"
+                >{{ printf "%.0f" $price }} KGS</span
+              >
+              <span class="text-green-600 font-bold ml-2"
+                >{{ printf "%.0f" $discountedPrice }} KGS</span
+              >
+              <span class="text-green-600 text-sm"
+                >({{ printf "%.2f" $promo }}% off)</span
+              >
+            </p>
+          {{ else if and (not $promo) (gt $newPrice 0) }}
+            {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+            <p>
+              <span class="line-through text-gray-500"
+                >{{ printf "%.0f" $price }} KGS</span
+              >
+              <span class="text-green-600 font-bold ml-2"
+                >{{ printf "%.0f" $newPrice }} KGS</span
+              >
+              <span class="text-green-600 text-sm"
+                >({{ printf "%.2f" $discount }}% off)</span
+              >
+            </p>
+          {{ else }}
+            <p class="">{{ printf "%.0f" $price }} KGS</p>
+          {{ end }}
+        </div>
+        <a href="{{ .RelPermalink }}" class="block">
+          <button
+            class="rounded-3xl p-2 bg-lime-600 hover:bg-lime-600/50 hover:text-black text-white w-full"
+          >
+            {{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.products.more }}
+          </button>
+        </a>
       </div>
     {{ end }}
   </div>
@@ -71,14 +140,14 @@
   <!-- Pagination Navigation Container -->
   <div
     id="paginationContainer"
-    class="mt-8 flex justify-center items-center gap-2 absolute bottom-10 left-1/2 -translate-x-1/2"
+    class="mt-8 flex justify-center items-center gap-2 "
   >
     <button
       id="productPrevSkipBtn"
       class="px-4 py-2 inactive rounded-lg mr-2"
       aria-label="Skip Previous Pages"
     >
-      <<
+      &laquo;&laquo;
     </button>
 
     <!-- Previous Page Button -->
@@ -87,7 +156,7 @@
       class="px-4 py-2 inactive rounded-lg"
       aria-label="Previous Page"
     >
-      <
+      &laquo;
     </button>
 
     <!-- Pagination Dots Container -->
@@ -99,7 +168,7 @@
       class="px-4 py-2 inactive rounded-lg"
       aria-label="Next Page"
     >
-      >
+      &raquo;
     </button>
 
     <!-- Next Skip Button -->
@@ -108,7 +177,7 @@
       class="px-4 py-2 inactive rounded-lg ml-2"
       aria-label="Skip Next Pages"
     >
-      >>
+      &raquo;&raquo;
     </button>
   </div>
   <script>
@@ -127,7 +196,8 @@
       // Default variables
       let filteredItems = Array.from(productItems);
       let currentPage = 0;
-      const itemsPerPage = 8;
+      const itemsPerPage =
+        window.innerWidth > 1023 ? 8 : window.innerWidth < 768 ? 3 : 6;
       const curFilter = new Map();
       const allButton = Array.from(filterButtons).find(
         (button) => button.getAttribute("data-filter") === "all",
@@ -166,7 +236,7 @@
             index >= currentPage * itemsPerPage &&
             index < (currentPage + 1) * itemsPerPage
           ) {
-            item.style.display = "block";
+            item.style.display = "flex";
             item.classList.add(directionClass);
           } else {
             item.style.display = "none";
@@ -210,11 +280,13 @@
 
           if (i === currentPage) {
             dot.classList.remove("inactive");
+            dot.classList.remove("PaginationDotsInActive"); // Ensure to remove active classes for non-current dots
             dot.classList.add("PaginationDotsActive");
             dot.disabled = true;
           } else {
             dot.disabled = false;
             dot.classList.remove("PaginationDotsActive"); // Ensure to remove active classes for non-current dots
+            dot.classList.add("PaginationDotsInActive"); // Ensure to remove active classes for non-current dots
           }
 
           dot.addEventListener("click", () => {
@@ -232,21 +304,51 @@
         nextPageBtn.disabled = currentPage === totalPages - 1;
         prevSkip.disabled = currentPage < 3;
         nextSkip.disabled = currentPage > totalPages - 3;
+
+        // Add PaginationDotsInActive to buttons that are not disabled
+        const navigationButtons = [
+          prevPageBtn,
+          nextPageBtn,
+          prevSkip,
+          nextSkip,
+        ];
+        navigationButtons.forEach((btn) => {
+          if (!btn.disabled) {
+            btn.classList.add("PaginationDotsInActive");
+          } else {
+            btn.classList.remove("PaginationDotsInActive");
+          }
+        });
       };
 
       // Filter Button Event Listener
       filterButtons.forEach((button) => {
+        button.classList.add("PaginationDotsInActive");
         button.addEventListener("click", () => {
+          // Remove active class from previously selected filter
           if (curFilter.get("button")) {
             curFilter.get("button").classList.remove("PaginationDotsActive");
             curFilter.get("button").classList.add("inactive");
           }
+
+          // Add active class to the current button
           button.classList.add("PaginationDotsActive");
           button.classList.remove("inactive");
           curFilter.set("button", button);
 
+          // Apply the filter
           const filter = button.getAttribute("data-filter");
           applyFilter(filter);
+
+          // Update all filter buttons: add PaginationDotsInActive to inactive buttons
+          filterButtons.forEach((filterBtn) => {
+            if (filterBtn !== button) {
+              filterBtn.classList.remove("PaginationDotsActive");
+              filterBtn.classList.add("PaginationDotsInActive"); // Add inactive class to other buttons
+            } else {
+              filterBtn.classList.remove("PaginationDotsInActive"); // Ensure the current button doesn't get this class
+            }
+          });
         });
       });
 

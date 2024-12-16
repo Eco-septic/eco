@@ -1,11 +1,8 @@
 <meta property="og:url" content="{{ .Permalink }}" />
-
-{{ with or site.Title site.Params.title | plainify }}
-  <meta property="og:site_name" content="{{ . }}" />
-{{ end }}
+<meta property="og:site_name" content="eco-septic.kg" />
 
 {{ with or .Title site.Title site.Params.title | plainify }}
-  <meta property="og:title" content="{{ . }} | HITS | HELLO IT SAFARI" />
+  <meta property="og:title" content="{{ . }}" />
 {{ end }}
 
 {{ with or .Description .Summary site.Params.description | plainify | htmlUnescape | chomp }}
@@ -41,26 +38,67 @@
   <meta property="og:type" content="website" />
 {{ end }}
 
-{{- with .Params.og_image }}
-  <meta property="og:image" content="{{ absURL . }}" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-{{- end }}
+{{ $settings := index .Site.Data.settings .Lang }}
 
-{{ with .Params.og_audio }}
-  {{ range . | first 6 }}
-    <meta property="og:audio" content="{{ absURL . }}" />
-  {{ end }}
+
+<!-- fix decapcms field - settings.base_og -->
+{{ $base := resources.Get $settings.og_base }}
+{{ $overlay_logo := resources.Get $settings.mini_logo }}
+{{ $overlay_logo := $overlay_logo.Fit "200x200" }}
+{{ $filter_logo := images.Overlay $overlay_logo 2 2 }}
+{{ $boldFont := resources.Get "/Bold.ttf" }}
+{{ $mediumFont := resources.Get "/Regular.ttf" }}
+{{ $optsTitle := dict
+  "color" "#000000"
+  "font" $boldFont
+  "linespacing" 2
+  "size" 52
+  "x" 220
+  "y" 50
+}}
+{{ $optsDescr := dict
+  "color" "#000000"
+  "font" $mediumFont
+  "linespacing" 2
+  "size" 40
+  "x" 25
+  "y" 220
+}}
+
+{{ if ne .Kind "404" }}
+  {{ $titleText := .Title }}
+  {{ $titleDescription := .Description }}
+  {{ $filter_title := images.Text $titleText $optsTitle }}
+  {{ $filter_description := images.Text $titleDescription $optsDescr }}
+  {{ $img := $base | images.Filter $filter_logo }}
+
+  {{ $img := $img | images.Filter $filter_title }}
+  {{ $img := $img | images.Filter $filter_description }}
+
+  {{ $img = resources.Copy (path.Join .Page.RelPermalink "og.png") $img }}
+  <meta property="og:image" content="{{ $img.Permalink }}" />
+  <meta property="og:image:width" content="{{ $img.Width }}" />
+  <meta property="og:image:height" content="{{ $img.Height }}" />
+
+  <!-- Twitter metadata (used by other websites as well) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta
+    name="twitter:description"
+    content="{{ with .Description }}
+      {{ . }}
+    {{ else }}
+      {{ if .IsPage }}
+        {{ .Summary }}
+      {{ else }}
+        {{ with .Site.Params.description }}{{ . }}{{ end }}
+      {{ end }}
+    {{ end -}}"
+  />
+  <meta name="twitter:image" content="{{ $img.Permalink }}" />
 {{ end }}
 
-{{ with .Params.og_video }}
-  {{ range . | first 6 }}
-    <meta property="og:video" content="{{ absURL . }}" />
-  {{ end }}
-{{ end }}
-
-{{ range .GetTerms "interview" }}
+{{ range .GetTerms "products" }}
   {{ range .Pages | first 7 }}
     {{ if ne $ . }}
       <meta property="og:see_also" content="{{ .Permalink }}" />

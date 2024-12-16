@@ -1,4 +1,3 @@
-/* assets */
 @tailwind base;
 
 @tailwind components;
@@ -8,7 +7,6 @@
 @view-transition {
   navigation: auto;
 }
-
 
 :root {
   --filter-grannary-image-url: url("data:image/svg+xml,%3C!-- svg: first layer --%3E%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.44' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -85,6 +83,7 @@ body {
   @apply peer-has-[input:checked]:right-6 transition-all duration-300 -right-full flex items-end gap-4 flex-col top-16 p-5 z-[999] rounded-lg absolute bg-white/30 dark:bg-black/35 backdrop-blur-md;
   @apply md:flex-row md:top-0 md:bg-transparent md:dark:bg-transparent md:backdrop-blur-none md:relative md:right-0;
   @apply md:p-0 md:items-center;
+  @apply lg:gap-10 xl:gap-16;
 }
 
 .darkmode-toggle-label {
@@ -181,7 +180,6 @@ p {
   @apply text-base;
 }
 
-/* Sliding and Visibility Animation */
 .slide-left {
   animation: slideLeft 0.6s ease-in-out forwards;
 }
@@ -212,7 +210,6 @@ p {
   }
 }
 
-/* Filter Group Styling */
 .filter-group {
   position: absolute;
   top: 0;
@@ -228,12 +225,35 @@ p {
   z-index: 1;
   opacity: 1;
 }
+@layer components {
+  .inactive {
+    @apply bg-inactiveDark dark:bg-inactive;
+  }
+  .PaginationDotsInActive {
+    @apply hover:bg-blue-500 hover:text-white;
+  }
+  .PaginationDotsActive {
+    @apply bg-blue-500 text-white;
+  }
 
-.inactive {
-  @apply bg-inactiveDark dark:bg-inactive;
-}
-.PaginationDotsActive {
-  @apply bg-blue-500 text-white;
+  .product-detail-left {
+    @apply w-1/2 h-full drop-shadow-lg p-2;
+    @apply group-has-[:checked]:border-l-0 group-has-[:checked]:border-t-0;
+    @apply group-has-[:checked]:border-b-2 group-has-[:checked]:border-r-2;
+    @apply group-has-[:checked]:rounded-br-lg;
+    @apply border-l-2 border-t-2 rounded-tl-lg;
+    /* @apply group-has-[:checked]:h-full; */
+    /* @apply group-has-[:checked]:h-0; */
+    @apply text-center;
+  }
+  .product-detail-right {
+    @apply w-1/2 h-full drop-shadow-lg p-2;
+    @apply border-l-2 border-b-2 rounded-bl-lg;
+    @apply group-has-[:checked]:border-l-0 group-has-[:checked]:border-b-0;
+    @apply group-has-[:checked]:border-t-2 group-has-[:checked]:border-r-2;
+    /* @apply group-has-[:checked]:p-[6px]; */
+    @apply text-center;
+  }
 }
 
 .heroWrapperDiv {
@@ -241,27 +261,54 @@ p {
 }
 
 .heroCharDic {
-  @apply inline-block opacity-0 transform -translate-y-[100vh] transition-all duration-700 ease-out;
+  @apply inline-block opacity-0 transform -translate-y-[100vh];
 }
 
 .heroCharDicAnimation {
-  @apply inline-block transform translate-y-0 opacity-100 transition-all duration-700 ease-out;
+  @apply inline-block transform translate-y-0 opacity-100 transition-all duration-1000 ease-fall-in;
 }
 
+.hero-title-before {
+  @apply -translate-x-[200px] opacity-0 transition-all duration-300 ease-linear;
+}
+.hero-title-after {
+  @apply translate-x-0 opacity-100 transition-all duration-1000 ease-linear;
+}
+
+.hero-pitch-before {
+  @apply translate-y-28 opacity-0 transition-all duration-300 ease-linear;
+}
+.hero-pitch-after {
+  @apply translate-y-0 opacity-100 transition-all duration-1000 ease-linear;
+}
+
+.hero-image-active {
+  @apply scale-125 opacity-100 z-1;
+  transition:
+    opacity 300ms linear,
+    transform 50s linear;
+}
+
+.hero-image-inactive {
+  @apply scale-100 opacity-50 z-0;
+  transition:
+    opacity 300ms linear,
+    transform 10000ms linear;
+}
 #paginationContainer {
-  position: relative; /* Set to relative by default */
-  z-index: 100; /* Make sure it stays above other elements */
-  transition: all 0.3s ease; /* Smooth transition for fixed positioning */
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
 }
 
 .sticky-navigation {
   position: fixed;
-  bottom: 20px; /* Adjust as needed to create space from the bottom */
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%); /* Center it horizontally */
-  width: calc(100% - 40px); /* Adjust width as needed */
-  background-color: white; /* Background color to maintain visibility */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .current-displaye-image-style {
   @apply outline-2 outline outline-offset-2 outline-blue-500 rounded;
@@ -282,23 +329,128 @@ dialog img {
   display: none;
 }
 
-button[data-control] {
-  background: transparent;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  border: none;
-}
-
-button[data-control]:hover {
-  color: #4a90e2;
-}
-
 .remove-scroll-style {
-  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-scrollbar {
     display: none;
+  }
+}
+
+details {
+  display: list-item;
+}
+
+summary {
+  list-style: none;
+  counter-reset: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary {
+  display: list-item;
+}
+
+.markdown {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply tracking-tight;
+  }
+
+  h1 {
+    @apply text-xl font-bold;
+  }
+
+  h2 {
+    @apply text-lg font-bold;
+  }
+
+  h3 {
+    @apply text-lg font-bold;
+  }
+
+  h4 {
+    @apply text-lg font-bold;
+  }
+
+  h5 {
+    @apply text-base font-bold;
+  }
+
+  h6 {
+    @apply text-sm font-bold;
+  }
+
+  p + h2,
+  p + h3,
+  ul + h2,
+  ul + h3,
+  ol + h2,
+  ol + h3 {
+    @apply mt-6;
+  }
+
+  h2 + h3 {
+    @apply mt-2;
+  }
+
+  p {
+    @apply text-base mt-2 leading-relaxed;
+  }
+
+  a {
+    @apply text-blue-500 text-base underline;
+  }
+
+  a:hover {
+    @apply text-blue-800;
+  }
+
+  ul {
+    @apply list-disc pl-4 mt-2;
+  }
+
+  ol {
+    @apply list-decimal pl-4 mt-2;
+  }
+
+  li:not(:last-child) {
+    @apply mb-2;
+  }
+
+  blockquote {
+    @apply border-l-2 border-gray-200 pl-3 mt-6 mb-8;
+  }
+
+  .highlight {
+    @apply my-2;
+    pre {
+      @apply text-sm m-0 p-4;
+
+      code {
+        @apply bg-none p-0;
+      }
+    }
+  }
+
+  pre:has(code) {
+    @apply p-2 m-4 bg-gray-100 rounded-lg overflow-x-auto;
+  }
+
+  pre {
+    code {
+      @apply bg-inherit text-sm;
+    }
+  }
+
+  code {
+    @apply bg-gray-200 px-1 rounded-md text-green-800;
   }
 }

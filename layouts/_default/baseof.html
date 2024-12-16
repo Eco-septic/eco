@@ -5,48 +5,18 @@
   dir="{{ or site.Language.LanguageDirection `ltr` }}"
 >
     {{ partial "head.html" . }}
-    <!-- {{ partial "opengraph.html" . }}
-    {{ partial "twitter.html" . }} -->
-
+    {{ partial "opengraph.html" . }}
   </head>
 
   <body
     class="bg-lightMode dark:bg-darkMode dark:text-slate-100 flex  min-h-[calc(100dvh_-_3.5rem)] lg:min-h-[calc(100dvh_-_5rem)] justify-between flex-col  mt-14 lg:mt-20 scroll-smooth"
   >
-  <p id="dimensions" class="fixed top-3 left-4 z-[100] opacity-65 text-red-500" ></p>
     {{ partial "header.html" . }}
     {{ block "main" . }}{{ end }}
     {{ partial "footer.html" . }}
   </body>
-   <script>
-    function showScreenDimensions() {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      document.getElementById("dimensions").textContent = `Width: ${width}px, Height: ${height}px`;
-    }
 
-    // Show dimensions on page load
-    showScreenDimensions();
-
-    // Update dimensions when the window is resized
-    window.addEventListener('resize', showScreenDimensions);
-  </script>
-
-  <!-- <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then(function (registration) {
-          // console.log(
-          //   "ServiceWorker registration successful with scope: ",
-          //   registration.scope,
-          // );
-        })
-        .catch(function (error) {
-          // console.log("ServiceWorker registration failed: ", error);
-        });
-    }
-
+  <script>
     const tokens = ["#invite_token", "#email_change_token", "#confirmation_token", "#recovery_token"];
     const currentHash = window.location.hash;
     const shouldRedirect = tokens.some(token => currentHash.startsWith(token));
@@ -54,5 +24,6 @@
       const urlSplit = document.URL.split("#");
       window.location = `/admin/#${urlSplit[1]}`;
     }
-  </script> -->
+  </script>
+  
 </html>

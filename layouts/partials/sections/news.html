@@ -5,13 +5,13 @@
   <!-- News Section Title & Description -->
   <h2
     id="newsTitle"
-    class="text-3xl font-bold text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+    class="text-lg  font-bold text-center opacity-0 -translate-y-full transition-all duration-700 ease-out"
   >
     {{ .Params.newsSection.title }}
   </h2>
   <p
     id="newsDescription"
-    class="text-xl text-center opacity-0 -translate-y-full transition-all duration-500 ease-out"
+    class="text-base text-center opacity-0 -translate-y-full transition-all duration-700 ease-out"
   >
     {{ .Params.newsSection.description }}
   </p>
@@ -22,23 +22,49 @@
   <!-- News Cards Container -->
   <div
     id="newsCardContainer"
-    class="grid grid-cols-1 gap-4 md:grid-cols-3 opacity-0 translate-y-5 transition-all duration-500 ease-out"
+    class="grid min-h-[400px] grid-cols-1 md:grid-cols-2 justify-items-center gap-6 lg:grid-cols-3 opacity-0 translate-y-5 transition-all duration-500 ease-out"
   >
-    {{ range $index, $pages := $news }}
-      <div
-        class="news-card opacity-0 translate-y-5 transform transition-all duration-500 ease-out"
-        data-item="news"
-      >
-        <img
-          src="{{ $pages.Params.titleImage }}"
-          alt="{{ $pages.Params.title }}"
-          class="object-cover w-full h-48 mb-4 rounded-lg"
-        />
-        <h3 class="text-base font-semibold">{{ $pages.Params.title }}</h3>
-        <p class="text-sm">{{ .Params.date }}</p>
-        <p class="text-base">{{ $pages.Params.description }}</p>
-        <a href="{{ .RelPermalink }}" class="block text-sm">read more >></a>
-      </div>
+    {{ range $news }}
+      {{ if eq .Page.Params.featured 0 }}
+        <div
+          class="news-card w-full space-y-2 opacity-0 max-w-80 translate-y-5 transform transition-all duration-500 ease-out "
+          data-item="news"
+        >
+          <div class="group overflow-hidden w-full relative  h-48 rounded-lg ">
+            <img
+              src="{{ .Page.Params.titleImage }}"
+              alt="{{ .Page.Params.title }}"
+              class="object-cover size-full mb-4  transition-all duration-500 ease-out group-hover:brightness-50 group-hover:cursor-pointer group-hover:scale-125 "
+            />
+            <a
+              href="{{ .Page.RelPermalink }}"
+              class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
+            >
+              {{ $settings := index .Site.Data.settings .Lang }}
+              {{ $settings.news.more }}
+            </a>
+          </div>
+          <h3 class="text-base">
+            {{ .Page.Params.ContentTitle | truncate 100 }}
+          </h3>
+          <p class="text-sm">
+            {{ with .Page.Params.date }}
+              {{ . | time.Format ":date_long" }}
+            {{ else }}
+              <span>No date available</span>
+            {{ end }}
+          </p>
+          <p class="text-sm">
+            <a
+              href="{{ .RelPermalink }}"
+              class="text-sm text-nowrap font-semibold"
+            >
+              {{ $settings := index .Site.Data.settings .Lang }}
+              {{ $settings.news.more }}
+            </a>
+          </p>
+        </div>
+      {{ end }}
     {{ end }}
   </div>
 
@@ -49,16 +75,16 @@
     <!-- Previous Skip Button -->
     <button
       id="newsPrevSkipBtn"
-      class="px-4 py-2 inactive rounded-lg mr-2"
+      class="px-4 py-2 inactive rounded-lg mr-2 PaginationDotsInActive"
       aria-label="Skip Previous Pages"
     >
-      &lt;&lt;
+      &laquo;&laquo;
     </button>
 
     <!-- Previous Page Button -->
     <button
       id="newsPrevPageBtn"
-      class="px-4 py-2 inactive rounded-lg"
+      class="px-4 py-2 inactive rounded-lg PaginationDotsInActive"
       aria-label="Previous Page"
     >
       &laquo;
@@ -70,7 +96,7 @@
     <!-- Next Page Button -->
     <button
       id="newsNextPageBtn"
-      class="px-4 py-2 inactive rounded-lg"
+      class="px-4 py-2 inactive rounded-lg PaginationDotsInActive"
       aria-label="Next Page"
     >
       &raquo;
@@ -79,10 +105,10 @@
     <!-- Next Skip Button -->
     <button
       id="newsNextSkipBtn"
-      class="px-4 py-2 inactive rounded-lg ml-2"
+      class="px-4 py-2 inactive rounded-lg ml-2 PaginationDotsInActive"
       aria-label="Skip Next Pages"
     >
-      &gt;&gt;
+      &raquo;&raquo;
     </button>
   </div>
 
@@ -100,7 +126,8 @@
       // Default variables
       let prevPage = 0;
       let currentPage = 0;
-      const itemsPerPage = 3; // Adjust based on your design
+      const width = window.innerWidth;
+      const itemsPerPage = width < 1023 && width > 768 ? 2 : 3; // Adjust based on your design
 
       // Update Pagination Function
       const updateNewsPagination = () => {
@@ -148,11 +175,17 @@
 
         for (let i = startPage; i <= endPage; i++) {
           const dot = document.createElement("button");
-          dot.classList.add("px-2", "py-1", "inactive", "rounded-lg");
+          dot.classList.add(
+            "px-2",
+            "py-1",
+            "inactive",
+            "PaginationDotsInActive",
+            "rounded-lg",
+          );
           dot.textContent = i + 1; // Display 1-based index
           dot.disabled = false;
           if (i === currentPage) {
-            dot.classList.remove("inactive");
+            dot.classList.remove("inactive", "PaginationDotsInActive");
             dot.classList.add("bg-blue-500", "text-white");
             dot.disabled = true;
           }
@@ -168,10 +201,35 @@
 
       // Update Navigation Button States
       const updateNewsButtonStates = (totalPages) => {
-        newsPrevPageBtn.disabled = currentPage === 0;
-        newsNextPageBtn.disabled = currentPage === totalPages - 1;
-        newsPrevSkipBtn.disabled = currentPage < 3;
-        newsNextSkipBtn.disabled = currentPage > totalPages - 3;
+        // Determine the state of the buttons based on the current page
+        const isPrevDisabled = currentPage === 0;
+        const isNextDisabled = currentPage === totalPages - 1;
+        const isPrevSkipDisabled = currentPage < 3;
+        const isNextSkipDisabled = currentPage > totalPages - 3;
+
+        // Update button states and classes
+        newsPrevPageBtn.disabled = isPrevDisabled;
+        newsNextPageBtn.disabled = isNextDisabled;
+        newsPrevSkipBtn.disabled = isPrevSkipDisabled;
+        newsNextSkipBtn.disabled = isNextSkipDisabled;
+
+        // Add or remove the PaginationDotsInActive class based on the disabled state
+        newsPrevPageBtn.classList.toggle(
+          "PaginationDotsInActive",
+          !isPrevDisabled,
+        );
+        newsNextPageBtn.classList.toggle(
+          "PaginationDotsInActive",
+          !isNextDisabled,
+        );
+        newsPrevSkipBtn.classList.toggle(
+          "PaginationDotsInActive",
+          !isPrevSkipDisabled,
+        );
+        newsNextSkipBtn.classList.toggle(
+          "PaginationDotsInActive",
+          !isNextSkipDisabled,
+        );
       };
 
       // Next and Previous Buttons

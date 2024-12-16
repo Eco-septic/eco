@@ -1,35 +1,35 @@
 <!-- Breadcrumb Container -->
+
 <nav
   class="breadcrumb-container w-full
-   py-3  mb-5"
+   py-3  mb-5 "
   aria-label="Breadcrumb"
 >
-  <ol
-    class="breadcrumb-list flex flex-nowrap space-x-2 text-base text-gray-700"
-  >
+  <ol class="breadcrumb-list flex flex-nowrap space-x-2 text-base ">
     <!-- Loop through Breadcrumb Path -->
     {{ range $index, $element := .Ancestors.Reverse }}
-      {{ if eq $element.LinkTitle "Features" }}
+      {{ if eq $element.Type "featured" }}
         <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
           <a
             href="{{ (site.GetPage "section" "news").RelPermalink }}"
-            class="hover:text-blue-500"
+            class="hover:text-main"
           >
             {{ (site.GetPage "section" "news").LinkTitle }}</a
           >
           <span aria-hidden="true">/</span>
         </li>
         <li
-          class="breadcrumb-item   overflow-hidden text-ellipsis whitespace-nowrap"
+          class="breadcrumb-item   overflow-hidden text-ellipsis whitespace-nowrap "
         >
-          <span aria-current="categories" href="{{ .RelPermalink }}">
-            category
+          <span aria-current="categories" href="{{ .RelPermalink }}" class="">
+            {{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.news.taxonomy }}
           </span>
           <span aria-hidden="true">/</span>
         </li>
       {{ else }}
         <li class="breadcrumb-item flex flex-nowrap space-x-2 ">
-          <a href="{{ $element.Permalink }}" class="hover:text-blue-500"
+          <a href="{{ $element.Permalink }}" class="hover:text-main"
             >{{ $element.LinkTitle }}</a
           >
           <span aria-hidden="true">/</span>
@@ -40,10 +40,21 @@
 
     <!-- Current Page -->
     <li
-      class="breadcrumb-item font-semibold text-blue-600 overflow-hidden text-ellipsis whitespace-nowrap"
+      class="breadcrumb-item font-semibold text-main overflow-hidden text-ellipsis whitespace-nowrap"
     >
       <span aria-current="page" href="{{ .RelPermalink }}">
-        {{ .LinkTitle }}
+        {{ $currentLang := index .Site.Data.featured .Lang }}
+        {{ $translationTaxonomy := $currentLang.groups }}
+        {{ $currentLinkTitle := .LinkTitle }}
+        {{ if eq .Type "featured" }}
+          {{ range $translationTaxonomy }}
+            {{ if eq .group $currentLinkTitle }}
+              {{ .translation }}
+            {{ end }}
+          {{ end }}
+        {{ else }}
+          {{ $currentLinkTitle }}
+        {{ end }}
       </span>
     </li>
   </ol>

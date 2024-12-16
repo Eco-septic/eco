@@ -1,15 +1,25 @@
-<header class="top-0 fixed  w-full h-14 z-50 lg:h-20 bg-grannary-effect">
+<header class="top-0 fixed  w-full h-14 z-50 lg:h-20 bg-grannary-effect ">
   <div
     class="bg-white/30 dark:bg-black/35 backdrop-blur-md absolute -z-10 size-full"
   ></div>
   <nav class="h-full w-full container mx-auto">
     <div
-      class=" h-full w-full  flex  items-center gap-4 justify-between text-base "
+      class=" h-full w-full  flex  items-center gap-4 justify-between text-sm lg:text-base "
     >
-      <div class="size-14 lg:size-16 p-[2px]">
-        <a href="{{ .Lang | relLangURL }}" lang="{{ .Lang }}">
+      <div
+        class="flex justify-center items-center w-fit h-full min-w-24 p-[2px] relative"
+      >
+        <a
+          href="{{ "/" | relLangURL }}"
+          lang="{{ .Lang }}"
+          class="block w-full h-full"
+        >
           {{ with index .Site.Data.settings .Lang }}
-            <img src="{{ .main_logo }}" alt="Logo" />
+            <img
+              src="{{ .main_logo }}"
+              alt="Logo"
+              class="object-contain w-full h-full"
+            />
           {{ end }}
         </a>
       </div>
@@ -37,7 +47,7 @@
           tabindex="-1"
           role="button"
           id="burger-button"
-          class="appearance-none menu-icon-trigger checked:bg-blue-500/70 checked:dark:bg-red-800/70 checked:z-30 checked:fixed checked:top-0 checked:left-0 checked:right-0 checked:bottom-0 checked:opacity-25"
+          class="appearance-none menu-icon-trigger checked:bg-black checked:dark:bg-black checked:z-30 checked:fixed checked:top-0 checked:left-0 checked:right-0 checked:bottom-0 checked:opacity-25"
           type="checkbox"
         />
       </label>

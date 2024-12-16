@@ -1,0 +1,21 @@
+{
+  "name": "ЭКО СЕПТИК КЫРГЫЗСТАН",
+  "short_name": "ЭКО СЕПТИК КЫРГЫЗСТАН",
+  "description": "Дилерская компания, специализирующаяся  на поставке и  реконструкции современных автономных канализационных систем и погребов, отвечающие всем мировым экологическим требованиям и стандартам.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/images/icon72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}

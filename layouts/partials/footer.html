@@ -1,30 +1,30 @@
 <footer
-  class="bg-[rgb(179_220_251)] dark:bg-[rgb(26_41_58)] relative py-10"
+  class="bg-darkMode dark:bg-lightMode dark:*:text-darkMode *:text-lightMode relative py-10"
   anchor-name="footerAnchor"
+  role="contentinfo"
 >
   <div class="container mx-auto space-y-5  items-center justify-between">
-    <nav class="flex gap-4 justify-center" role="navigation">
+    <nav
+      class="flex gap-4 justify-center border-b border-lightMode text-nowrap dark:border-darkMode pb-10"
+      role="navigation"
+    >
       {{ $mainURL := "/" | relLangURL }}
 
       {{ with site.Menus.mainmenu }}
         {{ range . }}
           {{ if $.IsMenuCurrent .Menu . }}
-            <button
-              disabled
-              class="text-black/50 font-bold  dark:text-slate-300/50"
-              aria-current="page"
-            >
+            <button disabled class="opacity-50 font-bold  " aria-current="page">
               {{ .Name }}
             </button>
           {{ else }}
-            <a href="{{ .URL }}" class="text-black dark:text-slate-300"
-              >{{ .Name }}</a
-            >
+            <a href="{{ .URL }}" class="hover:opacity-50">{{ .Name }}</a>
           {{ end }}
         {{ end }}
       {{ end }}
     </nav>
-    <div class="grid grid-cols-3 gap-4">
+    <div
+      class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:pt-10 space-y-10 lg:space-y-0"
+    >
       <!-- <section>
         <p>
           news
@@ -36,75 +36,119 @@
       {{ end }}
         </ul>
       </section> -->
-      <section>
+      <section
+        class="lg:border-r border-b lg:col-span-1 pb-10 lg:pb-0 lg:border-b-0 md:col-span-2 border-lightMode dark:border-darkMode p-4"
+      >
         {{ with index .Site.Data.settings .Lang }}
-          <a class="size-[75px] block" href="{{ $mainURL }}" alt="to main">
-            <img src="{{ .logo }}" alt="logo" class="size-full" />
+          <p class="text-sm ">{{ .description }}</p>
+          <a
+            class="w-full block mx-auto mb-2"
+            href="{{ $mainURL }}"
+            alt="to main"
+          >
+            <img
+              src="{{ .main_logo }}"
+              alt="logo"
+              class="size-full object-contain"
+            />
           </a>
-          <p>{{ .description }}</p>
         {{ end }}
       </section>
-      <section>
-        <p>
-          <!-- fixme i18n -->
-          Product category
+
+      <section
+        class="md:border-r border-b md:border-b-0 border-lightMode dark:border-darkMode p-4 "
+      >
+        <p class="text-center text-base mb-4">
+          {{ $settings := index .Site.Data.settings .Lang }}
+          {{ $settings.news.taxonomy }}
         </p>
         <ul role="navigation" aria-label="product categories">
-          {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-            <li>
+          {{ $currentLang := index .Site.Data.featured .Lang }}
+          {{ $groups := $currentLang.groups }}
+          {{ range $name, $taxonomy := .Site.Taxonomies.featured }}
+            <li class=" w-fit">
               <a
-                href="{{ $taxonomy.Page.Permalink }}"
-                class="text-black dark:text-slate-300"
+                href="{{ $taxonomy.Page.RelPermalink }}"
+                class="text-sm  hover:opacity-50"
               >
-                {{ $name }}
+                {{ range $groups }}
+                  {{ if eq .group $name }}
+                    {{ .translation }}
+                  {{ end }}
+                {{ end }}
               </a>
             </li>
           {{ else }}
-            <li>No products found!</li>
+            <li class="text-sm">No products found! i18n</li>
           {{ end }}
         </ul>
       </section>
       {{ with index .Site.Data.settings .Lang }}
-        <section>
-          <p>
-            <!-- fixme i18n -->
-            Contact
+        <section class="p-4 ">
+          <p class="text-center text-base mb-4">
+            {{ .contactUs }}
           </p>
           <ul class="">
-            <li role="contentinfo" class="flex">
-              <div class="size-[40px]">
-                <img
-                  src="{{ .email_logo }}"
-                  alt="icon"
-                  class="size-full rounded-full"
-                />
+            <li role="contentinfo" class="flex items-center gap-2">
+              <div class="size-[40px] p-1 ">
+                <a href="mailto:{{ .email }}" target="_blank">
+                  <img
+                    src="{{ .email_logo }}"
+                    alt="icon"
+                    class="size-full bg-blue-300 p-1 rounded-full hover:scale-125"
+                  />
+                </a>
               </div>
-              <p>{{ .email }}</p>
+              <p class="text-sm">{{ .email }}</p>
             </li>
-            <li role="contentinfo" class="flex">
-              <div class="size-[40px]">
-                <img
-                  src="{{ .whatsapp_logo }}"
-                  alt="icon"
-                  class="size-full rounded-full"
-                />
+            <li role="contentinfo" class="flex items-center gap-2">
+              <div class="size-[40px] p-1">
+                <a href="https://wa.me/{{ .whatsapp }}" target="_blank">
+                  <img
+                    src="{{ .whatsapp_logo }}"
+                    alt="icon"
+                    class="size-full rounded-full hover:scale-125"
+                  />
+                </a>
               </div>
-              <p>{{ .whatsapp }}</p>
+              <p class="text-sm">{{ .whatsapp }}</p>
             </li>
-            <li role="contentinfo" class="flex">
-              <div class="size-[40px]">
-                <img
-                  src="{{ .telegram_logo }}"
-                  alt="icon"
-                  class="size-full rounded-full"
-                />
+            <li role="contentinfo" class="flex items-center gap-2">
+              <div class="size-[40px] p-1">
+                <a href="https://t.me/{{ .telegram }}" target="_blank">
+                  <img
+                    src="{{ .telegram_logo }}"
+                    alt="icon"
+                    class="size-full rounded-full hover:scale-125"
+                  />
+                </a>
               </div>
-              <p>{{ .telegram }}</p>
+              <p class="text-sm">{{ .telegram }}</p>
             </li>
           </ul>
         </section>
       {{ end }}
       <div class="flex flex-col gap-5 fixed bottom-10  right-5 z-50">
+        {{ with index .Site.Data.settings .Lang }}
+          <div class="size-[40px] animate-bounce">
+            <a href="https://wa.me/{{ .whatsapp }}">
+              <img
+                src="{{ .whatsapp_logo }}"
+                alt="icon"
+                class="size-full rounded-full"
+              />
+            </a>
+          </div>
+          <div class="size-[40px] rounded-full animate-bounce">
+            <a href="https://t.me/{{ .telegram }}">
+              <img
+                src="{{ .telegram_logo }}"
+                alt="icon"
+                class="size-full rounded-full"
+              />
+            </a>
+          </div>
+        {{ end }}
         <button
           class="scroll-progress-btn hidden relative rounded-full bg-green-500 text-white size-[40px] shadow-lg  items-center justify-center overflow-hidden"
         >
@@ -136,26 +180,6 @@
             />
           </svg>
         </button>
-        {{ with index .Site.Data.settings .Lang }}
-          <div class="size-[40px]">
-            <a href="https://wa.me/{{ .whatsapp }}">
-              <img
-                src="{{ .whatsapp_logo }}"
-                alt="icon"
-                class="size-full rounded-full"
-              />
-            </a>
-          </div>
-          <div class="size-[40px] rounded-full">
-            <a href="https://t.me/{{ .telegram }}">
-              <img
-                src="{{ .telegram_logo }}"
-                alt="icon"
-                class="size-full rounded-full"
-              />
-            </a>
-          </div>
-        {{ end }}
       </div>
     </div>
   </div>

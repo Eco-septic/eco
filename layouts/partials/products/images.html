@@ -5,7 +5,7 @@
   <div class="relative w-full pt-[66%]">
     <div data-display-index="0" class="absolute centric">
       <a
-        href="/media/test.png"
+        href="{{ .Params.image }}"
         data-fslightbox="gallery"
         class="size-full block"
       >
@@ -17,17 +17,19 @@
       </a>
     </div>
   </div>
-  <div class="product-images flex justify-between">
-    <button data-control="image_left"><</button>
+  <div class="product-images flex justify-between items-center">
+    <button
+      data-control="image_left"
+      class="inactive PaginationDotsInActive size-9 rounded-md"
+    >
+      &laquo;
+    </button>
     <div
       class="w-10/12 overflow-x-scroll remove-scroll-style "
       data-container="scroll"
     >
       <div data-range="{start: 0, end: 2}" class="flex gap-4 flex-nowrap">
-        <a
-          href="https://www.youtube.com/watch?v=3nQNiWdeH2Q"
-          data-fslightbox="gallery"
-        >
+        <a href="{{ .Params.image }}" data-fslightbox="gallery">
           <div
             class=" size-24 md:size-32 min-w-24 md:min-w-32 m-2 current-displaye-image-style"
           >
@@ -41,7 +43,7 @@
           </div>
         </a>
         {{ range $index, $image := .Params.images }}
-          <a href="/media/test.png" data-fslightbox="gallery">
+          <a href="{{ $image }}" data-fslightbox="gallery">
             <div class=" size-24 md:size-32 min-w-24 md:min-w-32  m-2">
               <img
                 src="{{ $image }}"
@@ -55,7 +57,12 @@
         {{ end }}
       </div>
     </div>
-    <button data-control="image_right">></button>
+    <button
+      data-control="image_right"
+      class="inactive PaginationDotsInActive size-9 rounded-md"
+    >
+      &raquo;
+    </button>
   </div>
 </section>
 

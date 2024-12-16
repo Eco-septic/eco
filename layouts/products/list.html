@@ -1,34 +1,53 @@
 {{ define "main" }}
   <main class="container mx-auto mb-10">
     {{ partial "breadcrumbs.html" . }}
-    <h1 class="text-2xl font-bold mb-4">{{ .Title }}</h1>
+    <h1 class="text-2xl font-bold my-14">{{ .Title }}</h1>
 
-    <div class="flex justify-between items-center mb-4">
+    <fieldset
+      class="flex justify-center items-center mb-4 p-4 flex-wrap gap-4 border drop-shadow-lg rounded-md"
+    >
       <!-- Category Filter Dropdown -->
-      <div>
-        <label for="categoryFilter" class="mr-2">Category:</label>
-        <select id="categoryFilter" class="border rounded p-2">
-          <option value="all">All Categories i18n</option>
-          {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
-            <option value="{{ $name }}">{{ $name }}</option>
+      <legend class="ml-6">
+        {{ $settings := index .Site.Data.settings .Lang }}
+        {{ $settings.products.taxonomy }}
+      </legend>
+      {{ $currentLang := index .Site.Data.categories .Lang }}
+      {{ $groups := $currentLang.groups }}
+      {{ range $groups }}
+        {{ if eq .group "6" }}
+          <label
+            class="inactive hover:cursor-pointer hover:PaginationDotsActive has-[:checked]:PaginationDotsActive text-center border text-sm md:text-base px-4 py-2  rounded-lg  "
+          >
+            <input
+              value="all"
+              checked
+              type="radio"
+              name="filter_category"
+              class="appearance-none"
+            />
+            {{ .translation }}
+          </label>
+        {{ end }}
+      {{ end }}
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        {{ range $groups }}
+          {{ if eq .group $name }}
+            <label
+              class="inactive hover:cursor-pointer hover:PaginationDotsActive has-[:checked]:PaginationDotsActive inactive  border  text-center text-sm md:text-base px-4 py-2  rounded-lg  "
+            >
+              <input
+                data-filter="{{ lower $name }}"
+                value="{{ .group }}"
+                name="filter_category"
+                type="radio"
+                class="appearance-none"
+              />
+              {{ .translation }}
+            </label>
           {{ end }}
-        </select>
-      </div>
-
-      <!-- Price Filter Range -->
-      <div class="flex-[0.7]">
-        <label for="priceFilter" class="mr-2">Price Range: i18n</label>
-        <input
-          type="range"
-          id="priceFilter"
-          min="0"
-          max="100000"
-          step="100"
-          class="slider w-1/2"
-        />
-        <span id="priceValue" class="ml-2">0</span> KGS
-      </div>
-    </div>
+        {{ end }}
+      {{ end }}
+    </fieldset>
 
     <!-- Products Container -->
     <div id="empty_product" class="flex text-center m-52">
@@ -50,85 +69,95 @@
         {{ end }}
 
 
-        <a href="{{ .RelPermalink }}">
+        <div
+          class="product-item group relative p-4 border rounded shadow-lg flex flex-col justify-between"
+          data-product-category="{{ .Params.categories }}"
+          data-product-price="{{ $dataPrice }}"
+        >
+          {{ if or .Params.promo .Params.newPrice }}
+            <img
+              src="{{ "static/promo.svg" | relURL }}"
+              alt="Promo"
+              class="absolute top-2 left-2 w-12 z-20 h-12 rounded-full"
+            />
+          {{ end }}
+
+
           <div
-            class="product-item group relative p-4 border rounded shadow-lg"
-            data-product-category="{{ .Params.categories }}"
-            data-product-price="{{ $dataPrice }}"
+            class="group relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg"
           >
-            {{ if or .Params.promo .Params.newPrice }}
-              <img
-                src="https://via.placeholder.com/50x50.png/FF0000/FFFFFF?text=SALE"
-                alt="Promo"
-                class="absolute top-2 left-2 w-12 z-10 h-12 rounded-full"
-              />
-            {{ end }}
-
-
-            <div
-              class="group relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg"
-            >
-              <img
-                src="https://via.placeholder.com/400x282.png/28a745/ffffff?text=Product"
-                alt="{{ .Title }}"
-                class="w-full h-auto group-hover:scale-150 object-cover transition duration-300 ease-in-out transform"
-                loading="lazy"
-              />
-              <p
-                class="absolute inset-0 flex items-center justify-center p-4 text-black transition-all duration-500 ease-in-out transform -translate-y-full group-hover:translate-y-0 group-hover:text-white group-hover:bg-black/50 overflow-hidden"
-              >
-                {{ .Params.description }}
-              </p>
-            </div>
-
-            <h2 class="text-xl font-semibold mt-4">{{ .Params.categories }}</h2>
-            <p class="text-sm text-gray-600 mb-2">{{ .Params.description }}</p>
-
-            <div class="text-lg">
-              {{ $price := float .Params.price }}
-              {{ $promo := float .Params.promo }}
-              {{ $newPrice := float .Params.newPrice }}
-
-              {{ if and $promo (gt $promo 0) }}
-                {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
-                <p>
-                  <span class="line-through text-gray-500"
-                    >{{ printf "%.0f" $price }} KGS</span
-                  >
-                  <span class="text-red-500 font-bold ml-2"
-                    >{{ printf "%.0f" $discountedPrice }} KGS</span
-                  >
-                  <span class="text-green-600 text-sm"
-                    >({{ printf "%.2f" $promo }}% off)</span
-                  >
-                </p>
-              {{ else if and (not $promo) (gt $newPrice 0) }}
-                {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
-                <p>
-                  <span class="line-through text-gray-500"
-                    >{{ printf "%.0f" $price }} KGS</span
-                  >
-                  <span class="text-red-500 font-bold ml-2"
-                    >{{ printf "%.0f" $newPrice }} KGS</span
-                  >
-                  <span class="text-green-600 text-sm"
-                    >({{ printf "%.2f" $discount }}% off)</span
-                  >
-                </p>
-              {{ else }}
-                <p class="text-blue-700 font-bold">
-                  {{ printf "%.0f" $price }} KGS
-                </p>
-              {{ end }}
-            </div>
-
+            <img
+              src="{{ .Params.image }}"
+              alt="{{ .Params.title }}"
+              class="w-full h-auto group-hover:scale-150 group-hover:brightness-75 object-cover transition duration-300 ease-in-out transform"
+              loading="lazy"
+            />
             <a
               href="{{ .RelPermalink }}"
-              class="text-blue-500 underline mt-2 block"
-              >Read more i18n</a
+              class="absolute inset-0 flex items-center justify-center p-4 text-white transition-all duration-500 opacity-0 ease-in-out transform group-hover:opacity-100  overflow-hidden"
             >
+              {{ $settings := index .Site.Data.settings .Lang }}
+              {{ $settings.product.more }}
+            </a>
           </div>
-        </a>
+
+          <h2 class="text-base font-semibold mt-4">
+            {{ .Params.title }}
+          </h2>
+          <p class="text-sm text-gray-600 mb-2">
+            {{ $categ := int .Params.categories }}
+            {{ with index .Site.Data.categories .Lang }}
+              {{ range .groups }}
+                {{ if eq .group $categ }}
+                  {{ .translation }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          </p>
+
+          <div class="text-lg">
+            {{ $price := float (default "0" .Params.price) }}
+            {{ $promo := float (default "0" .Params.promo) }}
+            {{ $newPrice := float (default "0" .Params.newPrice) }}
+
+            {{ if and $promo (gt $promo 0) }}
+              {{ $discountedPrice := mul $price (sub 1 (div $promo 100)) }}
+              <p>
+                <span class="line-through text-gray-500"
+                  >{{ printf "%.0f" $price }} KGS</span
+                >
+                <span class="text-green-600 font-bold ml-2"
+                  >{{ printf "%.0f" $discountedPrice }} KGS</span
+                >
+                <span class="text-green-600 text-sm"
+                  >({{ printf "%.2f" $promo }}% off)</span
+                >
+              </p>
+            {{ else if and (not $promo) (gt $newPrice 0) }}
+              {{ $discount := div (sub $price $newPrice) $price | mul 100 }}
+              <p>
+                <span class="line-through text-gray-500"
+                  >{{ printf "%.0f" $price }} KGS</span
+                >
+                <span class="text-green-600 font-bold ml-2"
+                  >{{ printf "%.0f" $newPrice }} KGS</span
+                >
+                <span class="text-green-600 text-sm"
+                  >({{ printf "%.2f" $discount }}% off)</span
+                >
+              </p>
+            {{ else }}
+              <p class="">{{ printf "%.0f" $price }} KGS</p>
+            {{ end }}
+          </div>
+
+          <a
+            href="{{ .RelPermalink }}"
+            class="text-blue-500 underline mt-2 block"
+            >{{ $settings := index .Site.Data.settings .Lang }}
+            {{ $settings.products.more }}</a
+          >
+        </div>
       {{ end }}
     </div>
 
@@ -162,9 +191,9 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const productsContainer = document.getElementById("productsContainer");
-        const categoryFilter = document.getElementById("categoryFilter");
-        const priceFilter = document.getElementById("priceFilter");
-        const priceValue = document.getElementById("priceValue");
+        const categoryFilter = document.querySelectorAll(
+          'input[name="filter_category"]',
+        );
         const paginationDots = document.getElementById("productPaginationDots");
         const paginationContainer = document.getElementById(
           "paginationContainer",
@@ -178,7 +207,8 @@
         // Default variables
         let allProducts = []; // Array to hold all product items
         let filteredProducts = []; // Array to hold filtered product items
-        const itemsPerPage = 12; // Number of items per page
+        const itemsPerPage =
+          window.innerWidth > 1023 ? 9 : window.innerWidth < 768 ? 3 : 6; // Number of items per page
         let currentPage = 0; // 0-based index
         let prevPage = 0;
         let maxRange = 0;
@@ -188,19 +218,11 @@
         function initializeProducts() {
           document.querySelectorAll(".product-item").forEach((item) => {
             const productCategory = item.getAttribute("data-product-category");
-            const productPrice = item.getAttribute("data-product-price");
-            maxRange = Math.max(maxRange, productPrice);
-            minRange = Math.min(minRange, productPrice);
             allProducts.push({
               element: item,
               category: productCategory,
-              price: productPrice,
             });
           });
-          priceFilter.max = maxRange;
-          priceFilter.min = minRange;
-          priceFilter.value = maxRange;
-          priceValue.innerText = maxRange;
           filteredProducts = [...allProducts]; // Initialize filteredProducts with allProducts
           displayProducts(); // Display all products initially
         }
@@ -247,21 +269,23 @@
 
         // Filter products based on selected category and price range
         function filterProducts() {
-          const selectedCategory = categoryFilter.value;
-          const selectedPrice = Number(priceFilter.value); // Convert to number
+          let selectedCategory = "";
+          categoryFilter.forEach((radio) => {
+            if (radio.checked) {
+              selectedCategory = radio.value; // Logs the selected radio button's value
+            }
+            radio.addEventListener("change", () => {});
+          });
 
           // Check if we're resetting filters to show all products
           const isCategoryAll = selectedCategory === "all";
-          const isMaxPrice = selectedPrice >= maxRange;
 
           // Filter based on category and price
           filteredProducts = allProducts.filter((product) => {
             const matchesCategory =
               isCategoryAll || product.category === selectedCategory;
-            const matchesPrice =
-              isMaxPrice || Number(product.price) <= selectedPrice;
             // return matchesCategory ;
-            return matchesCategory && matchesPrice;
+            return matchesCategory;
           });
 
           currentPage = 0; // Reset to first page after filtering
@@ -329,12 +353,9 @@
         }
 
         // Event listeners for category and price filters
-        categoryFilter.addEventListener("change", filterProducts);
-        priceFilter.addEventListener("input", (e) => {
-          priceValue.innerText = e.target.value;
-          filterProducts();
+        categoryFilter.forEach((radio) => {
+          radio.addEventListener("change", filterProducts);
         });
-
         // Event listeners for pagination buttons
         prevPageBtn.addEventListener("click", () => {
           if (currentPage > 0) {

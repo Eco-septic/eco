@@ -1,21 +1,62 @@
-ky:
-  telegram: "+000000"
-  telegram_logo: /media/uploads/telegram.svg
-  email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/feather.png
-  whatsapp: "+000000"
-  address: 123 Street Name, City, Country
-  whatsapp_logo: /media/uploads/whatsapp.svg
-  email: contact@example.com
-  description: Киргизчa баяндама
 ru:
-  telegram: "+000000"
+  telegram: "+996555933973"
+  products:
+    or: по заказу
+    parameters: Характеристики
+    similar: Похожие продукции из категории
+    taxonomy: Категории продукции
+    na: Не доступен
+    av: В наличии
+    more: узнать больше..
+    availability: Доступность
+    benefits: Преимущества
   telegram_logo: /media/uploads/telegram.svg
   email_logo: /media/uploads/email-outline.svg
-  main_logo: /media/uploads/feather.png
-  whatsapp: "+000000"
+  phone: test
+  main_logo: /media/uploads/test2logo.png
+  whatsapp: "+996555933973"
+  mini_logo: /images/mini_logo.png
+  news:
+    taxonomy: Новостные рубрики
+    more: Подробнее...
+    rescent: Недавние новости
   address: 123 Street Name, City, Country
+  address_logo: /media/uploads/email-outline.svg
   whatsapp_logo: /media/uploads/whatsapp.svg
-  email: contact@example.com
-  description: Киргизчa баяндама
-  description: russian description
+  og_base: /images/base.png
+  phone_logo: /media/uploads/free-icon-shield-1341916.png
+  email: ecoseptic.kg@gmail.com
+  description: « ЭКО СЕПТИК » -  компания, специализирующаяся на поставке,
+    установке и обслуживании систем очистки сточных вод
+  contactUs: Cвязаться с нами
+ky:
+  telegram: "+996555933973"
+  products:
+    or: Буйрутма боюнча
+    parameters: Мүнөздөмөлөр
+    similar: Ушул эле категориядагы окшош продукциялар
+    taxonomy: Продукциянын категориялары
+    na: Жок
+    av: Бар
+    more: Көбүрөөк билүү...
+    availability: Бар-жогу
+    benefits: Артыкчылыктары
+  telegram_logo: /media/uploads/telegram.svg
+  email_logo: /media/uploads/email-outline.svg
+  phone: test
+  main_logo: /media/uploads/test2logo.png
+  whatsapp: "+996555933973"
+  mini_logo: /images/mini_logo.png
+  news:
+    taxonomy: Жаңылыктар бөлүмдөрү
+    more: Толугураак...
+    rescent: Акыркы жаңылыктар
+  address: 123 Street Name, City, Country
+  address_logo: /media/uploads/email-outline.svg
+  whatsapp_logo: /media/uploads/whatsapp.svg
+  og_base: /images/base.png
+  phone_logo: /media/uploads/free-icon-shield-1341916.png
+  email: ecoseptic.kg@gmail.com
+  description: ЭКО СЕПТИК –  САРКЫНДЫ СУУЛАРДЫ ТАЗАЛОО ТУТУМДАРЫН ЖЕТКИРҮҮГӨ,
+    ОРНОТУУГА ЖАНА ТЕЙЛӨӨГӨ АДИСТЕШКЕН КОМПАНИЯ.
+  contactUs: Биз менен байланышуу
