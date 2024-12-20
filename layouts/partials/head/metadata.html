@@ -13,11 +13,28 @@
   {{ end }}"
 />
 
+<!-- Hreflang Tags for Alternate Languages -->
+{{- if .IsTranslated -}}
+  {{ range first 1 .AllTranslations }}
+    <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+  {{- end -}}
+  {{ range .AllTranslations }}
+    <link
+      rel="alternate"
+      hreflang="{{ .Language.Lang }}"
+      href="{{ .Permalink }}"
+    />
+  {{- end -}}
+{{ end }}
+
 {{ template "_internal/google_analytics.html" . }}
 <meta http-equiv="content-language" content="{{ .Lang }}" />
 <meta name="rating" content="general" />
 <meta name="generator" content="hugo" />
-<meta name="google-site-verification" content="" />
+<meta
+  name="google-site-verification"
+  content="patnnzHuxxYQDv53KJ0AJjOCxJUGbKG9cJ7f2z5Ndzo"
+/>
 <!-- google verification here is duplicated hence the html option is avaiable at static folder -->
 <meta name="publisher" content="Netlify" />
 <meta name="author" content="ECO SEPTIC KG" />
@@ -34,14 +51,14 @@
   <link
     rel="apple-touch-icon-precomposed"
     sizes="57x57"
-    href="{{ $apple57.RelPermalink }}"
+    href="{{ absURL $apple57 }}"
   />
 
   {{ $apple114 := $baseImage.Fit "114x114" }}
   <link
     rel="apple-touch-icon-precomposed"
     sizes="114x114"
-    href="{{ $apple114.RelPermalink }}"
+    href="{{ absURL $apple114 }}"
   />
 
   {{ $apple72 := $baseImage.Fit "72x72" }}
@@ -51,14 +68,14 @@
   <link
     rel="apple-touch-icon-precomposed"
     sizes="72x72"
-    href="{{ $apple72.RelPermalink }}"
+    href="{{ absURL $apple72 }}"
   />
 
   {{ $apple144 := $baseImage.Fit "144x144" }}
   <link
     rel="apple-touch-icon-precomposed"
     sizes="144x144"
-    href="{{ $apple144.RelPermalink }}"
+    href="{{ absURL $apple144 }}"
   />
   {{ $favicon32 := $baseImage.Fit "32x32" }}
   {{ $favicon32 = resources.Copy "images/icon32.png" $favicon32 }}
@@ -66,7 +83,7 @@
     rel="icon"
     type="image/png"
     sizes="32x32"
-    href="{{ $favicon32.RelPermalink }}"
+    href="{{ absURL $favicon32 }}"
   />
 
   {{ $favicon16 := $baseImage.Fit "16x16" }}
@@ -75,19 +92,16 @@
     rel="icon"
     type="image/png"
     sizes="16x16"
-    href="{{ $favicon16.RelPermalink }}"
+    href="{{ absURL $favicon16 }}"
   />
   {{ $mstile144 := $baseImage.Fit "144x144" }}
   {{ $mstile144 = resources.Copy "images/icon144.png" $mstile144 }}
-  <meta
-    name="msapplication-TileImage"
-    content="{{ $mstile144.RelPermalink }}"
-  />
+  <meta name="msapplication-TileImage" content="{{ absURL $mstile144 }}" />
 
   {{ $mstile150 := $baseImage.Fit "150x150" }}
   {{ $mstile150 = resources.Copy "images/icon150.png" $mstile150 }}
   <meta
     name="msapplication-square150x150logo"
-    content="{{ $mstile150.RelPermalink }}"
+    content="{{ absURL $mstile150 }}"
   />
 {{ end }}
