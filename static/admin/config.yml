@@ -795,6 +795,15 @@ collections:
           widget: "string",
           i18n: true,
         }
+      - {
+          label: "Номер модели",
+          name: "model",
+          widget: "number",
+          value_type: "int",
+          default: 1,
+          min: 1,
+          i18n: duplicate,
+        }
       - label: "Доступность"
         name: "availability"
         i18n: duplicate

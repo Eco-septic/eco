@@ -55,10 +55,11 @@
   >
     <!-- Group products by categories -->
     {{ $products := (where .Site.RegularPages "Type" "products") }}
-    {{ range $index, $pages :=  $products.ByPublishDate.Reverse }}
+    {{ range $index, $pages :=  $products.ByParam "model" }}
       <div
         class="product-item flex flex-col space-y-2 justify-between"
         data-item="{{ $pages.Params.categories | lower }}"
+        data-sort="{{ .Params.title }}"
       >
         <div class="group overflow-hidden relative w-full pt-[100%]">
           <!-- Aspect ratio container -->
@@ -195,6 +196,7 @@
 
       // Default variables
       let filteredItems = Array.from(productItems);
+
       let currentPage = 0;
       const itemsPerPage =
         window.innerWidth > 1023 ? 8 : window.innerWidth < 768 ? 3 : 6;

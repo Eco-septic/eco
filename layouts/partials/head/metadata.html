@@ -51,14 +51,14 @@
   <link
     rel="apple-touch-icon-precomposed"
     sizes="57x57"
-    href="{{ absURL $apple57 }}"
+    href="{{ $apple57.RelPermalink }}"
   />
 
   {{ $apple114 := $baseImage.Fit "114x114" }}
   <link
     rel="apple-touch-icon-precomposed"
     sizes="114x114"
-    href="{{ absURL $apple114 }}"
+    href="{{ $apple114.RelPermalink }}"
   />
 
   {{ $apple72 := $baseImage.Fit "72x72" }}
@@ -68,14 +68,14 @@
   <link
     rel="apple-touch-icon-precomposed"
     sizes="72x72"
-    href="{{ absURL $apple72 }}"
+    href="{{ $apple72.RelPermalink }}"
   />
 
   {{ $apple144 := $baseImage.Fit "144x144" }}
   <link
     rel="apple-touch-icon-precomposed"
     sizes="144x144"
-    href="{{ absURL $apple144 }}"
+    href="{{ $apple144.RelPermalink }}"
   />
   {{ $favicon32 := $baseImage.Fit "32x32" }}
   {{ $favicon32 = resources.Copy "images/icon32.png" $favicon32 }}
@@ -83,7 +83,7 @@
     rel="icon"
     type="image/png"
     sizes="32x32"
-    href="{{ absURL $favicon32 }}"
+    href="{{ $favicon32.RelPermalink }}"
   />
 
   {{ $favicon16 := $baseImage.Fit "16x16" }}
@@ -92,16 +92,19 @@
     rel="icon"
     type="image/png"
     sizes="16x16"
-    href="{{ absURL $favicon16 }}"
+    href="{{ $favicon16.RelPermalink }}"
   />
   {{ $mstile144 := $baseImage.Fit "144x144" }}
   {{ $mstile144 = resources.Copy "images/icon144.png" $mstile144 }}
-  <meta name="msapplication-TileImage" content="{{ absURL $mstile144 }}" />
+  <meta
+    name="msapplication-TileImage"
+    content="{{ $mstile144.RelPermalink }}"
+  />
 
   {{ $mstile150 := $baseImage.Fit "150x150" }}
   {{ $mstile150 = resources.Copy "images/icon150.png" $mstile150 }}
   <meta
     name="msapplication-square150x150logo"
-    content="{{ absURL $mstile150 }}"
+    content="{{ $mstile150.RelPermalink }}"
   />
 {{ end }}
