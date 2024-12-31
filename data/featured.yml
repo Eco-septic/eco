@@ -5,7 +5,7 @@ ru:
     - group: "1"
       translation: Область применения
     - group: "2"
-      translation: two
+      translation: С Новым годом !
     - group: "3"
       translation: three
     - group: "4"
@@ -21,7 +21,7 @@ ky:
     - group: "1"
       translation: Колдонуу чөйрөсү
     - group: "2"
-      translation: two
+      translation: С Новым годом !
     - group: "3"
       translation: three
     - group: "4"
