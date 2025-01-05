@@ -5,11 +5,11 @@ ru:
     - group: "1"
       translation: Область применения
     - group: "2"
-      translation: С Новым годом !
+      translation: Сервисное обслуживание
     - group: "3"
       translation: "Дополнительные  контакты "
     - group: "4"
-      translation: four
+      translation: С Новым годом !
     - group: "5"
       translation: five
     - group: "6"
@@ -21,11 +21,11 @@ ky:
     - group: "1"
       translation: Колдонуу чөйрөсү
     - group: "2"
-      translation: С Новым годом !
+      translation: Тейлөө кызматы
     - group: "3"
       translation: Кошумча байланыштар
     - group: "4"
-      translation: four
+      translation: Жаны жылыныздар менен!
     - group: "5"
       translation: five
     - group: "6"
