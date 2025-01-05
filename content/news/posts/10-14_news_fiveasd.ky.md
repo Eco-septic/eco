@@ -1,6 +1,6 @@
 ---
 ContentTitle: Чүй облусунда Кыргызстан менен Казакстандын чек арасында 16 м³
-  көлөмдөгү ТОПАЭРО септиги орнотулду
+  көлөмдөгү ТОПАЭРО септиги орнотулуп жатат
 ContentDescription: Desctiprion
 featured: 0
 titleImage: /media/uploads/41a78612-ee2f-4fb3-84cd-e87118f374da_1_.jpg
