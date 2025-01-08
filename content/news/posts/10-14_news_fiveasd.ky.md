@@ -4,7 +4,7 @@ ContentTitle: Чүй облусунда Кыргызстан менен Каза
 ContentDescription: Desctiprion
 featured: 0
 titleImage: /media/uploads/41a78612-ee2f-4fb3-84cd-e87118f374da_1_.jpg
-date: 2024-10-25T04:04:00+06:00
+date: 2024-12-17T04:04:00+06:00
 sitemap:
   changefreq: monthly
   priority: 0.6
