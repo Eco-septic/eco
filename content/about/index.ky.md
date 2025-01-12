@@ -5,11 +5,6 @@ menu:
     name: Биз жөнүндө
     pageRef: /about
     weight: 2
-type: about
-sitemap:
-  changefreq: monthly
-  priority: 0.8
-  disable: false
 sections:
   - title: Компания жөнүндө
     listDescription:
@@ -30,6 +25,11 @@ sections:
       - description: Компаниянын ишмердүүлүгү ар дайым ар бир кардарга жеке мамиле,
           сапат, кесипкөйлүк жана жоопкерчилик сыяктуу баалуулуктарга
           негизделет.
+type: about
+sitemap:
+  changefreq: monthly
+  priority: 0.8
+  disable: false
 title: Компания жөнүндө
 description: ЭКО-СЕПТИК
 ---
