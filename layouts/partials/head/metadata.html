@@ -62,7 +62,7 @@
   />
 
   {{ $apple72 := $baseImage.Fit "72x72" }}
-  {{ $apple72 = resources.Copy "images/icon72.png" $apple72 }}
+  {{ $apple72 = resources.Copy "images/_icon72.png" $apple72 }}
 
 
   <link
@@ -78,7 +78,7 @@
     href="{{ $apple144.RelPermalink }}"
   />
   {{ $favicon32 := $baseImage.Fit "32x32" }}
-  {{ $favicon32 = resources.Copy "images/icon32.png" $favicon32 }}
+  {{ $favicon32 = resources.Copy "images/_icon32.png" $favicon32 }}
   <link
     rel="icon"
     type="image/png"
@@ -87,7 +87,7 @@
   />
 
   {{ $favicon16 := $baseImage.Fit "16x16" }}
-  {{ $favicon16 = resources.Copy "images/icon16.png" $favicon16 }}
+  {{ $favicon16 = resources.Copy "images/_icon16.png" $favicon16 }}
   <link
     rel="icon"
     type="image/png"
@@ -95,14 +95,14 @@
     href="{{ $favicon16.RelPermalink }}"
   />
   {{ $mstile144 := $baseImage.Fit "144x144" }}
-  {{ $mstile144 = resources.Copy "images/icon144.png" $mstile144 }}
+  {{ $mstile144 = resources.Copy "images/_icon144.png" $mstile144 }}
   <meta
     name="msapplication-TileImage"
     content="{{ $mstile144.RelPermalink }}"
   />
 
   {{ $mstile150 := $baseImage.Fit "150x150" }}
-  {{ $mstile150 = resources.Copy "images/icon150.png" $mstile150 }}
+  {{ $mstile150 = resources.Copy "images/_icon150.png" $mstile150 }}
   <meta
     name="msapplication-square150x150logo"
     content="{{ $mstile150.RelPermalink }}"
