@@ -863,6 +863,10 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
 .mb-9 {
   margin-bottom: 2.25rem;
 }
@@ -905,10 +909,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 
 .block {
@@ -1131,10 +1131,6 @@ video {
 
 .list-inside {
   list-style-position: inside;
-}
-
-.list-\[space\] {
-  list-style-type: space;
 }
 
 .list-disc {
@@ -2599,11 +2595,6 @@ summary {
   opacity: 0.5;
 }
 
-.hover\:brightness-50:hover {
-  --tw-brightness: brightness(.5);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .active\:-translate-x-3:active {
   --tw-translate-x: -0.75rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -2637,6 +2628,10 @@ summary {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.group:hover .group-hover\:cursor-pointer {
+  cursor: pointer;
+}
+
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
 }
@@ -2657,11 +2652,6 @@ summary {
 
 .peer[open] ~ .peer-open\:p-4 {
   padding: 1rem;
-}
-
-.peer[open] ~ .peer-open\:px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .peer:checked ~ .peer-checked\:bg-darkMode {

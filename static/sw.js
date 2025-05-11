@@ -13,9 +13,7 @@ registerRoute(
 
 registerRoute(
   ({ request }) =>
-    request.destination === "script" ||
-    request.destination === "image" ||
-    request.destination === "document",
+    ["script", "style", "image", "document"].includes(request.destination),
 
   new StaleWhileRevalidate({
     cacheName: "image-cache",
