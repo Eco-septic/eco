@@ -1,6 +1,6 @@
 ---
-ContentTitle: В Чуйской области на границе Кыргызстана и Казахстана установается
-  септик ТОПЛОСАЭРО 16 м³
+ContentTitle: В Чуйской области на границе Кыргызстана и Казахстана
+  устанавливается септик ТОПЛОСАЭРО 16 м³
 ContentDescription: Desctiprion
 featured: 0
 titleImage: /media/uploads/41a78612-ee2f-4fb3-84cd-e87118f374da_1_.jpg
