@@ -91,7 +91,7 @@ certificates:
       image: /media/uploads/slider2.jpg
     - registrNumber: Excellence in Project Management
       image: /media/uploads/wallpaperflare.com_wallpaper.jpg
-description: "ЭКО-СЕПТИК» "
+description: ЭКО-СЕПТИК
 aboutHistorySection:
   title: About our history
   description: "alsknd lakjsnd jkasn akjsf akjsn akjsn "
